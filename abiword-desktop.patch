@@ -1,15 +1,7 @@
-diff -Nuard abiword-2.0.2.orig/abi/abiword.desktop abiword-2.0.2/abi/abiword.desktop
---- abiword-2.0.2.orig/abi/abiword.desktop	2003-11-05 23:48:22.000000000 +0100
-+++ abiword-2.0.2/abi/abiword.desktop	2003-12-15 20:17:02.584553768 +0100
-@@ -1,11 +1,14 @@
- [Desktop Entry]
--Name=AbiWord Word Processor
-+Name=AbiWord
-+Name[pl]=AbiWord
- Name[de]=AbiWord Textverarbeitung
-+Comment=Word Processor
-+Comment[pl]=Edytor dokumentów tekstowych
- Exec=abiword
+diff -aurN abiword-2.1.90.orig/abi/abiword.desktop abiword-2.1.90/abi/abiword.desktop
+--- abiword-2.1.90.orig/abi/abiword.desktop	2004-09-30 16:34:58.000000000 +0200
++++ abiword-2.1.90/abi/abiword.desktop	2004-10-16 00:01:20.331450440 +0200
+@@ -3,14 +3,13 @@
  Icon=abiword_48.png
  Terminal=false
  Type=Application
@@ -17,4 +9,12 @@ diff -Nuard abiword-2.0.2.orig/abi/abiword.desktop abiword-2.0.2/abi/abiword.des
 +Categories=GTK;GNOME;Office;WordProcessor;
  StartupNotify=true
  Encoding=UTF-8
- 
+-X-Desktop-File-Install-Version=0.4
+ MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;text/plain;
+ Name=AbiWord Word Processor
+ Name[de]=AbiWord Textverarbeitung
+ Name[nb]=AbiWord Tekstbehandling
+ Name[nn]=AbiWord Tekstbehandling
+-Name[no]=AbiWord Tekstbehandler
++Name[pl]=Procesor tekstu AbiWord
+ Name[pt]=AbiWord Processador de Texto
