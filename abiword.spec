@@ -56,9 +56,9 @@ plataformas, com o objetivo de ser um aplicativo leve e completo.
 
 %prep
 %setup -q -a1
+%patch1 -p1
 cd abiword-plugins/abiword-plugins
 %patch0 -p1
-%patch1 -p1
 
 %build
 cd abi
