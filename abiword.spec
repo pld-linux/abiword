@@ -28,7 +28,7 @@ BuildRequires:	librsvg-devel
 BuildRequires:	libwmf-devel
 BuildRequires:	libxml2-devel >= 2.4.2
 BuildRequires:	pspell-devel >= 0.11.1
-BuildRequires:	wv-devel >= 0.7.6
+BuildRequires:	wv-devel >= 0.7.6-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
