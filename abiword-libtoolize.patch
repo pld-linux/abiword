@@ -1,0 +1,15 @@
+--- autogen.sh~	Wed Jan 30 19:02:50 2002
++++ autogen.sh	Tue Mar 25 19:09:29 2003
+@@ -1,6 +1,12 @@
+ #!/bin/sh
+ # Run this to generate all the initial makefiles, etc.
+ 
++echo "      -> libtoolize --copy --force"
++libtoolize --copy --force || {
++	echo "**Error**: libtoolize failed.";
++	exit 1;
++}
++
+ echo "      -> aclocal -I $abi_topdir/ac-helpers"
+ aclocal -I $abi_topdir/ac-helpers || {
+ 	echo "**Error**: aclocal failed.";

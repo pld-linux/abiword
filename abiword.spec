@@ -7,7 +7,7 @@ Summary(pt_BR):	Processador de textos completo
 Summary(zh_CN):	跨平台的字处理程序
 Name:		abiword
 Version:	1.0.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -16,6 +16,7 @@ Source1:	http://dl.sourceforge.net/abiword/%{name}-plugins.tar.gz
 Source2:	%{name}.desktop
 Patch0:		%{name}-oldmagick.patch
 Patch1:		%{name}-fonts.patch
+Patch2:		%{name}-libtoolize.patch
 URL:		http://www.abisource.com/
 BuildRequires:	Aiksaurus-devel
 BuildRequires:	ImageMagick-c++-devel
@@ -57,6 +58,10 @@ plataformas, com o objetivo de ser um aplicativo leve e completo.
 %patch1 -p1
 cd abiword-plugins/abiword-plugins
 %patch0 -p1
+cd wp
+for file in {impexp{,/graphics},scripts}/*/autogen.sh; do
+	patch $file <%{PATCH2}
+done
 
 %build
 cd abi
