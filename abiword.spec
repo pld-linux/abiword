@@ -13,24 +13,27 @@ Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{version}.tar.bz2
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-types.patch
 URL:		http://www.abisource.com/
+BuildRequires:	aspell-devel >= 0.50.0
 BuildRequires:	bzip2-devel
-BuildRequires:	fontconfig-devel
+BuildRequires:	fontconfig-devel >= 1.0
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	gal-devel >= 1.99
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk+2-devel >= 2.0.0
 BuildRequires:	gucharmap-devel >= 0.7
 BuildRequires:	libbonobo-devel >= 2.2.0
+BuildRequires:	libglade2-devel >=  2.0.0
 BuildRequires:	libgnomeui-devel >= 2.2.0
-BuildRequires:	libgnomeprint-devel >= 2.2.0
+BuildRequires:	libgnomeprint-devel >= 2.2.1
 BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
-BuildRequires:	libgsf-devel
+BuildRequires:	libgsf-devel >= 1.4.0
 BuildRequires:	libjpeg-devel
-BuildRequires:	librsvg-devel
-BuildRequires:	libwmf-devel
+BuildRequires:	librsvg-devel >= 2.0
+BuildRequires:	libwmf-devel >= 0.2.8
 BuildRequires:	libxml2-devel >= 2.4.2
-BuildRequires:	pspell-devel >= 0.11.1
-BuildRequires:	wv-devel >= 0.7.6-3
+BuildRequires:	nautilus-devel >= 2.0
+BuildRequires:	xft-devel >= 2.0
+BuildRequires:	wv-devel >= 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
