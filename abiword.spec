@@ -7,7 +7,7 @@ Summary(pt_BR):	Processador de textos completo
 Summary(zh_CN):	跨平台的字处理程序
 Name:		abiword
 Version:	1.0.2
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
