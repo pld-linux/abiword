@@ -40,7 +40,7 @@ AbiWord jest wieloplatformowym procesorem tekstu z interfejsem GTK+ na platformi
 Summary:	Various tools that can be used to extend AbiWord's capabilities.
 Summary(pl):	Ró¿ne narzêdzia powiêkszaj±ce mo¿liwo¶ci AbiWord.
 Group: 		Applications/Productivity
-Requires: 	%{name} = %{version}
+Requires: 	%{name} = %{epoch}:%{version}
 
 %description plugins-tools
 This is a set of plugins for AbiWord.  It includes
@@ -59,7 +59,7 @@ ScriptHappy: Run other programs in a shell and direct the output to AbiWord.
 Summary: 	Plugins to import and export otherwise unsupported formats.
 Summary(pl):	Wtyczki importuj±ce i eksportuj±ce do róznych formatów dokumentów.
 Group: 		Applications/Productivity
-Requires: 	%{name} = %{version}
+Requires: 	%{name} = %{epoch}:%{version}
 
 %description plugins-impexp
 This is a set of plugins for AbiWord.  It includes support for OpenWriter,
