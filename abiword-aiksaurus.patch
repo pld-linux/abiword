@@ -1,0 +1,16 @@
+diff -urN aa/abiword-2.1.3/abiword-plugins/tools/aiksaurus/xp/AiksaurusABI.cpp abiword-2.1.3/abiword-plugins/tools/aiksaurus/xp/AiksaurusABI.cpp
+--- aa/abiword-2.1.3/abiword-plugins/tools/aiksaurus/xp/AiksaurusABI.cpp	2003-06-15 14:09:42.000000000 +0200
++++ abiword-2.1.3/abiword-plugins/tools/aiksaurus/xp/AiksaurusABI.cpp	2004-06-10 12:22:30.623234872 +0200
+@@ -314,9 +314,9 @@
+     if (!pView->isSelectionEmpty())
+     {
+         // We need to get the Ascii version of the current word.
+-        search = AiksaurusABI_ucsToAscii(
+-					 pView->getSelectionText()
+-        );
++        UT_UCS4Char *text;
++        pView->getSelectionText(*&text);
++        search = AiksaurusABI_ucsToAscii(text);
+     }
+ 
+     // Now we will run the thesaurus dialog and get a response.
