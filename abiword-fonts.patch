@@ -1,81 +1,73 @@
-diff -Naur abiword-1.0.2/unixfonts/fonts/fonts.dir abiword-1.0.2-p/unixfonts/fonts/fonts.dir
---- abiword-1.0.2/unixfonts/fonts/fonts.dir	Tue Jan 15 22:51:20 2002
-+++ abiword-1.0.2-p/unixfonts/fonts/fonts.dir	Wed Aug 14 11:41:16 2002
-@@ -1,4 +1,4 @@
--68
-+136
- n019003l.pfb -ZZ_AbiWord-Arial-regular-r-normal--0-0-0-0-p-0-iso8859-1
- n019004l.pfb -ZZ_AbiWord-Arial-bold-r-normal--0-0-0-0-p-0-iso8859-1
- n019023l.pfb -ZZ_AbiWord-Arial-regular-i-normal--0-0-0-0-p-0-iso8859-1
-@@ -67,3 +67,71 @@
- n021004l.pfb -ZZ_AbiWord-Times New Roman-bold-r-normal-medium-0-0-0-0-p-0-iso8859-1
- n021023l.pfb -ZZ_AbiWord-Times New Roman-regular-i-normal--0-0-0-0-p-0-iso8859-1
- n021024l.pfb -ZZ_AbiWord-Times New Roman-bold-i-normal-medium-0-0-0-0-p-0-iso8859-1
-+n019003l.pfb -ZZ_AbiWord-Arial CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+n019004l.pfb -ZZ_AbiWord-Arial CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+n019023l.pfb -ZZ_AbiWord-Arial CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+n019024l.pfb -ZZ_AbiWord-Arial CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+bchb.pfa -ZZ_AbiWord-Bitstream Charter CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+bchbi.pfa -ZZ_AbiWord-Bitstream Charter CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+bchr.pfa -ZZ_AbiWord-Bitstream Charter CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+bchri.pfa -ZZ_AbiWord-Bitstream Charter CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+b018012l.pfb -ZZ_AbiWord-Bookman CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+b018015l.pfb -ZZ_AbiWord-Bookman CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+b018032l.pfb -ZZ_AbiWord-Bookman CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+b018035l.pfb -ZZ_AbiWord-Bookman CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+n022003l.pfb -ZZ_AbiWord-Courier CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+n022004l.pfb -ZZ_AbiWord-Courier CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+n022023l.pfb -ZZ_AbiWord-Courier CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+n022024l.pfb -ZZ_AbiWord-Courier CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+n022003l.pfb -ZZ_AbiWord-Courier New CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+n022004l.pfb -ZZ_AbiWord-Courier New CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+n022023l.pfb -ZZ_AbiWord-Courier New CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+n022024l.pfb -ZZ_AbiWord-Courier New CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+c059013l.pfb -ZZ_AbiWord-Century Schoolbook CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+c059016l.pfb -ZZ_AbiWord-Century Schoolbook CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+c059033l.pfb -ZZ_AbiWord-Century Schoolbook CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+c059036l.pfb -ZZ_AbiWord-Century Schoolbook CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+d050000l.pfb -ZZ_AbiWord-Dingbats CE-regular-r-normal--0-0-0-0-p-0-adobe-fontspecific
-+d050000l.pfb -ZZ_AbiWord-Dingbats CE-bold-r-normal--0-0-0-0-p-0-adobe-fontspecific
-+d050000l.pfb -ZZ_AbiWord-Dingbats CE-regular-i-normal--0-0-0-0-p-0-adobe-fontspecific
-+d050000l.pfb -ZZ_AbiWord-Dingbats CE-bold-i-normal--0-0-0-0-p-0-adobe-fontspecific
-+a010013l.pfb -ZZ_AbiWord-Gothi CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+a010015l.pfb -ZZ_AbiWord-Gothi CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+a010033l.pfb -ZZ_AbiWord-Gothi CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+a010035l.pfb -ZZ_AbiWord-Gothi CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+n019003l.pfb -ZZ_AbiWord-Helvetic CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+n019004l.pfb -ZZ_AbiWord-Helvetic CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+n019023l.pfb -ZZ_AbiWord-Helvetic CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+n019024l.pfb -ZZ_AbiWord-Helvetic CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+n019003l.pfb -ZZ_AbiWord-Nimbus Sans CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+n019004l.pfb -ZZ_AbiWord-Nimbus Sans CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+n019023l.pfb -ZZ_AbiWord-Nimbus Sans CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+n019024l.pfb -ZZ_AbiWord-Nimbus Sans CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+n019043l.pfb -ZZ_AbiWord-Nimbus Sans Condensed CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+n019044l.pfb -ZZ_AbiWord-Nimbus Sans Condensed CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+n019063l.pfb -ZZ_AbiWord-Nimbus Sans Condensed CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+n019064l.pfb -ZZ_AbiWord-Nimbus Sans Condensed CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+n021003l.pfb -ZZ_AbiWord-Nimbus Roman CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+n021004l.pfb -ZZ_AbiWord-Nimbus Roman CE-bold-r-normal-medium-0-0-0-0-p-0-iso8859-2
-+n021023l.pfb -ZZ_AbiWord-Nimbus Roman CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+n021024l.pfb -ZZ_AbiWord-Nimbus Roman CE-bold-i-normal-medium-0-0-0-0-p-0-iso8859-2
-+n022003l.pfb -ZZ_AbiWord-Nimbus Mono CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+n022004l.pfb -ZZ_AbiWord-Nimbus Mono CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+n022023l.pfb -ZZ_AbiWord-Nimbus Mono CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+n022024l.pfb -ZZ_AbiWord-Nimbus Mono CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+p052003l.pfb -ZZ_AbiWord-Palladio CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+p052004l.pfb -ZZ_AbiWord-Palladio CE-bold-r-normal--0-0-0-0-p-0-iso8859-2
-+p052023l.pfb -ZZ_AbiWord-Palladio CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+p052024l.pfb -ZZ_AbiWord-Palladio CE-bold-i-normal--0-0-0-0-p-0-iso8859-2
-+s050000l.pfb -ZZ_AbiWord-Symbol CE-regular-r-normal--0-0-0-0-p-0-adobe-fontspecific
-+s050000l.pfb -ZZ_AbiWord-Symbol CE-bold-r-normal--0-0-0-0-p-0-adobe-fontspecific
-+s050000l.pfb -ZZ_AbiWord-Symbol CE-regular-i-normal--0-0-0-0-p-0-adobe-fontspecific
-+s050000l.pfb -ZZ_AbiWord-Symbol CE-bold-i-normal--0-0-0-0-p-0-adobe-fontspecific
-+s050000l.pfb -ZZ_AbiWord-Standard Symbols CE-regular-r-normal--0-0-0-0-p-0-adobe-fontspecific
-+s050000l.pfb -ZZ_AbiWord-Standard Symbols CE-bold-r-normal--0-0-0-0-p-0-adobe-fontspecific
-+s050000l.pfb -ZZ_AbiWord-Standard Symbols CE-regular-i-normal--0-0-0-0-p-0-adobe-fontspecific
-+s050000l.pfb -ZZ_AbiWord-Standard Symbols CE-bold-i-normal--0-0-0-0-p-0-adobe-fontspecific
-+n021003l.pfb -ZZ_AbiWord-Times New Roman CE-regular-r-normal--0-0-0-0-p-0-iso8859-2
-+n021004l.pfb -ZZ_AbiWord-Times New Roman CE-bold-r-normal-medium-0-0-0-0-p-0-iso8859-2
-+n021023l.pfb -ZZ_AbiWord-Times New Roman CE-regular-i-normal--0-0-0-0-p-0-iso8859-2
-+n021024l.pfb -ZZ_AbiWord-Times New Roman CE-bold-i-normal-medium-0-0-0-0-p-0-iso8859-2
+diff -Naur abiword-1.0.2/unixfonts/fonts/ISO-8859-2/fonts.dir abiword-1.0.2-p/unixfonts/fonts/ISO-8859-2/fonts.dir
+--- abiword-1.0.2/unixfonts/fonts/ISO-8859-2/fonts.dir	Thu Jan  1 01:00:00 1970
++++ abiword-1.0.2-p/unixfonts/fonts/ISO-8859-2/fonts.dir	Thu Aug 22 13:26:10 2002
+@@ -0,0 +1,69 @@
++68
++../n019003l.pfb -ZZ_AbiWord-Arial-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../n019004l.pfb -ZZ_AbiWord-Arial-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../n019023l.pfb -ZZ_AbiWord-Arial-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../n019024l.pfb -ZZ_AbiWord-Arial-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../bchb.pfa -ZZ_AbiWord-Bitstream Charter-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../bchbi.pfa -ZZ_AbiWord-Bitstream Charter-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../bchr.pfa -ZZ_AbiWord-Bitstream Charter-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../bchri.pfa -ZZ_AbiWord-Bitstream Charter-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../b018012l.pfb -ZZ_AbiWord-Bookman-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../b018015l.pfb -ZZ_AbiWord-Bookman-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../b018032l.pfb -ZZ_AbiWord-Bookman-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../b018035l.pfb -ZZ_AbiWord-Bookman-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../n022003l.pfb -ZZ_AbiWord-Courier-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../n022004l.pfb -ZZ_AbiWord-Courier-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../n022023l.pfb -ZZ_AbiWord-Courier-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../n022024l.pfb -ZZ_AbiWord-Courier-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../n022003l.pfb -ZZ_AbiWord-Courier New-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../n022004l.pfb -ZZ_AbiWord-Courier New-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../n022023l.pfb -ZZ_AbiWord-Courier New-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../n022024l.pfb -ZZ_AbiWord-Courier New-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../c059013l.pfb -ZZ_AbiWord-Century Schoolbook-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../c059016l.pfb -ZZ_AbiWord-Century Schoolbook-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../c059033l.pfb -ZZ_AbiWord-Century Schoolbook-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../c059036l.pfb -ZZ_AbiWord-Century Schoolbook-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../d050000l.pfb -ZZ_AbiWord-Dingbats-regular-r-normal--0-0-0-0-p-0-adobe-fontspecific
++../d050000l.pfb -ZZ_AbiWord-Dingbats-bold-r-normal--0-0-0-0-p-0-adobe-fontspecific
++../d050000l.pfb -ZZ_AbiWord-Dingbats-regular-i-normal--0-0-0-0-p-0-adobe-fontspecific
++../d050000l.pfb -ZZ_AbiWord-Dingbats-bold-i-normal--0-0-0-0-p-0-adobe-fontspecific
++../a010013l.pfb -ZZ_AbiWord-Gothi-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../a010015l.pfb -ZZ_AbiWord-Gothi-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../a010033l.pfb -ZZ_AbiWord-Gothi-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../a010035l.pfb -ZZ_AbiWord-Gothi-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../n019003l.pfb -ZZ_AbiWord-Helvetic-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../n019004l.pfb -ZZ_AbiWord-Helvetic-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../n019023l.pfb -ZZ_AbiWord-Helvetic-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../n019024l.pfb -ZZ_AbiWord-Helvetic-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../n019003l.pfb -ZZ_AbiWord-Nimbus Sans-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../n019004l.pfb -ZZ_AbiWord-Nimbus Sans-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../n019023l.pfb -ZZ_AbiWord-Nimbus Sans-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../n019024l.pfb -ZZ_AbiWord-Nimbus Sans-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../n019043l.pfb -ZZ_AbiWord-Nimbus Sans Condensed-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../n019044l.pfb -ZZ_AbiWord-Nimbus Sans Condensed-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../n019063l.pfb -ZZ_AbiWord-Nimbus Sans Condensed-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../n019064l.pfb -ZZ_AbiWord-Nimbus Sans Condensed-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../n021003l.pfb -ZZ_AbiWord-Nimbus Roman-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../n021004l.pfb -ZZ_AbiWord-Nimbus Roman-bold-r-normal-medium-0-0-0-0-p-0-iso8859-2
++../n021023l.pfb -ZZ_AbiWord-Nimbus Roman-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../n021024l.pfb -ZZ_AbiWord-Nimbus Roman-bold-i-normal-medium-0-0-0-0-p-0-iso8859-2
++../n022003l.pfb -ZZ_AbiWord-Nimbus Mono-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../n022004l.pfb -ZZ_AbiWord-Nimbus Mono-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../n022023l.pfb -ZZ_AbiWord-Nimbus Mono-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../n022024l.pfb -ZZ_AbiWord-Nimbus Mono-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../p052003l.pfb -ZZ_AbiWord-Palladio-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../p052004l.pfb -ZZ_AbiWord-Palladio-bold-r-normal--0-0-0-0-p-0-iso8859-2
++../p052023l.pfb -ZZ_AbiWord-Palladio-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../p052024l.pfb -ZZ_AbiWord-Palladio-bold-i-normal--0-0-0-0-p-0-iso8859-2
++../s050000l.pfb -ZZ_AbiWord-Symbol-regular-r-normal--0-0-0-0-p-0-adobe-fontspecific
++../s050000l.pfb -ZZ_AbiWord-Symbol-bold-r-normal--0-0-0-0-p-0-adobe-fontspecific
++../s050000l.pfb -ZZ_AbiWord-Symbol-regular-i-normal--0-0-0-0-p-0-adobe-fontspecific
++../s050000l.pfb -ZZ_AbiWord-Symbol-bold-i-normal--0-0-0-0-p-0-adobe-fontspecific
++../s050000l.pfb -ZZ_AbiWord-Standard Symbols-regular-r-normal--0-0-0-0-p-0-adobe-fontspecific
++../s050000l.pfb -ZZ_AbiWord-Standard Symbols-bold-r-normal--0-0-0-0-p-0-adobe-fontspecific
++../s050000l.pfb -ZZ_AbiWord-Standard Symbols-regular-i-normal--0-0-0-0-p-0-adobe-fontspecific
++../s050000l.pfb -ZZ_AbiWord-Standard Symbols-bold-i-normal--0-0-0-0-p-0-adobe-fontspecific
++../n021003l.pfb -ZZ_AbiWord-Times New Roman-regular-r-normal--0-0-0-0-p-0-iso8859-2
++../n021004l.pfb -ZZ_AbiWord-Times New Roman-bold-r-normal-medium-0-0-0-0-p-0-iso8859-2
++../n021023l.pfb -ZZ_AbiWord-Times New Roman-regular-i-normal--0-0-0-0-p-0-iso8859-2
++../n021024l.pfb -ZZ_AbiWord-Times New Roman-bold-i-normal-medium-0-0-0-0-p-0-iso8859-2
