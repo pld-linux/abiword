@@ -1,21 +1,26 @@
 #
 # TODO:
 # - check impexp-plugins, loading them on starup causes AbiWord to segfault
+# - make "light" version without gnome dependencies 
+# - split plugins into subpackages (yeah, we can do it)
+# - check BRs/Rs
+# - use our auto macros not ./autogen stuff
+#
+%bcond_without	gnome 	# without GNOME libs
 #
 %define	mver	2.2
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.1.90
-Release:	0.2
+Version:	2.1.91
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	dd14dd3e17370668cee8226e74ae6b71
+# Source0-md5:	ed2606edcfc665d37936b33984363ca9
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
-Patch2:		%{name}-psion_plugin_buildfix.patch
 URL:		http://www.abisource.com/
 BuildRequires:	ImageMagick-c++-devel >= 5.4.0
 BuildRequires:	aiksaurus-gtk-devel >= 1.0
@@ -128,7 +133,6 @@ Jest to teczka clipartów u¿ywanych przez Abiworda.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 cd abi
