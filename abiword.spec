@@ -3,13 +3,16 @@
 #    - use external wv library
 Summary:	AbiWord - advanced wordprocessor
 Summary(pl):	AbiWord - zaawansowany procesor tekstu
+Summary(pt_BR):	Processador de textos completo
+Summary(zh_CN):	¿çÆ½Ì¨µÄ×Ö´¦Àí³ÌÐò
 Name:		abiword
 Version:	1.0.2
 Release:	2
+Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://download.sourceforge.net/abiword/%{name}-%{version}.tar.gz
-Source1:	http://prdownloads.sourceforge.net/abiword/abiword-plugins.tar.gz
+Source1:	http://prdownloads.sourceforge.net/abiword/%{name}-plugins.tar.gz
 Source2:	%{name}.desktop
 Patch0:		%{name}-oldmagick.patch
 URL:		http://www.abisource.com/
@@ -45,6 +48,10 @@ forth.
 %description -l pl
 AbiWord jest darmowym procesorem tekstu podobnym do Microsoft Word.
 Jest idealnym narzêdziem do pisania dokumentów, listów, raportów itp.
+
+%description -l pt_BR
+AbiWord é um processador de textos de livre distribuição para várias
+plataformas, com o objetivo de ser um aplicativo leve e completo.
 
 %prep
 %setup -q -a1
@@ -92,14 +99,12 @@ ln -sf %{_bindir}/AbiWord $RPM_BUILD_ROOT%{_bindir}/abiword
 install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Office/Wordprocessors
 install $RPM_BUILD_ROOT%{_datadir}/AbiSuite/icons/abiword_48.png $RPM_BUILD_ROOT%{_pixmapsdir}
 
-gzip -9nf abi/CREDITS.TXT
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc abi/docs/*.abw abi/*.gz
+%doc abi/docs/*.abw abi/CREDITS.TXT
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/AbiSuite
 %dir %{_libdir}/AbiSuite
