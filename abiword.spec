@@ -8,13 +8,13 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.2.1
-Release:	0.3
+Version:	2.2.4
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	1e70a9ee1daee1206fb873bdcd35bcb9
+Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.bz2
+# Source0-md5:	a1cb82e23e34ac93446014e7af04da8c
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-python24.patch
@@ -45,7 +45,7 @@ BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.0
 BuildRequires:	libtool
 BuildRequires:	libwmf-devel >= 0.2.8
-BuildRequires:	libwpd-devel >= 0.7.1
+BuildRequires:	libwpd-devel >= 0.8.0
 BuildRequires:	libxml2-devel >= 2.4.20
 BuildRequires:	ots-devel >= 0.4.1
 BuildRequires:	pkgconfig >= 0.9.0
@@ -54,6 +54,7 @@ BuildRequires:	psiconv-devel >= 0.9.6
 BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	wv-devel >= 1.0.3
 BuildRequires:	xft-devel >= 2.0
+Obsoletes:	abiword-plugin-gdkpixbuf
 Obsoletes:	abiword-plugin-magick
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -354,19 +355,6 @@ Import/export as MS Outlook Email files.
 
 %description plugin-eml -l pl
 Importuje/eksportuje pliki poczty programu MS Outlook.
-
-# abiGdkPixbuf
-%package plugin-gdkpixbuf
-Summary:	AbiWord GdkPixbuf plugin
-Summary(pl):	Wtyczka GdkPixbuf dla Abiworda
-Group:		Applications/Productivity
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description plugin-gdkpixbuf
-View any image that GTK+ can.
-
-%description plugin-gdkpixbuf -l pl
-Wy¶wietla ka¿dy obraz mo¿liwy do pokazania przez GTK+.
 
 # abiHRText
 %package plugin-hrtext
@@ -833,10 +821,6 @@ umask 022
 %files plugin-eml
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiEML.so
-
-%files plugin-gdkpixbuf
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGdkPixbuf.so
 
 %files plugin-hrtext
 %defattr(644,root,root,755)
