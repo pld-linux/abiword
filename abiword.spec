@@ -17,6 +17,7 @@ BuildRequires:	aiksaurus-gtk-devel >= 1.0
 BuildRequires:	aspell-devel >= 0.50.0
 BuildRequires:	bzip2-devel
 BuildRequires:	enchant-devel >= 0.4.0
+BuildRequires:	eps-devel >= 1.2
 BuildRequires:	fontconfig-devel >= 1.0
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	gal-devel >= 1.99
@@ -36,6 +37,7 @@ BuildRequires:	libwpd-devel >= 0.6.0
 BuildRequires:	libxml2-devel >= 2.4.2
 BuildRequires:	nautilus-devel >= 2.0
 BuildRequires:	ots-devel >= 0.4.1
+BuildRequires:	psiconv-devel
 BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	wv-devel >= 1.0.0
 BuildRequires:	xft-devel >= 2.0
@@ -170,7 +172,9 @@ cd ../abiword-plugins
 	--enable-xhtml \
 	--enable-xsl-fo \
 	--enable-librsvg \
-	--enable-docbook
+	--enable-docbook \
+	--with-psiconv=/usr
+# --with-psiconv=dir is workaround to avoid -Lyes/lib which libtool doesn't like
 %{__make}
 
 %install
@@ -252,6 +256,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMSWrite.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiOpenWriter.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPalmDoc.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPsion.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiRSVG.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiSDW.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiT602.so
