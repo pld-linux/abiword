@@ -66,6 +66,7 @@ the UNIX platform.
 AbiWord jest wieloplatformowym procesorem tekstu z interfejsem GTK+ na
 platformie UNIX.
 
+# plugins - tools
 # abiCommand plugin
 %package plugin-abicommand
 Summary:	AbiWord command line control
@@ -146,47 +147,514 @@ Allows access to any database provided by libgda.
 Pozwala na po³±czenie z dowoln± baz± danych dostarczan± za
 po¶rednictwem libgda.
 
-# abiDash
-# abiGdict
-# abiGoogle
-# abiGypsython
-# abiOTS
-# abiReferee
-# abiScriptHappy
-# abiURLDict
-# abiWikipedia
+# abiDash - not documented
+%package plugin-dash
+Summary:	AbiWord dash plugin
+Summary(pl):	Wtyczka dash dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
+%description plugin-dash
+Dash plugin.
+
+%description plugin-dash -l pl
+Wtyczka dash.
+
+# abiGdict
+%package plugin-gdict
+Summary:	AbiWord gDict plugin
+Summary(pl):	Wtyczka AbiWorda gDict
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-gdict
+Look up definitions of selected text.
+
+%description plugin-gdict -l pl
+Wyszukuje definicje w zaznaczonym fragmencie tekstu.
+
+# abiGoogle
+%package plugin-google
+Summary:	AbiWord Google plugin
+Summary(pl):	Wtyczka Google dla AbiWorda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-google
+Search Google for selected text.
+
+%description plugin-google -l pl
+Przeszukuje Google w poszukiwaniu zaznaczonego tekstu.
+
+# abiGypsython - todo: pl translation 
+%package plugin-gypsython
+Summary:	AbiWord Gyspsython plugin
+Summary(pl):	Wtyczka Gypsython dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-gypsython
+Python MailMerge.
+
+%description plugin-gypsython -l pl
+Python MailMerge.
+
+# abiOTS
+%package plugin-ots
+Summary:	AbiWord OTS plugin
+Summary(pl):	Wtyczka OTS dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-ots
+Create document summaries.
+
+%description plugin-ots -l pl
+Tworzy podumowanie dokumentu.
+
+# abiReferee - not documented
+%package plugin-referee
+Summary:	AbiWord Referee plugin
+Summary(pl):	Wtyczka Referee dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-referee
+Referee plugin.
+
+%description plugin-referee -l pl
+Wtyczka Referee.
+
+# abiScriptHappy - not documented
+%package plugin-scripthappy
+Summary:	AbiWord ScriptHappy plugin
+Summary(pl):	Wtyczka ScriptHappy dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-scripthappy
+Plugin ScriptHappy.
+
+%description plugin- -l pl
+Wtyczka ScriptHappy.
+
+# abiURLDict
+%package plugin-urldict
+Summary:	AbiWord URLDict plugin
+Summary(pl):	Wtyczka URLDict dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-urldict
+Internet dictionary.
+
+%description plugin-urldict -l pl
+S³ownik internetowy.
+
+# abiWikipedia
+%package plugin-wikipedia
+Summary:	AbiWord  plugin
+Summary(pl):	Wtyczka  dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-wikipedia
+Search wikipedia for selected text.
+
+%description plugin-wikipedia -l pl
+Przeszukuje wikipedie w poszukiwaniu zaznaczonego teksu.
+
+# plugins import - export
 # abiApplix
+%package plugin-applix
+Summary:	AbiWord Applix plugin
+Summary(pl):	Wtyczka Applix dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-applix
+Import/Export Applix Word files.
+
+%description plugin-applix -l pl
+.
+
 # abiBMP
+%package plugin-bmp
+Summary:	AbiWord BMP plugin
+Summary(pl):	Wtyczka BMP dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-bmp
+View Bitmap Images.
+
+%description plugin-bmp -l pl
+.
+
 # abiBZ2
+%package plugin-bz2
+Summary:	AbiWord BZ2 plugin
+Summary(pl):	Wtyczka BZ2 dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-bz2
+Import/Export BZ2 compressed AbiWord files.
+
+%description plugin-bz2 -l pl
+.
+
 # abiClarisWorks
+%package plugin-clarisworks
+Summary:	AbiWord ClarisWorks plugin
+Summary(pl):	Wtyczka ClarisWorks dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-clarisworks
+Import/Export Clarisworks files.
+
+%description plugin-clarisworks -l pl
+.
+
 # abiCoquille
+%package plugin-coquille
+Summary:	AbiWord Coquille plugin
+Summary(pl):	Wtyczka Coquille dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-coquille
+Docbook extensions.
+
+%description plugin-coquille -l pl
+.
+
 # abiDocBook
+%package plugin-docbook
+Summary:	AbiWord DocBook plugin
+Summary(pl):	Wtyczka DocBook dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-docbook
+Import/export Docbook files.
+
+%description plugin-docbook -l pl
+.
+
 # abiEML
+%package plugin-eml
+Summary:	AbiWord EML plugin
+Summary(pl):	Wtyczka EML dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-eml
+Import/export as MS Outlook Email files.
+
+%description plugin-eml -l pl
+.
+
 # abiGdkPixbuf
+%package plugin-gdkpixbuf
+Summary:	AbiWord GdkPixbuf plugin
+Summary(pl):	Wtyczka GdkPixbuf dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-gdkpixbuf
+View any Image that GTK+ Can.
+
+%description plugin-gdkpixbuf -l pl
+.
+
 # abiHRText
+%package plugin-hrtext
+Summary:	AbiWord HRText plugin
+Summary(pl):	Wtyczka HRText dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-hrtext
+Export text with "newsgroup" markup.
+
+%description plugin-hrtext -l pl
+.
+
 # abiHancom
+%package plugin-hancom
+Summary:	AbiWord Hancom plugin
+Summary(pl):	Wtyczka Hancom dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-hancom
+Hancom Word Importer.
+
+%description plugin-hancom -l pl
+.
+
 # abiISCII
+%package plugin-iscii
+Summary:	AbiWord ISCII plugin
+Summary(pl):	Wtyczka  dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-iscii
+Import/export ISCII text files (Indic script).
+
+%description plugin-iscii -l pl
+.
+
 # abiJPEG
+%package plugin-jpeg
+Summary:	AbiWord JPEG plugin
+Summary(pl):	Wtyczka JPEG dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-jpeg
+View JPEG Images.
+
+%description plugin-jpeg -l pl
+.
+
 # abiKWord
+%package plugin-kword
+Summary:	AbiWord KWord plugin
+Summary(pl):	Wtyczka KWord dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-kword
+KWord import/export.
+
+%description plugin-kword -l pl
+.
+
 # abiLaTeX
-# abiMIF
+%package plugin-latex
+Summary:	AbiWord LaTeX plugin
+Summary(pl):	Wtyczka LaTeX dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-latex
+LaTeX export.
+
+%description plugin-latex -l pl
+.
+
+# abiMIF - not documented
+%package plugin-mif
+Summary:	AbiWord MIF plugin
+Summary(pl):	Wtyczka MIF dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-mif
+MIF plugin.
+
+%description plugin-mif -l pl
+Wtyczka MIF.
+
 # abiMSWrite
+%package plugin-mswrite
+Summary:	AbiWord MSWrite plugin
+Summary(pl):	Wtyczka MSWrite dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-mswrite
+Import MSWrite files.
+
+%description plugin-mswrite -l pl
+.
+
 # abiMagick
+%package plugin-magick
+Summary:	AbiWord ImageMagick plugin
+Summary(pl):	Wtyczka ImageMagick dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-magick
+View and format images that ImageMagick supports.
+
+%description plugin-magick -l pl
+.
+
 # abiNroff
+%package plugin-nroff
+Summary:	AbiWord Nroff plugin
+Summary(pl):	Wtyczka Nroff dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-nroff
+Nroff/Man file format.
+
+%description plugin-nroff -l pl
+.
+
 # abiOpenWriter
+%package plugin-openwritter
+Summary:	AbiWord OpenWriter plugin
+Summary(pl):	Wtyczka OpenWriter dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-openwritter
+Import/export OpenOffice files.
+
+%description plugin-openwritter -l pl
+.
+
 # abiPalmDoc
+%package plugin-palmdoc
+Summary:	AbiWord PalmDoc plugin
+Summary(pl):	Wtyczka PalmDoc dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-palmdoc
+.
+
+%description plugin-palmdoc -l pl
+.
+
 # abiPassepartout
+%package plugin-passepartout
+Summary:	AbiWord Passepartout plugin
+Summary(pl):	Wtyczka Passepartout dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-passepartout
+.
+
+%description plugin-passepartout -l pl
+.
+
 # abiPsion
+%package plugin-psion
+Summary:	AbiWord Psion plugin
+Summary(pl):	Wtyczka Psion dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-psion
+Import/export Psion files.
+
+%description plugin-psion -l pl
+.
+
 # abiRSVG
+%package plugin-rsvg
+Summary:	AbiWord RSVG plugin
+Summary(pl):	Wtyczka RSVG dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-rsvg
+View Scalable Vector Graphics.
+
+%description plugin-rsvg -l pl
+.
+
 # abiSDW
+%package plugin-sdw
+Summary:	AbiWord SDW plugin
+Summary(pl):	Wtyczka SDW dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-sdw
+Import StarOffice 5.x files.
+
+%description plugin-sdw -l pl
+.
+
 # abiT602
+%package plugin-t602
+Summary:	AbiWord T602 plugin
+Summary(pl):	Wtyczka T602 dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-t602
+Import T602 files.
+
+%description plugin-t602 -l pl
+.
+
 # abiWMF
+%package plugin-wmf
+Summary:	AbiWord WMF plugin
+Summary(pl):	Wtyczka WMF dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-wmf
+View Windows Metafiles.
+
+%description plugin-wmf -l pl
+.
+
 # abiWML
+%package plugin-wml
+Summary:	AbiWord WML plugin
+Summary(pl):	Wtyczka WML dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-wml
+Import/export WML files.
+
+%description plugin-wml -l pl
+.
+
 # abiWordPerfect
+%package plugin-wordperfect
+Summary:	AbiWord WordPerfect plugin
+Summary(pl):	Wtyczka WordPerfect dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-wordperfect
+Import/Export Wordperfect files.
+
+%description plugin-wordperfect -l pl
+.
+
 # abiXHTML
+%package plugin-xhtml
+Summary:	AbiWord XHTML plugin
+Summary(pl):	Wtyczka XHTML dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-xhtml
+Import html/multipart html.
+
+%description plugin-xhtml -l pl
+.
+
 # abiXSLFO
- 
+%package plugin-xslfo
+Summary:	AbiWord XSLFO plugin
+Summary(pl):	Wtyczka XSLFO dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-xslfo
+Import/export XSL-FO.
+
+%description plugin-xslfo -l pl
+.
+
 %package clipart
 Summary:	AbiWord Clipart
 Summary(pl):	Cliparty dla AbiWorda
