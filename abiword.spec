@@ -12,13 +12,13 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.2.0
+Version:	2.2.1
 Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	04e016f8cb15cab5873cedceef8790bc
+# Source0-md5:	1e70a9ee1daee1206fb873bdcd35bcb9
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 URL:		http://www.abisource.com/
@@ -27,7 +27,7 @@ BuildRequires:	aiksaurus-gtk-devel >= 1.0
 BuildRequires:	aspell-devel >= 0.50.0
 BuildRequires:	bzip2-devel
 BuildRequires:	curl-devel
-BuildRequires:	enchant-devel >= 1.1.0
+BuildRequires:	enchant-devel >= 1.1.5
 BuildRequires:	eps-devel >= 1.2
 BuildRequires:	fontconfig-devel >= 1.0
 BuildRequires:	fribidi-devel >= 0.10.4
@@ -54,7 +54,7 @@ BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	popt-devel
 BuildRequires:	psiconv-devel >= 0.9.6
 BuildRequires:	python-devel >= 1:2.3
-BuildRequires:	wv-devel >= 1.0.0
+BuildRequires:	wv-devel >= 1.0.3
 BuildRequires:	xft-devel >= 2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
