@@ -11,6 +11,7 @@ Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-types.patch
 Patch2:		%{name}-home_etc.patch
+Patch3:		%{name}-gucharmap.patch
 URL:		http://www.abisource.com/
 BuildRequires:	ImageMagick-c++-devel >= 5.4.0
 BuildRequires:	aiksaurus-gtk-devel >= 1.0
@@ -121,6 +122,7 @@ Jest to teczka clipartów u¿ywanych przez Abiworda.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 cd abi
