@@ -24,6 +24,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel
+BuildRequires:  libltdl-devel
 BuildRequires:	pspell-devel
 BuildRequires:	readline-devel
 BuildRequires:	zipios++-devel
