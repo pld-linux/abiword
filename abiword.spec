@@ -1,23 +1,38 @@
 Summary:	AbiWord - advanced wordprocessor
 Summary(pl):	AbiWord - zaawansowany procesor tekstu
 Name:		abiword
-Version:	0.9.6.1
+Version:	1.0.0
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://savannah.gnu.org/download/abiword/1.0.0/source/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 URL:		http://www.abisource.com/
+BuildRequires:	ImageMagick-c++-devel
+BuildRequires:	ImageMagick-devel
+BuildRequires:	ORBit-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	bzip2-devel
+BuildRequires:	expat-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel
-BuildRequires:	ORBit-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
+BuildRequires:	libtool
+BuildRequires:	libxml2-devel
+BuildRequires:	pspell-devel
+BuildRequires:	readline-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
+%define		_sysconfdir	/etc/X11/GNOME
 
 %description
-AbiWord is a free word processing program similar to Microsoft Word. 
-It is suitable for typing papers, letters, reports, memos, and so forth.
+AbiWord is a free word processing program similar to Microsoft Word.
+It is suitable for typing papers, letters, reports, memos, and so
+forth.
 
 %description -l pl
 AbiWord jest darmowym procesorem tekstu podobnym do Microsoft Word.
@@ -28,19 +43,36 @@ Jest idealnym narzêdziem do pisania dokumentów, listów, raportów itp.
 
 %build
 cd abi
+./autogen.sh
 gettextize --copy --force
+if [ -f %{_pkgconfigdir}/libpng12.pc ] ; then
+        CPPFLAGS="`pkg-config libpng12 --cflags`"
+fi
+%configure CPPFLAGS="$CPPFLAGS" \
+	--enable-gnome \
+	--enable-bidi \
+	--with-pspell \
+	--with-libjpeg \
+	--with-libxml2 \
+	--with-expat
+%{__make} -f GNUmakefile
 
-%configure \
-	--enable-gnome
-	
+cd ../abiword-plugins
+find . -name autogen.sh -type f -exec /bin/sh -c "echo \"libtoolize --copy --force\" >> {}" ";"
+./autogen.sh; ./autogen.sh
+%configure CPPFLAGS="$CPPFLAGS `%{_bindir}/gtk-config --cflags`" \
+	--enable-gnome \
+	--with-bzip2 \
+	--with-ImageMagick
 %{__make} -f GNUmakefile
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_applnkdir}/Office/Wordprocessors,%{_pixmapsdir}}
 
-cd abi
-%{__make} -f GNUmakefile install \
+%{__make} -C abi -f GNUmakefile install \
+	DESTDIR=$RPM_BUILD_ROOT
+%{__make} -C abiword-plugins -f GNUmakefile install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Wordprocessors
