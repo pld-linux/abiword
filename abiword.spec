@@ -42,8 +42,8 @@ platformie UNIX.
 %package plugins-tools
 Summary:	Various tools that can be used to extend AbiWord's capabilities
 Summary(pl):	Ró¿ne narzêdzia powiêkszaj±ce mo¿liwo¶ci AbiWorda
-Group: 		Applications/Productivity
-Requires: 	%{name} = %{epoch}:%{version}
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}
 
 %description plugins-tools
 This is a set of plugins for AbiWord.  It includes
@@ -74,10 +74,10 @@ ScriptHappy: Uruchamianie innych programów z poziomu pow³oki z
              wyj¶ciem do AbiWorda.
 
 %package plugins-impexp
-Summary: 	Plugins to import and export otherwise unsupported formats
+Summary:	Plugins to import and export otherwise unsupported formats
 Summary(pl):	Wtyczki importuj±ce i eksportuj±ce do róznych formatów dokumentów
-Group: 		Applications/Productivity
-Requires: 	%{name} = %{epoch}:%{version}
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}
 
 %description plugins-impexp
 This is a set of plugins for AbiWord. It includes support for
@@ -92,9 +92,9 @@ obs³ugê ró¿nych rodzajów obrazków do AbiWorda zbudowanego bez
 obs³ugi GNOME.
 
 %package clipart
-Summary: 	AbiWord Clipart
+Summary:	AbiWord Clipart
 Summary(pl):	Cliparty dla AbiWorda
-Group: 		Applications/Productivity
+Group:		Applications/Productivity
 
 %description clipart
 This is the clipart portfolio used by AbiWord.
