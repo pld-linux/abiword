@@ -17,6 +17,7 @@ BuildRequires:	ImageMagick-devel
 BuildRequires:	ORBit-devel
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1.5-8
+BuildRequires:	bonobo-devel
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	gettext-devel
