@@ -1,6 +1,6 @@
---- abiword-2.0.14/abiword-plugins/acinclude.m4.orig	2004-12-23 12:36:33.009389184 +0000
-+++ abiword-2.0.14/abiword-plugins/acinclude.m4	2004-12-23 12:37:29.448809088 +0000
-@@ -304,27 +304,27 @@
+--- abiword-2.0.14/abiword-plugins/tools/gypsython/plugin.m4.orig	2004-12-23 14:01:57.074696040 +0100
++++ abiword-2.0.14/abiword-plugins/tools/gypsython/plugin.m4	2004-12-23 14:02:20.946626000 +0100
+@@ -28,27 +28,27 @@
  # Checks for libraries.
  # Checks for header files.
  
@@ -37,3 +37,14 @@
  			ABI_PLUGIN_REPORT([gypsython: okay])
  		],[	ABI_PLUGIN_REPORT([gypsython: error - Python library not found])
  			abi_plugin_disable=yes
+--- abiword-2.0.14/abiword-plugins/tools/gypsython/xp/Gypsython.h.orig	2004-12-23 14:10:50.111645632 +0100
++++ abiword-2.0.14/abiword-plugins/tools/gypsython/xp/Gypsython.h	2004-12-23 14:11:02.641740768 +0100
+@@ -37,7 +37,7 @@
+ #include "xap_Dlg_Language.h"
+ #include "xap_Frame.h"
+ 
+-#include <python2.3/Python.h>
++#include <python2.4/Python.h>
+  
+  
+  
