@@ -11,6 +11,7 @@ Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{version}.tar.bz2
 # Source1-md5:	5aa1e05c0f7b8ab7e92c2a296f1a5673
 Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-types.patch
 URL:		http://www.abisource.com/
 BuildRequires:	bzip2-devel
 BuildRequires:	fontconfig-devel
@@ -105,7 +106,8 @@ Jest to teczka clipartów u¿ywanych przez Abiworda.
 
 %prep
 %setup -q -a 1
-%patch -p1
+%patch0 -p1
+%patch1 -p1
 
 %build
 cd abi
