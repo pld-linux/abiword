@@ -7,19 +7,19 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.1.0
+Version:	2.1.1
 Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	b6ab22c7d6de6919afdf03d0d217dafd
+# Source0-md5:	b2ec4704a915b8463cd6a48083ad6f14
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-types.patch
-Patch2:		%{name}-home_etc.patch
-Patch3:		%{name}-enable_deprecated.patch
-Patch4:		%{name}-psiconv.patch
-Patch5:		%{name}-libwpd.patch
+#Patch1:		%{name}-types.patch
+#Patch2:		%{name}-home_etc.patch
+#Patch3:		%{name}-enable_deprecated.patch
+#Patch4:		%{name}-psiconv.patch
+#Patch5:		%{name}-libwpd.patch
 URL:		http://www.abisource.com/
 BuildRequires:	ImageMagick-c++-devel >= 5.4.0
 BuildRequires:	aiksaurus-gtk-devel >= 1.0
@@ -131,11 +131,11 @@ Jest to teczka clipartów u¿ywanych przez Abiworda.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
+#%patch1 -p1
+#%patch2 -p1
+#%patch3 -p1
+#%patch4 -p1
+#%patch5 -p1
 
 %build
 cd abi
@@ -225,7 +225,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBMP.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBZ2.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiClarisWorks.so
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCoquille.so
+#%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCoquille.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiDocBook.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiEML.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGdkPixbuf.so
