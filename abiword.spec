@@ -4,7 +4,7 @@
 Summary:	AbiWord - advanced wordprocessor
 Summary(pl):	AbiWord - zaawansowany procesor tekstu
 Name:		abiword
-Version:	1.0.1
+Version:	1.0.2
 Release:	1
 License:	GPL
 Group:		X11/Applications
@@ -15,22 +15,17 @@ Patch0:		%{name}-oldmagick.patch
 URL:		http://www.abisource.com/
 BuildRequires:	Aiksaurus-devel
 BuildRequires:	ImageMagick-c++-devel
-BuildRequires:	ImageMagick-devel
-BuildRequires:	ORBit-devel
 BuildRequires:	autoconf
 BuildRequires:	automake >= 1.5-8
 BuildRequires:	bonobo-devel
-BuildRequires:	bzip2-devel
-BuildRequires:	expat-devel
+BuildRequires:	gal-devel >= 0.5
+BuildRequires:	gdk-pixbuf-gnome-devel
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-libs-devel
+BuildRequires:	gnome-libs-devel >= 1.2.0
 BuildRequires:	gnome-vfs-devel
 BuildRequires:	gtk+-devel >= 1.2.7
-BuildRequires:	libjpeg-devel
-BuildRequires:	libpng-devel
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel
-BuildRequires:  libltdl-devel
+BuildRequires:	libltdl-devel
 BuildRequires:	pspell-devel
 BuildRequires:	readline-devel
 BuildRequires:	zipios++-devel
@@ -66,8 +61,7 @@ fi
 	--enable-bidi \
 	--with-pspell \
 	--with-libjpeg \
-	--with-libxml2 \
-	--with-expat
+	--with-libxml2
 %{__make} -f GNUmakefile
 
 cd ../abiword-plugins/abiword-plugins
