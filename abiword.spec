@@ -34,7 +34,7 @@ BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgsf-devel >= 1.4.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel >= 2.0
-BuildRequires:	libwmf-devel >= 0.2.8
+BuildRequires:	libwmf-devel >= 2:0.2.8
 BuildRequires:	libwpd-devel >= 0.7.0
 BuildRequires:	libxml2-devel >= 2.4.20
 BuildRequires:	nautilus-devel >= 2.0
