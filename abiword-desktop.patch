@@ -1,0 +1,21 @@
+diff -aurN abiword-2.0.1.orig/abi/abiword.desktop abiword-2.0.1/abi/abiword.desktop
+--- abiword-2.0.1.orig/abi/abiword.desktop	2003-09-12 04:14:37.000000000 +0200
++++ abiword-2.0.1/abi/abiword.desktop	2003-10-29 16:36:23.553737376 +0100
+@@ -1,11 +1,13 @@
+ [Desktop Entry]
+-Name=Word Processor
+-Comment=AbiWord Word Processor
++Name=AbiWord
++Name[pl]=AbiWord
++Comment=Word Processor
++Comment[pl]=Edytor dokumentów tekstowych
+ Exec=abiword
+ Icon=abiword_48.png
+ Terminal=false
+ Type=Application
+-Categories=Application;Office;WordProcessor;X-Red-Hat-Base;
++Categories=Application;Office;WordProcessor;
+ StartupNotify=true
+ Encoding=UTF-8
+-
++# vi: encoding=utf-8
