@@ -1,9 +1,13 @@
+#
+# TODO:
+# - check impexp-plugins, loading them on starup causes AbiWord to segfault
+#
 %define	mver	2.2
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.1.90
-Release:	0.1
+Release:	0.2
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -203,6 +207,7 @@ umask 022
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBabelfish.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCAPI.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCommand.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiDash.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiFreeTranslation.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGDA.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGdict.so
