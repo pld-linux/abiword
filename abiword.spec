@@ -101,8 +101,8 @@ builds that were not gnome-enabled.
 
 %description plugins-impexp -l pl
 Ten zestaw wtyczek do AbiWorda zawiera obs³ugê formatów dokumentów
-OpenWritera, zbzipowanego AbiWorda oraz (X)HTML. Ponadto dodaje
-obs³ugê ró¿nych rodzajów obrazków do AbiWorda zbudowanego bez
+OpenWritera, skompresowanego bzipem AbiWorda oraz (X)HTML. Ponadto
+dodaje obs³ugê ró¿nych rodzajów obrazków do AbiWorda zbudowanego bez
 obs³ugi GNOME.
 
 %package clipart
