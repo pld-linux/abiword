@@ -1,7 +1,3 @@
-#
-# Conditional build:
-%bcond_with	python23	# build for python 2.3
-
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
@@ -45,12 +41,7 @@ BuildRequires:	libxml2-devel >= 2.4.20
 BuildRequires:	nautilus-devel >= 2.0
 BuildRequires:	ots-devel >= 0.4.1
 BuildRequires:	psiconv-devel
-%if %{with python23}
 BuildRequires:	python-devel >= 1:2.3
-BuildRequires:	python-devel < 1:2.4
-%else
-BuildRequires:	python-devel >= 1:2.4
-%endif
 BuildRequires:	wv-devel >= 1.0.0
 BuildRequires:	xft-devel >= 2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -131,9 +122,7 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%if %{without python23}
 %patch3 -p1
-%endif
 
 %build
 cd abi
