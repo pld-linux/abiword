@@ -21,6 +21,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel
+BuildRequires:	gnome-vfs-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	libtool
