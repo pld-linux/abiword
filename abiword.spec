@@ -679,12 +679,7 @@ cd abi
 %{__make}
 
 cd ../abiword-plugins
-rm -rf autom4te.cache
-rm -f autogen.err
-%{__libtoolize}
-%{__aclocal} -I ac-helpers -I ac-helpers/pkg-config
-%{__automake}
-%{__autoconf}
+./nextgen.sh
 %configure
 %{__make}
 
