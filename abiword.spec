@@ -5,7 +5,7 @@ Summary:	AbiWord - advanced wordprocessor
 Summary(pl):	AbiWord - zaawansowany procesor tekstu
 Name:		abiword
 Version:	1.0.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications
 Source0:	http://download.sourceforge.net/abiword/%{name}-%{version}.tar.gz
@@ -24,8 +24,10 @@ BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel >= 1.2.0
 BuildRequires:	gnome-vfs-devel
 BuildRequires:	gtk+-devel >= 1.2.7
+BuildRequires:	libglade-devel
 BuildRequires:	libtool
 BuildRequires:	libltdl-devel
+BuildRequires:	libxml-devel
 BuildRequires:	pspell-devel
 BuildRequires:	readline-devel
 BuildRequires:	zipios++-devel
