@@ -4,11 +4,11 @@
 Summary:	AbiWord - advanced wordprocessor
 Summary(pl):	AbiWord - zaawansowany procesor tekstu
 Name:		abiword
-Version:	1.0.0
+Version:	1.0.1
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://savannah.gnu.org/download/abiword/1.0.0/source/%{name}-%{version}.tar.gz
+Source0:	http://download.sourceforge.net/abiword/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 URL:		http://www.abisource.com/
 BuildRequires:	Aiksaurus-devel
