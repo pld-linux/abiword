@@ -11,8 +11,8 @@ Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://download.sourceforge.net/abiword/%{name}-%{version}.tar.gz
-Source1:	http://prdownloads.sourceforge.net/abiword/%{name}-plugins.tar.gz
+Source0:	http://dl.sourceforge.net/abiword/%{name}-%{version}.tar.gz
+Source1:	http://dl.sourceforge.net/abiword/%{name}-plugins.tar.gz
 Source2:	%{name}.desktop
 Patch0:		%{name}-oldmagick.patch
 Patch1:		%{name}-fonts.patch
