@@ -25,7 +25,9 @@ BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk+2-devel >= 2.0.0
 BuildRequires:	gucharmap-devel >= 0.7
 BuildRequires:	libbonobo-devel >= 2.2.0
+BuildRequires:	libgda-devel >= 0.90.0
 BuildRequires:	libglade2-devel >=  2.0.0
+BuildRequires:	libgnomedb-devel >= 0.90.0
 BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgnomeprint-devel >= 2.2.1
 BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
@@ -132,7 +134,7 @@ cd ../abiword-plugins
 ./nextgen.sh
 %configure \
 	--disable-eg \
-	--disable-gda \
+	--enable-gda \
 	--enable-abicommand \
 	--enable-abigimp \
 	--enable-aiksaurus \
@@ -223,9 +225,10 @@ rm -rf $RPM_BUILD_ROOT
 %files plugins-tools
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiAikSaurus.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiCommand.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiBabelfish.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiCommand.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiFreeTranslation.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGDA.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGdict.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGimp.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGoogle.so
@@ -246,8 +249,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiDocBook.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiEML.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGdkPixbuf.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiHancom.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiHRText.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiHancom.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiISCII.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiJPEG.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiKWord.so
