@@ -1,13 +1,13 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.0.12
-Release:	2
+Version:	2.0.14
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	a4a986028405cd14a2adc7f327e9f7cc
+# Source0-md5:	3fb61de6c57406d8d3cd68d65562e3ad
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-gucharmap.patch
