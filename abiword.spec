@@ -1,6 +1,6 @@
 # TODO:
-#    - split into subpackages (plugins)
-#    - use external wv library
+#	- split into subpackages (plugins)
+#	- use external wv library
 Summary:	AbiWord - advanced wordprocessor
 Summary(pl):	AbiWord - zaawansowany procesor tekstu
 Summary(pt_BR):	Processador de textos completo
@@ -65,7 +65,7 @@ cd abi
 ./autogen.sh
 %{__gettextize}
 if [ -f %{_pkgconfigdir}/libpng12.pc ] ; then
-        CPPFLAGS="`pkg-config libpng12 --cflags`"
+	CPPFLAGS="`pkg-config libpng12 --cflags`"
 fi
 %configure CPPFLAGS="$CPPFLAGS" \
 	--enable-gnome \
@@ -95,8 +95,8 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_applnkdir}/Office/Wordprocessors,%{_pix
 %{__make} -C abiword-plugins/abiword-plugins -f GNUmakefile install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-ln -sf %{_libdir}/AbiSuite/AbiWord/plugins  $RPM_BUILD_ROOT%{_datadir}/AbiSuite/AbiWord/plugins
-ln -sf %{_bindir}/AbiWord $RPM_BUILD_ROOT%{_bindir}/abiword
+ln -sf %{_libdir}/AbiSuite/AbiWord/plugins $RPM_BUILD_ROOT%{_datadir}/AbiSuite/AbiWord/plugins
+ln -sf AbiWord $RPM_BUILD_ROOT%{_bindir}/abiword
 
 install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Office/Wordprocessors
 install $RPM_BUILD_ROOT%{_datadir}/AbiSuite/icons/abiword_48.png $RPM_BUILD_ROOT%{_pixmapsdir}
