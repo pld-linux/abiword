@@ -74,7 +74,7 @@ find . -name autogen.sh -type f -exec /bin/sh -c "echo \"libtoolize --copy --for
 	--enable-gnome \
 	--with-bzip2 \
 	--with-ImageMagick \
-	--with-abiword=$PWD/../abi/
+	--with-abiword=$PWD/../../abi/
 %{__make} -f GNUmakefile
 
 %install
