@@ -1,0 +1,12 @@
+diff -urN aa/abiword-2.1.6/abiword-plugins/wp/impexp/graphics/magick/xp/AbiMagick.cpp abiword-2.1.6/abiword-plugins/wp/impexp/graphics/magick/xp/AbiMagick.cpp
+--- aa/abiword-2.1.6/abiword-plugins/wp/impexp/graphics/magick/xp/AbiMagick.cpp	2003-11-01 16:41:50.000000000 +0100
++++ abiword-2.1.6/abiword-plugins/wp/impexp/graphics/magick/xp/AbiMagick.cpp	2004-08-28 15:39:48.258060872 +0200
+@@ -379,7 +379,7 @@
+ 
+       UT_String temp_id = UT_String_sprintf ( "Magick_Image_%d", UT_newNumber () ) ;
+ 
+-      if ( UT_OK != pView->cmdInsertGraphic(pFG,temp_id.c_str()) )
++      if ( UT_OK != pView->cmdInsertGraphic(pFG) )
+ 	{
+ 	  DELETEP(pFG);
+ 	  return ;
