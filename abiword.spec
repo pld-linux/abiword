@@ -12,6 +12,7 @@ Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/abiword/%{name}-%{version}.tar.gz
+# Source0-md5:	01336526136b7fbc66328d80931710e3
 Source1:	http://dl.sourceforge.net/abiword/%{name}-plugins.tar.gz
 Source2:	%{name}.desktop
 Patch0:		%{name}-oldmagick.patch
