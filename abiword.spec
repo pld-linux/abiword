@@ -1,3 +1,5 @@
+# TODO:
+#    - split into subpackages (plugins)
 Summary:	AbiWord - advanced wordprocessor
 Summary(pl):	AbiWord - zaawansowany procesor tekstu
 Name:		abiword
@@ -8,6 +10,7 @@ Group:		X11/Applications
 Source0:	http://savannah.gnu.org/download/abiword/1.0.0/source/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 URL:		http://www.abisource.com/
+BuildRequires:	Aiksaurus-devel
 BuildRequires:	ImageMagick-c++-devel
 BuildRequires:	ImageMagick-devel
 BuildRequires:	ORBit-devel
@@ -23,6 +26,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel
 BuildRequires:	pspell-devel
 BuildRequires:	readline-devel
+BuildRequires:	zipios++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -61,9 +65,11 @@ cd ../abiword-plugins
 find . -name autogen.sh -type f -exec /bin/sh -c "echo \"libtoolize --copy --force\" >> {}" ";"
 ./autogen.sh; ./autogen.sh
 %configure CPPFLAGS="$CPPFLAGS `%{_bindir}/gtk-config --cflags`" \
+	--prefix=%{_libdir}/AbiSuite \
 	--enable-gnome \
 	--with-bzip2 \
-	--with-ImageMagick
+	--with-ImageMagick \
+	--with-abiword=$PWD/../abi/
 %{__make} -f GNUmakefile
 
 %install
@@ -75,10 +81,13 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_applnkdir}/Office/Wordprocessors,%{_pix
 %{__make} -C abiword-plugins -f GNUmakefile install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+ln -sf %{_libdir}/AbiSuite/AbiWord/plugins  $RPM_BUILD_ROOT%{_datadir}/AbiSuite/AbiWord/plugins
+ln -sf %{_bindir}/AbiWord $RPM_BUILD_ROOT%{_bindir}/abiword
+
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Wordprocessors
 install $RPM_BUILD_ROOT%{_datadir}/AbiSuite/icons/abiword_48.png $RPM_BUILD_ROOT%{_pixmapsdir}
 
-gzip -9nf CREDITS.TXT
+gzip -9nf abi/CREDITS.TXT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -86,7 +95,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc abi/docs/*.abw abi/*.gz
-%attr(755,root,root) %{_bindir}/[At]*
+%attr(755,root,root) %{_bindir}/*
 %{_datadir}/AbiSuite
+%dir %{_libdir}/AbiSuite
+%dir %{_libdir}/AbiSuite/AbiWord
+%dir %{_libdir}/AbiSuite/AbiWord/plugins
+%attr(755,root,root) %{_libdir}/AbiSuite/AbiWord/plugins/*.so
+%attr(755,root,root) %{_libdir}/AbiSuite/AbiWord/plugins/*.la
 %{_applnkdir}/Office/Wordprocessors/*
 %{_pixmapsdir}/*.png
