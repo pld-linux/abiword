@@ -1,5 +1,6 @@
 # TODO:
 #    - split into subpackages (plugins)
+#    - use external wv library
 Summary:	AbiWord - advanced wordprocessor
 Summary(pl):	AbiWord - zaawansowany procesor tekstu
 Name:		abiword
