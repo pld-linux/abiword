@@ -11,6 +11,7 @@ Group:		X11/Applications
 Source0:	http://download.sourceforge.net/abiword/%{name}-%{version}.tar.gz
 Source1:	http://prdownloads.sourceforge.net/abiword/abiword-plugins.tar.gz
 Source2:	%{name}.desktop
+Patch0:		%{name}-oldmagick.patch
 URL:		http://www.abisource.com/
 BuildRequires:	Aiksaurus-devel
 BuildRequires:	ImageMagick-c++-devel
@@ -50,6 +51,8 @@ Jest idealnym narzêdziem do pisania dokumentów, listów, raportów itp.
 
 %prep
 %setup -q -a1
+cd abiword-plugins/abiword-plugins
+%patch0 -p1
 
 %build
 cd abi
