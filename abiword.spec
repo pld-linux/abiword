@@ -79,7 +79,7 @@ Jest to zestaw wtyczek dla AbiWorda. Zawiera:
 - abicommand:	Wykonywanie operacji AbiWordem z linii poleceñ.
 - abigimp:	Obróbka obrazków w AbiWordzie przy u¿yciu Gimpa.
 - abipaint:	Edycja osadzonych obrazków przez zewnêtrzny program.
-- wikipedia:	Dostêp do Wikipedii z Abiworda.
+- wikipedia:	Dostêp do Wikipedii z AbiWorda.
 - urldict:	Wieloplatformowa wtyczka s³ownika URL.
 - gdict:	U¿ywanie aplikacji s³ownikowej GNOME z poziomu AbiWorda.
 - aiksaurus:	U¿ywanie tezaurusa Aiksaurus w AbiWordzie.
@@ -114,7 +114,7 @@ Group:		Applications/Productivity
 This is the clipart portfolio used by AbiWord.
 
 %description clipart -l pl
-Jest to teczka clipartów u¿ywanych przez Abiworda.
+Jest to teczka clipartów u¿ywanych przez AbiWorda.
 
 %prep
 %setup -q
