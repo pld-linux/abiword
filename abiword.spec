@@ -21,7 +21,7 @@ BuildRequires:	gucharmap-devel >= 0.7
 BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgnomeprint-devel >= 2.2.0
-BuildRequires:	libgnomeprintui-devel >= 2.2.0
+BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
 BuildRequires:	libgsf-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel
