@@ -1,25 +1,21 @@
-#
-# Conditional build:
-%bcond_without	gucharmap		# build without gucharmap (abiword doesn't build
-														# with newer gucharmap)
-#
 %define	mver	2.2
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.1.1
+Version:	2.1.3
 Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	b2ec4704a915b8463cd6a48083ad6f14
+# Source0-md5:	991135782dc152f6df68fb4c2de2b834
 Patch0:		%{name}-desktop.patch
 #Patch1:		%{name}-types.patch
-#Patch2:		%{name}-home_etc.patch
-#Patch3:		%{name}-enable_deprecated.patch
-#Patch4:		%{name}-psiconv.patch
-#Patch5:		%{name}-libwpd.patch
+Patch2:		%{name}-home_etc.patch
+Patch3:		%{name}-gucharmap.patch
+Patch4:		%{name}-aiksaurus.patch
+Patch5:		%{name}-psion_plugin_buildfix.patch
+Patch6:		%{name}-xhtml_plugin_buildfix.patch
 URL:		http://www.abisource.com/
 BuildRequires:	ImageMagick-c++-devel >= 5.4.0
 BuildRequires:	aiksaurus-gtk-devel >= 1.0
@@ -32,7 +28,7 @@ BuildRequires:	fontconfig-devel >= 1.0
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk+2-devel >= 2.2.0
-%{?with_gucharmap:BuildRequires:	gucharmap-devel >= 0.7}
+BuildRequires:	gucharmap-devel >= 1.4.0
 BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libgda-devel >= 0.90.0
 BuildRequires:	libglade2-devel >=  2.0.0
@@ -51,7 +47,7 @@ BuildRequires:	nautilus-devel >= 2.0
 BuildRequires:	ots-devel >= 0.4.1
 BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	popt-devel
-BuildRequires:	psiconv-devel >= 0.9.3
+BuildRequires:	psiconv-devel >= 0.9.6
 BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	wv-devel >= 1.0.0
 BuildRequires:	xft-devel >= 2.0
@@ -131,17 +127,17 @@ Jest to teczka clipartów u¿ywanych przez Abiworda.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
-#%patch2 -p1
-#%patch3 -p1
-#%patch4 -p1
-#%patch5 -p1
+##%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
 
 %build
 cd abi
 ./autogen.sh
 %configure \
-	%{?!with_gucharmap:--disable-cmap} \
 	--enable-gnome \
 	--with-pspell \
 	--with-sys-wv \
@@ -241,6 +237,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiNroff.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiOpenWriter.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPalmDoc.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPassepartout.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPsion.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiRSVG.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiSDW.so
