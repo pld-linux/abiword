@@ -1,8 +1,7 @@
 #
 # TODO:
 # - check impexp-plugins, loading them on starup causes AbiWord to segfault
-# - split plugins into subpackages (yeah, we can do it) (started! :)
-# - check BRs/Rs
+# - polish/complete descriptions
 #
 %bcond_without	gnome 	# without GNOME libs
 #
@@ -210,7 +209,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Create document summaries.
 
 %description plugin-ots -l pl
-Tworzy podumowanie dokumentu.
+Tworzy podsumowanie dokumentu.
 
 # abiReferee - not documented
 %package plugin-referee
@@ -259,10 +258,10 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-wikipedia
-Search wikipedia for selected text.
+Search Wikipedia for selected text.
 
 %description plugin-wikipedia -l pl
-Przeszukuje wikipedie w poszukiwaniu zaznaczonego teksu.
+Przeszukuje Wikipediê w poszukiwaniu zaznaczonego teksu.
 
 # plugins import - export
 # abiApplix
@@ -341,7 +340,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export Docbook files.
 
 %description plugin-docbook -l pl
-Importuje/exportuje pliki zapisane w formacie Docbook.
+Importuje/eksportuje pliki zapisane w formacie Docbook.
 
 # abiEML
 %package plugin-eml
@@ -364,7 +363,7 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-gdkpixbuf
-View any Image that GTK+ Can.
+View any image that GTK+ can.
 
 %description plugin-gdkpixbuf -l pl
 Wy¶wietla ka¿dy obraz mo¿liwy do pokazania przez GTK+.
@@ -380,7 +379,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Export text with "newsgroup" markup.
 
 %description plugin-hrtext -l pl
-Eksoprtuje ze znacznikiem "grupa news".
+Eksportuje ze znacznikiem "grupa news".
 
 # abiHancom
 %package plugin-hancom
@@ -549,7 +548,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export Psion files.
 
 %description plugin-psion -l pl
-Imporuje/eksporuje pliki Psiona.
+Imporuje/eksportuje pliki Psiona.
 
 # abiRSVG
 %package plugin-rsvg
@@ -588,7 +587,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import T602 files.
 
 %description plugin-t602 -l pl
-Imortuje pliki T602.
+Importuje pliki T602.
 
 # abiWMF
 %package plugin-wmf
@@ -614,7 +613,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export WML files.
 
 %description plugin-wml -l pl
-Importuje/eksporuje pliki WML.
+Importuje/eksportuje pliki WML.
 
 # abiWordPerfect
 %package plugin-wordperfect
@@ -640,7 +639,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import HTML/multipart HTML.
 
 %description plugin-xhtml -l pl
-Importuje pliki HTML/wielocze¶ciowy HTML.
+Importuje pliki HTML/wieloczê¶ciowy HTML.
 
 # abiXSLFO 
 %package plugin-xslfo
