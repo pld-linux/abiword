@@ -2,7 +2,7 @@
 # TODO:
 # - check impexp-plugins, loading them on starup causes AbiWord to segfault
 # - make "light" version without gnome dependencies 
-# - split plugins into subpackages (yeah, we can do it)
+# - split plugins into subpackages (yeah, we can do it) (started! :)
 # - check BRs/Rs
 # - use our auto macros not ./autogen stuff
 #
@@ -21,7 +21,9 @@ Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	1e70a9ee1daee1206fb873bdcd35bcb9
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
-URL:		http://www.abisource.com/
+URL:		http://www.abisource.com/i
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	ImageMagick-c++-devel >= 5.4.0
 BuildRequires:	aiksaurus-gtk-devel >= 1.0
 BuildRequires:	aspell-devel >= 0.50.0
@@ -66,58 +68,127 @@ the UNIX platform.
 AbiWord jest wieloplatformowym procesorem tekstu z interfejsem GTK+ na
 platformie UNIX.
 
-%package plugins-tools
-Summary:	Various tools that can be used to extend AbiWord's capabilities
-Summary(pl):	Ró¿ne narzêdzia powiêkszaj±ce mo¿liwo¶ci AbiWorda
+# abiCommand plugin
+%package plugin-abicommand
+Summary:	AbiWord command line control
+Summary(pl):	Konrolowanie AbiWorda z linii poleceñ
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
-%description plugins-tools
-This is a set of plugins for AbiWord. It includes:
-- eml:		Use mathematical notation in AbiWord.
-- abicommand:	Perform AbiWord operations from the command prompt.
-- abigimp:	Process images in AbiWord using the Gimp.
-- abipaint:	Editing embedded images via external program.
-- wikipedia:	Access the Wikipedia reference from AbiWord.
-- urldict:	Cross-platform URL dictionary plugin.
-- gdict:	Use the GNOME dictionary application from within AbiWord.
-- aiksaurus:	Use the Aiksaurus thesaurus in AbiWord.
-- babelfish:	Translate text online using Babelfish.
-- ScriptHappy:	Run other programs in a shell and direct the output to
-		AbiWord.
+%description plugin-abicommand
+Allows command line control of AbiWord.
 
-%description plugins-tools -l pl
-Jest to zestaw wtyczek dla AbiWorda. Zawiera:
-- eml:		U¿ywanie notacji matematycznej w AbiWordzie.
-- abicommand:	Wykonywanie operacji AbiWordem z linii poleceñ.
-- abigimp:	Obróbka obrazków w AbiWordzie przy u¿yciu Gimpa.
-- abipaint:	Edycja osadzonych obrazków przez zewnêtrzny program.
-- wikipedia:	Dostêp do Wikipedii z AbiWorda.
-- urldict:	Wieloplatformowa wtyczka s³ownika URL.
-- gdict:	U¿ywanie aplikacji s³ownikowej GNOME z poziomu AbiWorda.
-- aiksaurus:	U¿ywanie tezaurusa Aiksaurus w AbiWordzie.
-- babelfish:	Automatyczne t³umaczenie tekstu przy u¿yciu Babelfisha.
-- ScriptHappy:	Uruchamianie innych programów z poziomu pow³oki z
-		wyj¶ciem do AbiWorda.
+%description plugin-abicommand -l pl
+Pozwala na kontrolowanie AbiWorda z poziomu linii poleceñ.
 
-%package plugins-impexp
-Summary:	Plugins to import and export otherwise unsupported formats
-Summary(pl):	Wtyczki importuj±ce i eksportuj±ce do róznych formatów dokumentów
+# abiGimp plugin
+%package plugin-abigimp
+Summary:	AbiWord image editor plugin
+Summary(pl):	Wtyczka AbiWorda dla edytorów obrazu
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
-%description plugins-impexp
-This is a set of plugins for AbiWord. It includes support for
-OpenWriter, bzipped AbiWord, and (x)html document formats.
-Additionally, it adds support for certain image types to AbiWord
-builds that were not gnome-enabled.
+%description plugin-abigimp
+Allows to edit embedded images with a paint program like Gimp.
 
-%description plugins-impexp -l pl
-Ten zestaw wtyczek do AbiWorda zawiera obs³ugê formatów dokumentów
-OpenWritera, skompresowanego bzipem AbiWorda oraz (X)HTML. Ponadto
-dodaje obs³ugê ró¿nych rodzajów obrazków do AbiWorda zbudowanego bez
-obs³ugi GNOME.
+%description plugin-abigimp -l pl
+Pozwala na edycje osadzonych obrazów programem do ich obróbki jak
+Gimp.
 
+# abiAiksaurus
+%package plugin-aiksaurus
+Summary:	AbiWord Aiksaurus plugin
+Summary(pl):	Wtyczka AbiWorda Aiksaurus
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-aiksaurus
+Allows to use Aiksaurus thesaurus.
+
+%description plugin-aiksaurus -l pl
+Pozwala na u¿ycie Aiksaurusa - s³ownika wyrazów bliskoznacznych.
+
+# abiBabelfish
+%package plugin-babelfish
+Summary:	AbiWord Babelfish plugin
+Summary(pl):	Wtyczka AbiWorda Babelfish
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-babelfish
+Allows to translate selected text.
+
+%description plugin-babelfish -l pl
+Pozwala na przet³umaczenie wybranego tekstu.
+
+# abiFreeTranslation
+%package plugin-freetranslation
+Summary:	AbiWord freetranslation.com plugin
+Summary(pl):	Wtyczka AbiWorda dla freetranslation.com
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-freetranslation
+Allows to translate selected text.
+
+%description plugin-freetranslation -l pl
+Pozwala na przet³umaczenie wybranego tekstu.
+
+# abiGDA
+%package plugin-gda
+Summary:	AbiWord GDA plugin
+Summary(pl):	Wtyczka AbiWorda dla GDA
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-gda
+Allows access to any database provided by libgda.
+
+%description plugin-gda -l pl
+Pozwala na po³±czenie z dowoln± baz± danych dostarczan± za
+po¶rednictwem libgda.
+
+# abiDash
+# abiGdict
+# abiGoogle
+# abiGypsython
+# abiOTS
+# abiReferee
+# abiScriptHappy
+# abiURLDict
+# abiWikipedia
+
+# abiApplix
+# abiBMP
+# abiBZ2
+# abiClarisWorks
+# abiCoquille
+# abiDocBook
+# abiEML
+# abiGdkPixbuf
+# abiHRText
+# abiHancom
+# abiISCII
+# abiJPEG
+# abiKWord
+# abiLaTeX
+# abiMIF
+# abiMSWrite
+# abiMagick
+# abiNroff
+# abiOpenWriter
+# abiPalmDoc
+# abiPassepartout
+# abiPsion
+# abiRSVG
+# abiSDW
+# abiT602
+# abiWMF
+# abiWML
+# abiWordPerfect
+# abiXHTML
+# abiXSLFO
+ 
 %package clipart
 Summary:	AbiWord Clipart
 Summary(pl):	Cliparty dla AbiWorda
@@ -136,9 +207,11 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 
 %build
 cd abi
-./autogen.sh
+%{__aclocal} -I ac-helpers
+%{__automake}
+%{__autoconf}
 %configure \
-	--enable-gnome \
+	--%{!?with_gnome:dis}%{?with_gnome:en}able-gnome \
 	--with-pspell \
 	--with-sys-wv \
 	--enable-threads \
@@ -205,8 +278,6 @@ umask 022
 %{_datadir}/AbiSuite-%{mver}/AbiWord/readme.txt
 #%{_datadir}/AbiSuite-%{mver}/README
 
-%files plugins-tools
-%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiAikSaurus.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBabelfish.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCAPI.so
@@ -224,8 +295,6 @@ umask 022
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiURLDict.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWikipedia.so
 
-%files plugins-impexp
-%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiApplix.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBMP.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBZ2.so
