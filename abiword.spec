@@ -67,33 +67,6 @@ AbiWord jest wieloplatformowym procesorem tekstu z interfejsem GTK+ na
 platformie UNIX.
 
 # plugins - tools
-# abiCommand plugin
-%package plugin-abicommand
-Summary:	AbiWord command line control
-Summary(pl):	Konrolowanie AbiWorda z linii poleceñ
-Group:		Applications/Productivity
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description plugin-abicommand
-Allows command line control of AbiWord.
-
-%description plugin-abicommand -l pl
-Pozwala na kontrolowanie AbiWorda z poziomu linii poleceñ.
-
-# abiGimp plugin
-%package plugin-abigimp
-Summary:	AbiWord image editor plugin
-Summary(pl):	Wtyczka AbiWorda dla edytorów obrazu
-Group:		Applications/Productivity
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description plugin-abigimp
-Allows to edit embedded images with a paint program like Gimp.
-
-%description plugin-abigimp -l pl
-Pozwala na edycje osadzonych obrazów programem do ich obróbki jak
-Gimp.
-
 # abiAiksaurus
 %package plugin-aiksaurus
 Summary:	AbiWord Aiksaurus plugin
@@ -119,6 +92,32 @@ Allows to translate selected text.
 
 %description plugin-babelfish -l pl
 Pozwala na przet³umaczenie wybranego tekstu.
+
+# abiCommand plugin
+%package plugin-command
+Summary:	AbiWord command line control
+Summary(pl):	Konrolowanie AbiWorda z linii poleceñ
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-command
+Allows command line control of AbiWord.
+
+%description plugin-command -l pl
+Pozwala na kontrolowanie AbiWorda z poziomu linii poleceñ.
+
+# abiDash - not documented
+%package plugin-dash
+Summary:	AbiWord Dash plugin
+Summary(pl):	Wtyczka Dash dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-dash
+Dash plugin.
+
+%description plugin-dash -l pl
+Wtyczka Dash.
 
 # abiFreeTranslation
 %package plugin-freetranslation
@@ -147,19 +146,6 @@ Allows access to any database provided by libgda.
 Pozwala na po³±czenie z dowoln± baz± danych dostarczan± za
 po¶rednictwem libgda.
 
-# abiDash - not documented
-%package plugin-dash
-Summary:	AbiWord dash plugin
-Summary(pl):	Wtyczka dash dla Abiworda
-Group:		Applications/Productivity
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description plugin-dash
-Dash plugin.
-
-%description plugin-dash -l pl
-Wtyczka dash.
-
 # abiGdict
 %package plugin-gdict
 Summary:	AbiWord gDict plugin
@@ -172,6 +158,20 @@ Look up definitions of selected text.
 
 %description plugin-gdict -l pl
 Wyszukuje definicje w zaznaczonym fragmencie tekstu.
+
+# abiGimp plugin
+%package plugin-gimp
+Summary:	AbiWord image editor plugin
+Summary(pl):	Wtyczka AbiWorda dla edytorów obrazu
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-gimp
+Allows to edit embedded images with a paint program like Gimp.
+
+%description plugin-gimp -l pl
+Pozwala na edycje osadzonych obrazów programem do ich obróbki jak
+Gimp.
 
 # abiGoogle
 %package plugin-google
@@ -235,7 +235,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 %description plugin-scripthappy
 Plugin ScriptHappy.
 
-%description plugin- -l pl
+%description plugin-scripthappy -l pl
 Wtyczka ScriptHappy.
 
 # abiURLDict
@@ -253,8 +253,8 @@ S³ownik internetowy.
 
 # abiWikipedia
 %package plugin-wikipedia
-Summary:	AbiWord  plugin
-Summary(pl):	Wtyczka  dla Abiworda
+Summary:	AbiWord Wikipedia plugin
+Summary(pl):	Wtyczka Wikipedia dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -273,10 +273,10 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-applix
-Import/Export Applix Word files.
+Import/export Applix Word files.
 
 %description plugin-applix -l pl
-.
+Importuje/eksportuje pliki Applix Word.
 
 # abiBMP
 %package plugin-bmp
@@ -289,7 +289,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 View Bitmap Images.
 
 %description plugin-bmp -l pl
-.
+Wy¶wietla bitmapy.
 
 # abiBZ2
 %package plugin-bz2
@@ -299,10 +299,10 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-bz2
-Import/Export BZ2 compressed AbiWord files.
+Import/export bzip2 compressed AbiWord files.
 
 %description plugin-bz2 -l pl
-.
+Importuje/eksportuje pliki Abiworda spakowane przy pomocy bzip2.
 
 # abiClarisWorks
 %package plugin-clarisworks
@@ -312,10 +312,10 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-clarisworks
-Import/Export Clarisworks files.
+Import/export Clarisworks files.
 
 %description plugin-clarisworks -l pl
-.
+Importuje/eksportuje pliki Clarisworks.
 
 # abiCoquille
 %package plugin-coquille
@@ -328,7 +328,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Docbook extensions.
 
 %description plugin-coquille -l pl
-.
+Rozszerzenia Docbooka.
 
 # abiDocBook
 %package plugin-docbook
@@ -341,7 +341,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export Docbook files.
 
 %description plugin-docbook -l pl
-.
+Importuje/exportuje pliki zapisane w formacie Docbook.
 
 # abiEML
 %package plugin-eml
@@ -354,7 +354,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export as MS Outlook Email files.
 
 %description plugin-eml -l pl
-.
+Importuje/eksportuje pliki poczty programu MS Outlook.
 
 # abiGdkPixbuf
 %package plugin-gdkpixbuf
@@ -367,7 +367,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 View any Image that GTK+ Can.
 
 %description plugin-gdkpixbuf -l pl
-.
+Wy¶wietla ka¿dy obraz mo¿liwy do pokazania przez GTK+.
 
 # abiHRText
 %package plugin-hrtext
@@ -380,7 +380,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Export text with "newsgroup" markup.
 
 %description plugin-hrtext -l pl
-.
+Eksoprtuje ze znacznikiem "grupa news".
 
 # abiHancom
 %package plugin-hancom
@@ -393,7 +393,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Hancom Word Importer.
 
 %description plugin-hancom -l pl
-.
+Importer formatu Hancom Word.
 
 # abiISCII
 %package plugin-iscii
@@ -406,7 +406,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export ISCII text files (Indic script).
 
 %description plugin-iscii -l pl
-.
+Importuje/eksportuje tekstowe pliki formatu ISCII (Indic script).
 
 # abiJPEG
 %package plugin-jpeg
@@ -419,7 +419,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 View JPEG Images.
 
 %description plugin-jpeg -l pl
-.
+Wy¶wietla obrazy formatu JPEG.
 
 # abiKWord
 %package plugin-kword
@@ -432,7 +432,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 KWord import/export.
 
 %description plugin-kword -l pl
-.
+Import/Eksport plików KWorda.
 
 # abiLaTeX
 %package plugin-latex
@@ -445,7 +445,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 LaTeX export.
 
 %description plugin-latex -l pl
-.
+Eksport do LaTeX.
 
 # abiMIF - not documented
 %package plugin-mif
@@ -468,10 +468,10 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-mswrite
-Import MSWrite files.
+Import MS Write files.
 
 %description plugin-mswrite -l pl
-.
+Importuje pliki MS Write.
 
 # abiMagick
 %package plugin-magick
@@ -484,9 +484,9 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 View and format images that ImageMagick supports.
 
 %description plugin-magick -l pl
-.
+Wy¶wietla obrazy wszystkich typów wspieranych przez ImageMagick.
 
-# abiNroff
+# abiNroff - lack of precise description (export?/import?)
 %package plugin-nroff
 Summary:	AbiWord Nroff plugin
 Summary(pl):	Wtyczka Nroff dla Abiworda
@@ -494,10 +494,10 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-nroff
-Nroff/Man file format.
+nroff/man file format.
 
 %description plugin-nroff -l pl
-.
+Typy plików nroff/man.
 
 # abiOpenWriter
 %package plugin-openwritter
@@ -510,9 +510,9 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export OpenOffice files.
 
 %description plugin-openwritter -l pl
-.
+Importuje/eksportuje pliki OpenOffice.
 
-# abiPalmDoc
+# abiPalmDoc - not documented
 %package plugin-palmdoc
 Summary:	AbiWord PalmDoc plugin
 Summary(pl):	Wtyczka PalmDoc dla Abiworda
@@ -520,12 +520,12 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-palmdoc
-.
+PalmDoc plugin.
 
 %description plugin-palmdoc -l pl
-.
+Wtyczka PalmDoc.
 
-# abiPassepartout
+# abiPassepartout - not documented
 %package plugin-passepartout
 Summary:	AbiWord Passepartout plugin
 Summary(pl):	Wtyczka Passepartout dla Abiworda
@@ -533,10 +533,10 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-passepartout
-.
+Passepartout plugin.
 
 %description plugin-passepartout -l pl
-.
+Wtyczka Passepartout.
 
 # abiPsion
 %package plugin-psion
@@ -549,7 +549,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export Psion files.
 
 %description plugin-psion -l pl
-.
+Imporuje/eksporuje pliki Psiona.
 
 # abiRSVG
 %package plugin-rsvg
@@ -562,7 +562,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 View Scalable Vector Graphics.
 
 %description plugin-rsvg -l pl
-.
+Wy¶wietla pliki SVG.
 
 # abiSDW
 %package plugin-sdw
@@ -575,7 +575,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import StarOffice 5.x files.
 
 %description plugin-sdw -l pl
-.
+Importuje pliki StarOffice 5.x.
 
 # abiT602
 %package plugin-t602
@@ -588,7 +588,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import T602 files.
 
 %description plugin-t602 -l pl
-.
+Imortuje pliki T602.
 
 # abiWMF
 %package plugin-wmf
@@ -601,7 +601,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 View Windows Metafiles.
 
 %description plugin-wmf -l pl
-.
+Wy¶wietla pliki typu Windows Metafiles.
 
 # abiWML
 %package plugin-wml
@@ -614,7 +614,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export WML files.
 
 %description plugin-wml -l pl
-.
+Importuje/eksporuje pliki WML.
 
 # abiWordPerfect
 %package plugin-wordperfect
@@ -624,10 +624,10 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-wordperfect
-Import/Export Wordperfect files.
+Import/export Corel WordPerfect files.
 
 %description plugin-wordperfect -l pl
-.
+Importuje/eksportuje pliki formatu Corel WordPerfect.
 
 # abiXHTML
 %package plugin-xhtml
@@ -637,12 +637,12 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-xhtml
-Import html/multipart html.
+Import HTML/multipart HTML.
 
 %description plugin-xhtml -l pl
-.
+Importuje pliki HTML/wielocze¶ciowy HTML.
 
-# abiXSLFO
+# abiXSLFO 
 %package plugin-xslfo
 Summary:	AbiWord XSLFO plugin
 Summary(pl):	Wtyczka XSLFO dla Abiworda
@@ -653,7 +653,21 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export XSL-FO.
 
 %description plugin-xslfo -l pl
-.
+Importuje/eksportuje XSL-FO.
+
+# no one knows category
+# abiCAPI 
+%package plugin-capi
+Summary:	AbiWord CAPI plugin
+Summary(pl):	Wtyczka CAPI dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-capi
+CAPI plugin.
+
+%description plugin-capi -l pl
+Wtyczka CAPI.
 
 %package clipart
 Summary:	AbiWord Clipart
@@ -737,55 +751,191 @@ umask 022
 %{_desktopdir}/*
 %{_pixmapsdir}/*.png
 %{_datadir}/AbiSuite-%{mver}/AbiWord/readme.txt
+%{_libdir}/AbiWord-%{mver}/plugins/AbiWord
 
+%files plugin-aiksaurus 
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiAikSaurus.so
+
+%files plugin-babelfish
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBabelfish.so
+
+%files plugin-capi
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCAPI.so
+
+%files plugin-command
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCommand.so
+
+%files plugin-dash
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiDash.so
+
+%files plugin-freetranslation
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiFreeTranslation.so
+
+%files plugin-gda
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGDA.so
+
+%files plugin-gdict
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGdict.so
+
+%files plugin-gimp
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGimp.so
+
+%files plugin-google
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGoogle.so
+
+%files plugin-gypsython
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGypsython.so
+
+%files plugin-ots
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiOTS.so
+
+%files plugin-referee
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiReferee.so
+
+%files plugin-scripthappy
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiScriptHappy.so
+
+%files plugin-urldict
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiURLDict.so
+
+%files plugin-wikipedia
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWikipedia.so
 
+%files plugin-applix
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiApplix.so
+
+%files plugin-bmp
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBMP.so
+
+%files plugin-bz2
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBZ2.so
+
+%files plugin-clarisworks
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiClarisWorks.so
+
+#%files plugin-coquille
+#%defattr(644,root,root,755)
 #%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCoquille.so
+
+%files plugin-docbook
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiDocBook.so
+
+%files plugin-eml
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiEML.so
+
+%files plugin-gdkpixbuf
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGdkPixbuf.so
+
+%files plugin-hrtext
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiHRText.so
+
+%files plugin-hancom
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiHancom.so
+
+%files plugin-iscii
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiISCII.so
+
+%files plugin-jpeg
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiJPEG.so
+
+%files plugin-kword
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiKWord.so
+
+%files plugin-latex
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiLaTeX.so
+
+%files plugin-mif
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMIF.so
+
+%files plugin-mswrite
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMSWrite.so
+
+%files plugin-magick
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMagick.so
+
+%files plugin-nroff
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiNroff.so
+
+%files plugin-openwritter
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiOpenWriter.so
+
+%files plugin-palmdoc
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPalmDoc.so
+
+%files plugin-passepartout
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPassepartout.so
+
+%files plugin-psion
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPsion.so
+
+%files plugin-rsvg
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiRSVG.so
+
+%files plugin-sdw
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiSDW.so
+
+%files plugin-t602
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiT602.so
+
+%files plugin-wmf
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWMF.so
+
+%files plugin-wml
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWML.so
+
+%files plugin-wordperfect
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWordPerfect.so
+
+%files plugin-xhtml
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiXHTML.so
+
+%files plugin-xslfo
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiXSLFO.so
-%{_libdir}/AbiWord-%{mver}/plugins/AbiWord
 
 %files clipart
 %defattr(644,root,root,755)
