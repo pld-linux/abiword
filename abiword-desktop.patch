@@ -14,7 +14,7 @@ diff -Nuard abiword-2.0.2.orig/abi/abiword.desktop abiword-2.0.2/abi/abiword.des
  Terminal=false
  Type=Application
 -Categories=Application;Office;WordProcessor;X-Red-Hat-Base;
-+Categories=Application;Office;WordProcessor;
++Categories=GTK;GNOME;Office;WordProcessor;
  StartupNotify=true
  Encoding=UTF-8
  
