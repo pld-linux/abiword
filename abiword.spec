@@ -5,7 +5,7 @@ Version:	0.9.6.1
 Release:	1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://prodownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://prdownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Source1:	%{name}.desktop
 URL:		http://www.abisource.com/
 BuildRequires:	gettext-devel
