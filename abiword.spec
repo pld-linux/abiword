@@ -2,20 +2,17 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.1.3
+Version:	2.1.5
 Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	991135782dc152f6df68fb4c2de2b834
+# Source0-md5:	3c9708cfda2a7da0a4a0f53bc3672798
 Patch0:		%{name}-desktop.patch
-#Patch1:		%{name}-types.patch
-Patch2:		%{name}-home_etc.patch
-Patch3:		%{name}-gucharmap.patch
-Patch4:		%{name}-aiksaurus.patch
-Patch5:		%{name}-psion_plugin_buildfix.patch
-Patch6:		%{name}-xhtml_plugin_buildfix.patch
+Patch1:		%{name}-home_etc.patch
+Patch2:		%{name}-gucharmap.patch
+Patch3:		%{name}-psion_plugin_buildfix.patch
 URL:		http://www.abisource.com/
 BuildRequires:	ImageMagick-c++-devel >= 5.4.0
 BuildRequires:	aiksaurus-gtk-devel >= 1.0
@@ -127,12 +124,9 @@ Jest to teczka clipartów u¿ywanych przez Abiworda.
 %prep
 %setup -q
 %patch0 -p1
-##%patch1 -p1
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
 
 %build
 cd abi
@@ -189,13 +183,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/AbiSuite-%{mver}/AbiWord/system.profile*
 %{_datadir}/AbiSuite-%{mver}/icons
 %{_datadir}/AbiSuite-%{mver}/templates
-%{_datadir}/AbiSuite-%{mver}/abi-nautilus-view-file.xml
-%{_libdir}/bonobo/servers/*
+#%{_datadir}/AbiSuite-%{mver}/abi-nautilus-view-file.xml
+#%{_libdir}/bonobo/servers/*
 %{_desktopdir}/*
 %{_pixmapsdir}/*.png
-%{_datadir}/AbiSuite-%{mver}/AbiWord.exe.MANIFEST
+#%{_datadir}/AbiSuite-%{mver}/AbiWord.exe.MANIFEST
 %{_datadir}/AbiSuite-%{mver}/AbiWord/readme.txt
-%{_datadir}/AbiSuite-%{mver}/README
+#%{_datadir}/AbiSuite-%{mver}/README
 
 %files plugins-tools
 %defattr(644,root,root,755)
