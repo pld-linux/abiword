@@ -1,0 +1,24 @@
+diff -urN aa/abiword-2.1.0/abi/ac-helpers/abi-glib-gtk.m4 abiword-2.1.0/abi/ac-helpers/abi-glib-gtk.m4
+--- aa/abiword-2.1.0/abi/ac-helpers/abi-glib-gtk.m4	2003-10-25 18:32:54.000000000 +0200
++++ abiword-2.1.0/abi/ac-helpers/abi-glib-gtk.m4	2004-03-14 19:35:00.884577528 +0100
+@@ -50,7 +50,7 @@
+ 	if test $abi_gtk2 = no; then
+ 		AC_MSG_ERROR([$GTK_PKG_ERRORS])
+ 	else
+-	       GTK_CFLAGS="$GTK_CFLAGS -DG_DISABLE_DEPRECATED -DGDK_DISABLE_DEPRECATED -DGDK_PIXBUF_DISABLE_DEPRECATED -DGTK_DISABLE_DEPRECATED"
++	       GTK_CFLAGS="$GTK_CFLAGS"
+ 		AC_SUBST(GTK_CFLAGS)
+ 	fi
+ 
+diff -urN aa/abiword-2.1.0/abi/ac-helpers/abi-gnome.m4 abiword-2.1.0/abi/ac-helpers/abi-gnome.m4
+--- aa/abiword-2.1.0/abi/ac-helpers/abi-gnome.m4	2003-06-24 00:59:59.000000000 +0200
++++ abiword-2.1.0/abi/ac-helpers/abi-gnome.m4	2004-03-14 19:35:12.122869048 +0100
+@@ -61,7 +61,7 @@
+ 	GNOME_LIBS="$NAUTILUS_LIBS $GNOME_LIBS"
+ fi
+ 
+-GNOME_CFLAGS="-DGNOME_DISABLE_DEPRECATED $GNOME_CFLAGS"
++GNOME_CFLAGS="$GNOME_CFLAGS"
+ AC_SUBST(GNOME_CFLAGS)
+ AC_SUBST(GNOME_LIBS)
+ 	
