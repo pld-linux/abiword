@@ -11,7 +11,7 @@ diff -aurN abiword-2.1.90.orig/abi/abiword.desktop abiword-2.1.90/abi/abiword.de
  Encoding=UTF-8
 -X-Desktop-File-Install-Version=0.4
 -MimeType=application/x-abiword; text/x-abiword; text/x-xml-abiword; text/plain;
-+MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;text/plain;
++MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;text/plain;application/msword;application/vnd.ms-word;application/x-msword;
  Name=AbiWord Word Processor
  Name[de]=AbiWord Textverarbeitung
  Name[nb]=AbiWord Tekstbehandling
