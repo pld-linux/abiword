@@ -1,5 +1,5 @@
---- abiword-2.1.5/abi/abiword.desktop.orig	2004-07-31 19:57:52.000000000 +0200
-+++ abiword-2.1.5/abi/abiword.desktop	2004-08-12 18:56:11.980696248 +0200
+--- abiword-2.1.7/abi/abiword.desktop.orig	2004-08-26 18:13:35.000000000 +0200
++++ abiword-2.1.7/abi/abiword.desktop	2004-09-09 17:26:09.724425056 +0200
 @@ -3,7 +3,7 @@
  Icon=abiword_48.png
  Terminal=false
@@ -9,11 +9,10 @@
  StartupNotify=true
  Encoding=UTF-8
  X-Desktop-File-Install-Version=0.4
-@@ -18,5 +18,7 @@
- Comment[nn]=Tekstbehandlingsprogrammet AbiWord
- Name[no]=Tekstredigeringsprogram
- Comment[no]=AbiWord Tekstredigeringsprogram
-+Name[pl]=Procesor tekstu
-+Comment[pl]=Procesor dokumentów tekstowych
- Name[pt]=Processador de Texto
- Comment[pt]=Processor de Texto AbiWord
+@@ -12,5 +12,5 @@
+ Name[de]=AbiWord Textverarbeitung
+ Name[nb]=AbiWord Tekstbehandling
+ Name[nn]=AbiWord Tekstbehandling
+-Name[no]=AbiWord Tekstredigeringsprogram
++Name[pl]=Procesor tekstu AbiWord
+ Name[pt]=AbiWord Processador de Texto
