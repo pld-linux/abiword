@@ -37,7 +37,7 @@ BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	gucharmap-devel >= 1.4.0
 BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libgda-devel >= 0.90.0
-BuildRequires:	libglade2-devel >=  2.0.0
+BuildRequires:	libglade2-devel >= 2.0.0
 BuildRequires:	libgnomedb-devel >= 0.90.0
 BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgnomeprint-devel >= 2.2.1
@@ -74,32 +74,32 @@ Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugins-tools
-This is a set of plugins for AbiWord.  It includes
-        eml: Use mathematical notation in AbiWord.
- abicommand: Perform AbiWord operations from the command prompt.
-    abigimp: Process images in AbiWord using the Gimp.
-   abipaint: Editing embedded images via external program.
-  wikipedia: Access the Wikipedia reference from AbiWord.
-    urldict: Cross-platform URL dictionary plugin.
-      gdict: Use the GNOME dictionary application from within AbiWord.
-  aiksaurus: Use the Aiksaurus thesaurus in AbiWord.
-  babelfish: Translate text online using Babelfish.
-ScriptHappy: Run other programs in a shell and direct the output to
-             AbiWord.
+This is a set of plugins for AbiWord. It includes:
+- eml:		Use mathematical notation in AbiWord.
+- abicommand:	Perform AbiWord operations from the command prompt.
+- abigimp:	Process images in AbiWord using the Gimp.
+- abipaint:	Editing embedded images via external program.
+- wikipedia:	Access the Wikipedia reference from AbiWord.
+- urldict:	Cross-platform URL dictionary plugin.
+- gdict:	Use the GNOME dictionary application from within AbiWord.
+- aiksaurus:	Use the Aiksaurus thesaurus in AbiWord.
+- babelfish:	Translate text online using Babelfish.
+- ScriptHappy:	Run other programs in a shell and direct the output to
+		AbiWord.
 
 %description plugins-tools -l pl
 Jest to zestaw wtyczek dla AbiWorda. Zawiera:
-        eml: U¿ywanie notacji matematycznej w AbiWordzie.
- abicommand: Wykonywanie operacji AbiWordem z linii poleceñ.
-    abigimp: Obróbka obrazków w AbiWordzie przy u¿yciu Gimpa.
-   abipaint: Edycja osadzonych obrazków przez zewnêtrzny program.
-  wikipedia: Dostêp do Wikipedii z Abiworda.
-    urldict: Wieloplatformowa wtyczka s³ownika URL.
-      gdict: U¿ywanie aplikacji s³ownikowej GNOME z poziomu AbiWorda.
-  aiksaurus: U¿ywanie tezaurusa Aiksaurus w AbiWordzie.
-  babelfish: Automatyczne t³umaczenie tekstu przy u¿yciu Babelfisha.
-ScriptHappy: Uruchamianie innych programów z poziomu pow³oki z
-             wyj¶ciem do AbiWorda.
+- eml:		U¿ywanie notacji matematycznej w AbiWordzie.
+- abicommand:	Wykonywanie operacji AbiWordem z linii poleceñ.
+- abigimp:	Obróbka obrazków w AbiWordzie przy u¿yciu Gimpa.
+- abipaint:	Edycja osadzonych obrazków przez zewnêtrzny program.
+- wikipedia:	Dostêp do Wikipedii z Abiworda.
+- urldict:	Wieloplatformowa wtyczka s³ownika URL.
+- gdict:	U¿ywanie aplikacji s³ownikowej GNOME z poziomu AbiWorda.
+- aiksaurus:	U¿ywanie tezaurusa Aiksaurus w AbiWordzie.
+- babelfish:	Automatyczne t³umaczenie tekstu przy u¿yciu Babelfisha.
+- ScriptHappy:	Uruchamianie innych programów z poziomu pow³oki z
+		wyj¶ciem do AbiWorda.
 
 %package plugins-impexp
 Summary:	Plugins to import and export otherwise unsupported formats
@@ -115,7 +115,7 @@ builds that were not gnome-enabled.
 
 %description plugins-impexp -l pl
 Ten zestaw wtyczek do AbiWorda zawiera obs³ugê formatów dokumentów
-OpenWritera, zbzipowanego AbiWorda  oraz (X)HTML. Ponadto dodaje
+OpenWritera, zbzipowanego AbiWorda oraz (X)HTML. Ponadto dodaje
 obs³ugê ró¿nych rodzajów obrazków do AbiWorda zbudowanego bez
 obs³ugi GNOME.
 
