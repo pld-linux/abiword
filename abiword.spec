@@ -1,6 +1,5 @@
 #
 # TODO:
-# - check plugin-magick - causes AbiWord to segfault on startup
 # - polish/complete descriptions
 #
 %bcond_without	gnome	# without GNOME libs
@@ -10,7 +9,7 @@ Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.2.1
-Release:	0.2
+Release:	0.3
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -22,7 +21,6 @@ Patch2:		%{name}-python24.patch
 URL:		http://www.abisource.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	ImageMagick-c++-devel >= 5.4.0
 BuildRequires:	aiksaurus-gtk-devel >= 1.0
 BuildRequires:	aspell-devel >= 0.50.0
 BuildRequires:	bzip2-devel
@@ -56,6 +54,7 @@ BuildRequires:	psiconv-devel >= 0.9.6
 BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	wv-devel >= 1.0.3
 BuildRequires:	xft-devel >= 2.0
+Obsoletes:	abiword-plugin-magick
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -473,19 +472,6 @@ Import MS Write files.
 %description plugin-mswrite -l pl
 Importuje pliki MS Write.
 
-# abiMagick
-%package plugin-magick
-Summary:	AbiWord ImageMagick plugin
-Summary(pl):	Wtyczka ImageMagick dla Abiworda
-Group:		Applications/Productivity
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description plugin-magick
-View and format images that ImageMagick supports.
-
-%description plugin-magick -l pl
-Wy¶wietla obrazy wszystkich typów wspieranych przez ImageMagick.
-
 # abiNroff - lack of precise description (export?/import?)
 %package plugin-nroff
 Summary:	AbiWord Nroff plugin
@@ -705,7 +691,8 @@ cd ../abiword-plugins
 #%{__automake}
 #%{__autoconf}
 ./nextgen.sh
-%configure
+%configure \
+      --disable-magick
 %{__make}
 
 %install
@@ -882,10 +869,6 @@ umask 022
 %files plugin-mswrite
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMSWrite.so
-
-%files plugin-magick
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMagick.so
 
 %files plugin-nroff
 %defattr(644,root,root,755)
