@@ -1,29 +1,38 @@
+#
+# Conditional build:
+%bcond_without	gucharmap		# build without gucharmap (abiword doesn't build
+														# with newer gucharmap)
+#
+%define	mver	2.2
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.0.5
-Release:	0.2
+Version:	2.1.0
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	d5f921cf8a661609d1082db9d66a9a5d
+# Source0-md5:	b6ab22c7d6de6919afdf03d0d217dafd
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-types.patch
 Patch2:		%{name}-home_etc.patch
+Patch3:		%{name}-enable_deprecated.patch
+Patch4:		%{name}-psiconv.patch
+Patch5:		%{name}-libwpd.patch
 URL:		http://www.abisource.com/
 BuildRequires:	ImageMagick-c++-devel >= 5.4.0
 BuildRequires:	aiksaurus-gtk-devel >= 1.0
 BuildRequires:	aspell-devel >= 0.50.0
 BuildRequires:	bzip2-devel
-BuildRequires:	enchant-devel >= 0.4.0
+BuildRequires:	curl-devel
+BuildRequires:	enchant-devel >= 1.1.0
 BuildRequires:	eps-devel >= 1.2
 BuildRequires:	fontconfig-devel >= 1.0
 BuildRequires:	fribidi-devel >= 0.10.4
-BuildRequires:	gal-devel >= 1.99
 BuildRequires:	glib2-devel >= 2.0.0
-BuildRequires:	gtk+2-devel >= 2.0.0
-BuildRequires:	gucharmap-devel >= 0.7
+BuildRequires:	gtk+2-devel >= 2.2.0
+%{?with_gucharmap:BuildRequires:	gucharmap-devel >= 0.7}
 BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libgda-devel >= 0.90.0
 BuildRequires:	libglade2-devel >=  2.0.0
@@ -33,13 +42,16 @@ BuildRequires:	libgnomeprint-devel >= 2.2.1
 BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
 BuildRequires:	libgsf-devel >= 1.4.0
 BuildRequires:	libjpeg-devel
+BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.0
 BuildRequires:	libwmf-devel >= 0.2.8
-BuildRequires:	libwpd-devel >= 0.7.0
+BuildRequires:	libwpd-devel >= 0.7.1
 BuildRequires:	libxml2-devel >= 2.4.20
 BuildRequires:	nautilus-devel >= 2.0
 BuildRequires:	ots-devel >= 0.4.1
-BuildRequires:	psiconv-devel
+BuildRequires:	pkgconfig >= 0.9.0
+BuildRequires:	popt-devel
+BuildRequires:	psiconv-devel >= 0.9.3
 BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	wv-devel >= 1.0.0
 BuildRequires:	xft-devel >= 2.0
@@ -121,63 +133,29 @@ Jest to teczka clipartów u¿ywanych przez Abiworda.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 cd abi
 ./autogen.sh
 %configure \
+	%{?!with_gucharmap:--disable-cmap} \
 	--enable-gnome \
 	--with-pspell \
-	--with-sys-wv
+	--with-sys-wv \
+	--enable-threads \
+	--with-libxml2
+
 %{__make}
 
 cd ../abiword-plugins
 ./nextgen.sh
 %configure \
-	--disable-eg \
-	--enable-gda \
-	--enable-abicommand \
-	--enable-abigimp \
-	--enable-aiksaurus \
-	--enable-babelfish \
-	--enable-freetranslation \
-	--enable-gdict \
-	--enable-referee \
-	--enable-urldict \
-	--enable-wikipedia \
-	--enable-magick \
-	--enable-shell \
-	--enable-gdkpixbuf \
-	--enable-bmp \
-	--enable-jpeg \
-	--enable-wmf \
-	--enable-applix \
-	--enable-bz2abw \
-	--enable-clarisworks \
-	--enable-eml \
-	--enable-hancom \
-	--enable-hrtext \
-	--enable-html \
-	--enable-iscii-text \
-	--enable-kword \
-	--enable-latex \
-	--enable-mif \
-	--enable-mswrite \
-	--disable-nroff \
-	--enable-OpenWriter \
-	--enable-pdb \
-	--enable-psion \
-	--enable-pw \
-	--enable-sdw \
-	--enable-t602 \
-	--enable-wml \
-	--enable-wordperfect \
-	--enable-xhtml \
-	--enable-xsl-fo \
-	--enable-librsvg \
-	--enable-docbook \
 	--with-psiconv=/usr
 # --with-psiconv=dir is workaround to avoid -Lyes/lib which libtool doesn't like
+
 %{__make}
 
 %install
@@ -195,8 +173,8 @@ install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 mv $RPM_BUILD_ROOT%{_iconsdir}/abiword_48.png $RPM_BUILD_ROOT%{_pixmapsdir}
 
 #Remove useless files
-rm -f $RPM_BUILD_ROOT%{_libdir}/AbiWord-2.0/plugins/*.la
-rm -f $RPM_BUILD_ROOT%{_libdir}/AbiWord-2.0/plugins/*.a
+rm -f $RPM_BUILD_ROOT%{_libdir}/AbiWord-%{mver}/plugins/*.la
+rm -f $RPM_BUILD_ROOT%{_libdir}/AbiWord-%{mver}/plugins/*.a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -204,74 +182,76 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%dir %{_datadir}/AbiSuite-2.0
-%dir %{_datadir}/AbiSuite-2.0/AbiWord
-%dir %{_datadir}/AbiSuite-2.0/AbiWord/scripts
-%dir %{_libdir}/AbiWord-2.0
-%dir %{_libdir}/AbiWord-2.0/plugins
-%{_datadir}/AbiSuite-2.0/AbiWord/glade
-%{_datadir}/AbiSuite-2.0/AbiWord/scripts/*
-%{_datadir}/AbiSuite-2.0/AbiWord/strings
-%{_datadir}/AbiSuite-2.0/AbiWord/system.profile*
-%{_datadir}/AbiSuite-2.0/icons
-%{_datadir}/AbiSuite-2.0/templates
-%{_datadir}/AbiSuite-2.0/abi-nautilus-view-file.xml
+%dir %{_datadir}/AbiSuite-%{mver}
+%dir %{_datadir}/AbiSuite-%{mver}/AbiWord
+%dir %{_datadir}/AbiSuite-%{mver}/AbiWord/scripts
+%dir %{_libdir}/AbiWord-%{mver}
+%dir %{_libdir}/AbiWord-%{mver}/plugins
+%{_datadir}/AbiSuite-%{mver}/AbiWord/glade
+%{_datadir}/AbiSuite-%{mver}/AbiWord/scripts/*
+%{_datadir}/AbiSuite-%{mver}/AbiWord/strings
+%{_datadir}/AbiSuite-%{mver}/AbiWord/system.profile*
+%{_datadir}/AbiSuite-%{mver}/icons
+%{_datadir}/AbiSuite-%{mver}/templates
+%{_datadir}/AbiSuite-%{mver}/abi-nautilus-view-file.xml
 %{_libdir}/bonobo/servers/*
 %{_desktopdir}/*
 %{_pixmapsdir}/*.png
-%{_datadir}/AbiSuite-2.0/AbiWord.exe.MANIFEST
-%{_datadir}/AbiSuite-2.0/AbiWord/readme.txt
-%{_datadir}/AbiSuite-2.0/README
+%{_datadir}/AbiSuite-%{mver}/AbiWord.exe.MANIFEST
+%{_datadir}/AbiSuite-%{mver}/AbiWord/readme.txt
+%{_datadir}/AbiSuite-%{mver}/README
 
 %files plugins-tools
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiAikSaurus.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiBabelfish.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiCommand.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiFreeTranslation.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGDA.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGdict.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGimp.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGoogle.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGypsython.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiOTS.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiReferee.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiScriptHappy.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiURLDict.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWikipedia.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiAikSaurus.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBabelfish.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCAPI.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCommand.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiFreeTranslation.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGDA.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGdict.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGimp.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGoogle.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGypsython.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiOTS.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiReferee.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiScriptHappy.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiURLDict.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWikipedia.so
 
 %files plugins-impexp
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiApplix.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiBMP.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiBZ2.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiClarisWorks.so
-#%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiCoquille.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiDocBook.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiEML.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGdkPixbuf.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiHRText.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiHancom.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiISCII.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiJPEG.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiKWord.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiLaTeX.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMIF.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMSWrite.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMagick.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiOpenWriter.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPalmDoc.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPsion.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiRSVG.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiSDW.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiT602.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWMF.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWML.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWordPerfect.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiXHTML.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiXSLFO.so
-%{_libdir}/AbiWord-2.0/plugins/AbiWord
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiApplix.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBMP.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBZ2.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiClarisWorks.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCoquille.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiDocBook.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiEML.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGdkPixbuf.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiHRText.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiHancom.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiISCII.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiJPEG.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiKWord.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiLaTeX.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMIF.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMSWrite.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMagick.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiNroff.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiOpenWriter.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPalmDoc.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPsion.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiRSVG.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiSDW.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiT602.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWMF.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWML.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWordPerfect.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiXHTML.so
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiXSLFO.so
+%{_libdir}/AbiWord-%{mver}/plugins/AbiWord
 
 %files clipart
 %defattr(644,root,root,755)
-%{_datadir}/AbiSuite-2.0/clipart
+%{_datadir}/AbiSuite-%{mver}/clipart
