@@ -1,10 +1,8 @@
 #
 # TODO:
 # - check impexp-plugins, loading them on starup causes AbiWord to segfault
-# - make "light" version without gnome dependencies 
 # - split plugins into subpackages (yeah, we can do it) (started! :)
 # - check BRs/Rs
-# - use our auto macros not ./autogen stuff
 #
 %bcond_without	gnome 	# without GNOME libs
 #
@@ -21,7 +19,7 @@ Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	1e70a9ee1daee1206fb873bdcd35bcb9
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
-URL:		http://www.abisource.com/i
+URL:		http://www.abisource.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	ImageMagick-c++-devel >= 5.4.0
@@ -47,10 +45,10 @@ BuildRequires:	libgsf-devel >= 1.4.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.0
+BuildRequires:	libtool
 BuildRequires:	libwmf-devel >= 0.2.8
 BuildRequires:	libwpd-devel >= 0.7.1
 BuildRequires:	libxml2-devel >= 2.4.20
-BuildRequires:	nautilus-devel >= 2.0
 BuildRequires:	ots-devel >= 0.4.1
 BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	popt-devel
@@ -211,37 +209,35 @@ cd abi
 %{__automake}
 %{__autoconf}
 %configure \
-	--%{!?with_gnome:dis}%{?with_gnome:en}able-gnome \
-	--with-pspell \
-	--with-sys-wv \
-	--enable-threads \
-	--with-libxml2
-
+      --%{!?with_gnome:dis}%{?with_gnome:en}able-gnome \
+      --with-pspell \
+      --with-sys-wv \
+      --enable-threads \
+      --with-libxml2
 %{__make}
 
 cd ../abiword-plugins
-./nextgen.sh
-%configure \
-	--with-psiconv=/usr
-# --with-psiconv=dir is workaround to avoid -Lyes/lib which libtool doesn't like
-
+%{__libtoolize}
+%{__aclocal} -I ac-helpers
+%{__automake}
+%{__autoconf}
+%configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-cd abiword-plugins
-%{__make} install \
+%{__make} -C abiword-plugins install \
 	DESTDIR=$RPM_BUILD_ROOT
-cd ../abi
-%{__make} install \
+
+%{__make} -C abi install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 # Manual fixes to Abi package
 install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 mv $RPM_BUILD_ROOT%{_iconsdir}/abiword_48.png $RPM_BUILD_ROOT%{_pixmapsdir}
 
-#Remove useless files
+# Remove useless files
 rm -f $RPM_BUILD_ROOT%{_libdir}/AbiWord-%{mver}/plugins/*.la
 rm -f $RPM_BUILD_ROOT%{_libdir}/AbiWord-%{mver}/plugins/*.a
 
@@ -270,13 +266,9 @@ umask 022
 %{_datadir}/AbiSuite-%{mver}/AbiWord/system.profile*
 %{_datadir}/AbiSuite-%{mver}/icons
 %{_datadir}/AbiSuite-%{mver}/templates
-#%{_datadir}/AbiSuite-%{mver}/abi-nautilus-view-file.xml
-#%{_libdir}/bonobo/servers/*
 %{_desktopdir}/*
 %{_pixmapsdir}/*.png
-#%{_datadir}/AbiSuite-%{mver}/AbiWord.exe.MANIFEST
 %{_datadir}/AbiSuite-%{mver}/AbiWord/readme.txt
-#%{_datadir}/AbiSuite-%{mver}/README
 
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiAikSaurus.so
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBabelfish.so
