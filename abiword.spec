@@ -9,7 +9,7 @@ Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.2.6
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -671,11 +671,12 @@ cd abi
 %{__automake}
 %{__autoconf}
 %configure \
-      --%{!?with_gnome:dis}%{?with_gnome:en}able-gnome \
-      --with-pspell \
-      --with-sys-wv \
-      --enable-threads \
-      --with-libxml2
+	--%{!?with_gnome:dis}%{?with_gnome:en}able-gnome \
+	--disable-static \
+	--enable-threads \
+	--with-libxml2 \
+	--with-pspell \
+	--with-sys-wv 
 %{__make}
 
 cd ../abiword-plugins
@@ -695,7 +696,6 @@ rm -rf $RPM_BUILD_ROOT
 
 # Remove useless files
 rm -f $RPM_BUILD_ROOT%{_libdir}/AbiWord-%{mver}/plugins/*.la
-rm -f $RPM_BUILD_ROOT%{_libdir}/AbiWord-%{mver}/plugins/*.a
 
 %clean
 rm -rf $RPM_BUILD_ROOT
