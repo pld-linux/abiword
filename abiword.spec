@@ -28,9 +28,9 @@ BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libgda-devel >= 0.90.0
 BuildRequires:	libglade2-devel >= 2.0.0
 BuildRequires:	libgnomedb-devel >= 0.90.0
-BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgnomeprint-devel >= 2.2.1
 BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
+BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgsf-devel >= 1.4.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel >= 2.0
