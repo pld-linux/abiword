@@ -1,0 +1,39 @@
+--- abiword-2.0.14/abiword-plugins/acinclude.m4.orig	2004-12-23 12:36:33.009389184 +0000
++++ abiword-2.0.14/abiword-plugins/acinclude.m4	2004-12-23 12:37:29.448809088 +0000
+@@ -304,27 +304,27 @@
+ # Checks for libraries.
+ # Checks for header files.
+ 
+-AC_ARG_WITH(python,[  --with-python=DIR        Python 2.3 library in DIR],[
++AC_ARG_WITH(python,[  --with-python=DIR        Python 2.4 library in DIR],[
+ 	if test "x$withval" = "xno"; then
+ 		ABI_PLUGIN_REPORT([gypsython: Python support disabled])
+ 		abi_plugin_disable=yes
+ 	elif test "x$withval" != "xyes"; then
+-		ABI_GYPSY_CPPFLAGS="-I$withval/include/python2.3"
++		ABI_GYPSY_CPPFLAGS="-I$withval/include/python2.4"
+ 		ABI_GYPSY_LDFLAGS="-L$withval/lib"
+-		CPPFLAGS="$CPPFLAGS -I$withval/include/python2.3"
++		CPPFLAGS="$CPPFLAGS -I$withval/include/python2.4"
+ 		LDFLAGS="$LDFLAGS -L$withval/lib"
+ 	else
+-		ABI_GYPSY_CPPFLAGS="-I/usr/include/python2.3"
+-		CPPFLAGS="$CPPFLAGS -I/usr/include/python2.3"
++		ABI_GYPSY_CPPFLAGS="-I/usr/include/python2.4"
++		CPPFLAGS="$CPPFLAGS -I/usr/include/python2.4"
+ 	fi
+-],[	ABI_GYPSY_CPPFLAGS="-I/usr/include/python2.3"
+-	CPPFLAGS="$CPPFLAGS -I/usr/include/python2.3"
++],[	ABI_GYPSY_CPPFLAGS="-I/usr/include/python2.4"
++	CPPFLAGS="$CPPFLAGS -I/usr/include/python2.4"
+ ])
+ 
+ if test $abi_plugin_disable != yes; then
+ 	AC_CHECK_HEADER(Python.h,[
+-		AC_CHECK_LIB(python2.3,Py_Initialize,[
+-			ABI_GYPSY_LDFLAGS="$ABI_GYPSY_LDFLAGS -lpython2.3"
++		AC_CHECK_LIB(python2.4,Py_Initialize,[
++			ABI_GYPSY_LDFLAGS="$ABI_GYPSY_LDFLAGS -lpython2.4"
+ 			ABI_PLUGIN_REPORT([gypsython: okay])
+ 		],[	ABI_PLUGIN_REPORT([gypsython: error - Python library not found])
+ 			abi_plugin_disable=yes
