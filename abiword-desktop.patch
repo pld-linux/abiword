@@ -1,14 +1,19 @@
 diff -Nuard abiword-2.0.2.orig/abi/abiword.desktop abiword-2.0.2/abi/abiword.desktop
 --- abiword-2.0.2.orig/abi/abiword.desktop	2003-11-05 23:48:22.000000000 +0100
 +++ abiword-2.0.2/abi/abiword.desktop	2003-12-15 20:17:02.584553768 +0100
-@@ -1,11 +1,14 @@
+@@ -1,15 +1,17 @@
  [Desktop Entry]
--Name=AbiWord Word Processor
+-Name=Word Processor
+-Name[de]=Textverarbeitung
+-Name[pt]=Processador de Texto
 +Name=AbiWord
++Name[de]=AbiWord
 +Name[pl]=AbiWord
- Name[de]=AbiWord Textverarbeitung
-+Comment=Word Processor
++Name[pt]=AbiWord
+ Comment=AbiWord Word Processor
+ Comment[de]=AbiWord Textverarbeitung
 +Comment[pl]=Edytor dokumentów tekstowych
+ Comment[pt]=Processor de Texto AbiWord
  Exec=abiword
  Icon=abiword_48.png
  Terminal=false
