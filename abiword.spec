@@ -61,7 +61,7 @@ cd abiword-plugins/abiword-plugins
 %build
 cd abi
 ./autogen.sh
-gettextize --copy --force
+%{__gettextize}
 if [ -f %{_pkgconfigdir}/libpng12.pc ] ; then
         CPPFLAGS="`pkg-config libpng12 --cflags`"
 fi
