@@ -6,7 +6,7 @@ Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/abiword/%{name}-%{version}.tar.bz2
 # Source0-md5:	3fb61de6c57406d8d3cd68d65562e3ad
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
@@ -28,8 +28,8 @@ BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libgda-devel >= 0.90.0
 BuildRequires:	libglade2-devel >= 2.0.0
 BuildRequires:	libgnomedb-devel >= 0.90.0
-BuildRequires:	libgnomeprint-devel >= 2.2.1
 BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
+BuildRequires:	libgnomeprint-devel >= 2.2.1
 BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgsf-devel >= 1.4.0
 BuildRequires:	libjpeg-devel
