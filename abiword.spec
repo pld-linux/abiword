@@ -1,18 +1,13 @@
-%define		_packagever 2.0.5
-%define		_pluginsver 2.0.1
-%define		_pluginsrel 4
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	%{_packagever}
-Release:	0.1
+Version:	2.0.5
+Release:	0.2
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	d5f921cf8a661609d1082db9d66a9a5d
-Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{_pluginsver}.tar.bz2
-# Source1-md5:	5aa1e05c0f7b8ab7e92c2a296f1a5673
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-types.patch
 Patch2:		%{name}-home_etc.patch
@@ -40,8 +35,8 @@ BuildRequires:	libgsf-devel >= 1.4.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel >= 2.0
 BuildRequires:	libwmf-devel >= 0.2.8
-BuildRequires:	libwpd-devel >= 0.6.0
-BuildRequires:	libxml2-devel >= 2.4.2
+BuildRequires:	libwpd-devel >= 0.7.0
+BuildRequires:	libxml2-devel >= 2.4.20
 BuildRequires:	nautilus-devel >= 2.0
 BuildRequires:	ots-devel >= 0.4.1
 BuildRequires:	psiconv-devel
@@ -62,9 +57,7 @@ platformie UNIX.
 Summary:	Various tools that can be used to extend AbiWord's capabilities
 Summary(pl):	Ró¿ne narzêdzia powiêkszaj±ce mo¿liwo¶ci AbiWorda
 Group:		Applications/Productivity
-Version:	%{_pluginsver}
-Release:	%{_pluginsrel}
-Requires:	%{name} = %{epoch}:%{_packagever}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugins-tools
 This is a set of plugins for AbiWord.  It includes
@@ -98,9 +91,7 @@ ScriptHappy: Uruchamianie innych programów z poziomu pow³oki z
 Summary:	Plugins to import and export otherwise unsupported formats
 Summary(pl):	Wtyczki importuj±ce i eksportuj±ce do róznych formatów dokumentów
 Group:		Applications/Productivity
-Version:	%{_pluginsver}
-Release:	%{_pluginsrel}
-Requires:	%{name} = %{epoch}:%{_packagever}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugins-impexp
 This is a set of plugins for AbiWord. It includes support for
@@ -126,7 +117,7 @@ This is the clipart portfolio used by AbiWord.
 Jest to teczka clipartów u¿ywanych przez Abiworda.
 
 %prep
-%setup -q -a 1
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -200,7 +191,7 @@ cd ../abi
 	DESTDIR=$RPM_BUILD_ROOT
 
 # Manual fixes to Abi package
-install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir}}
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 mv $RPM_BUILD_ROOT%{_iconsdir}/abiword_48.png $RPM_BUILD_ROOT%{_pixmapsdir}
 
 #Remove useless files
@@ -255,7 +246,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiBMP.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiBZ2.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiClarisWorks.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiCoquille.so
+#%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiCoquille.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiDocBook.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiEML.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGdkPixbuf.so
@@ -279,7 +270,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWordPerfect.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiXHTML.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiXSLFO.so
-%{_libdir}/AbiWord-2.0/plugins/AbiWord/glade/ots.glade
+%{_libdir}/AbiWord-2.0/plugins/AbiWord
 
 %files clipart
 %defattr(644,root,root,755)
