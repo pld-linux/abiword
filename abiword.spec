@@ -1,15 +1,15 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	1.99.4
+Version:	2.0.0
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	09bba533b32b81a35aaf27de6e7f4210
+# Source0-md5:	1b7153cdb5a8134b995505b6f362bfc1
 Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{version}.tar.bz2
-# Source1-md5:	8025d63d0b56ba42b18a33ffa5fe0f80
+# Source1-md5:	6e65725080d91cf81f6c8c057854aec4
 URL:		http://www.abisource.com/
 BuildRequires:	bzip2-devel
 BuildRequires:	fontconfig-devel
@@ -105,9 +105,6 @@ Jest to teczka clipartów u¿ywanych przez Abiworda.
 %prep
 %setup -q -a 1
 
-#Shorten paths for easier build
-mv %{name}-plugins-%{version} %{name}-plugins
-
 %build
 cd abi
 ./autogen.sh
@@ -175,15 +172,8 @@ cd ../abi
 	DESTDIR=$RPM_BUILD_ROOT
 
 # Manual fixes to Abi package
-#Desktop file and icon
 install -d $RPM_BUILD_ROOT{%{_pixmapsdir},%{_desktopdir}}
-install $RPM_BUILD_ROOT%{_datadir}/AbiSuite-2.0/icons/abiword_48.png $RPM_BUILD_ROOT%{_pixmapsdir}
-install src/pkg/linux/rpm/data/abiword.desktop $RPM_BUILD_ROOT%{_desktopdir}
-perl -p -i -e "s|Exec=abiword|Exec=AbiWord-2.0|" $RPM_BUILD_ROOT%{_desktopdir}/abiword.desktop
-
-#Bonobo stuff
-install -d $RPM_BUILD_ROOT%{_libdir}/bonobo/servers
-mv $RPM_BUILD_ROOT%{_datadir}/AbiSuite-2.0/GNOME_AbiWord_Control_2_0.server $RPM_BUILD_ROOT%{_libdir}/bonobo/servers
+mv $RPM_BUILD_ROOT%{_iconsdir}/abiword_48.png $RPM_BUILD_ROOT%{_pixmapsdir}
 
 #Remove useless files
 rm -f $RPM_BUILD_ROOT%{_libdir}/AbiWord-2.0/plugins/*.la
@@ -246,7 +236,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMIF.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMSWrite.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiOpenWriter.so
-#%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPW.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPalmDoc.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiRSVG.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiSDW.so
