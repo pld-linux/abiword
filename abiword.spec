@@ -13,6 +13,7 @@ Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{version}.tar.bz2
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-types.patch
 URL:		http://www.abisource.com/
+BuildRequires:	ImageMagick-c++-devel >= 5.4.0
 BuildRequires:	aiksaurus-gtk-devel >= 1.0
 BuildRequires:	aspell-devel >= 0.50.0
 BuildRequires:	bzip2-devel
@@ -64,7 +65,7 @@ This is a set of plugins for AbiWord.  It includes
         eml: Use mathematical notation in AbiWord.
  abicommand: Perform AbiWord operations from the command prompt.
     abigimp: Process images in AbiWord using the Gimp.
-  abimagick: Process images in AbiWord using ImageMagick.
+   abipaint: Editing embedded images via external program.
   wikipedia: Access the Wikipedia reference from AbiWord.
     urldict: Cross-platform URL dictionary plugin.
       gdict: Use the GNOME dictionary application from within AbiWord.
@@ -78,7 +79,7 @@ Jest to zestaw wtyczek dla AbiWorda. Zawiera:
         eml: U¿ywanie notacji matematycznej w AbiWordzie.
  abicommand: Wykonywanie operacji AbiWordem z linii poleceñ.
     abigimp: Obróbka obrazków w AbiWordzie przy u¿yciu Gimpa.
-  abimagick: Obróbka obrazków w AbiWordzie przy u¿yciu ImageMagick.
+   abipaint: Edycja osadzonych obrazków przez zewnêtrzny program.
   wikipedia: Dostêp do Wikipedii z Abiworda.
     urldict: Wieloplatformowa wtyczka s³ownika URL.
       gdict: U¿ywanie aplikacji s³ownikowej GNOME z poziomu AbiWorda.
@@ -144,7 +145,7 @@ cd ../abiword-plugins
 	--enable-referee \
 	--enable-urldict \
 	--enable-wikipedia \
-	--disable-magick \
+	--enable-magick \
 	--enable-shell \
 	--enable-gdkpixbuf \
 	--enable-bmp \
@@ -257,6 +258,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiLaTeX.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMIF.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMSWrite.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMagick.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiOpenWriter.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPalmDoc.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPsion.so
