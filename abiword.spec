@@ -1,15 +1,15 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	1.99.2
+Version:	1.99.3
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	6319519f6f8b3eb70b0370bf694350d4
-Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{version}.tar.gz
-# Source1-md5:	bc1bcbc16baa1c7026d0b7c0fa3b629b
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+# Source0-md5:	b5637c9bc95ae77aafdac24249787264
+Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{version}.tar.bz2
+# Source1-md5:	53297fc37aa1c226f3f9e11168259612
 URL:		http://www.abisource.com/
 BuildRequires:	bzip2-devel
 BuildRequires:	fontconfig-devel
@@ -194,7 +194,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-#%doc abi/docs/*.abw abi/CREDITS.TXT
 %attr(755,root,root) %{_bindir}/*
 %dir %{_datadir}/AbiSuite-2.0
 %dir %{_datadir}/AbiSuite-2.0/AbiWord
@@ -223,7 +222,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGdict.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGimp.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGoogle.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGypsython.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiURLDict.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWikipedia.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiReferee.so
