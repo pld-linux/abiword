@@ -1,14 +1,17 @@
+%define		_packagever 2.0.2
+%define		_pluginsver 2.0.1
+%define		_pluginsrel 3
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.0.1
-Release:	3
+Version:	%{_packagever}
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	4b927771a4e91db5de9cfe811aa7545f
-Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{version}.tar.bz2
+# Source0-md5:	bcb7b45b04e285d5a8b82fb13ebaa170
+Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{_pluginsver}.tar.bz2
 # Source1-md5:	5aa1e05c0f7b8ab7e92c2a296f1a5673
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-types.patch
@@ -59,7 +62,9 @@ platformie UNIX.
 Summary:	Various tools that can be used to extend AbiWord's capabilities
 Summary(pl):	Ró¿ne narzêdzia powiêkszaj±ce mo¿liwo¶ci AbiWorda
 Group:		Applications/Productivity
-Requires:	%{name} = %{epoch}:%{version}
+Version:	%{_pluginsver}
+Release:	%{_pluginsrel}
+Requires:	%{name} = %{epoch}:%{_packagever}
 
 %description plugins-tools
 This is a set of plugins for AbiWord.  It includes
@@ -93,7 +98,9 @@ ScriptHappy: Uruchamianie innych programów z poziomu pow³oki z
 Summary:	Plugins to import and export otherwise unsupported formats
 Summary(pl):	Wtyczki importuj±ce i eksportuj±ce do róznych formatów dokumentów
 Group:		Applications/Productivity
-Requires:	%{name} = %{epoch}:%{version}
+Version:	%{_pluginsver}
+Release:	%{_pluginsrel}
+Requires:	%{name} = %{epoch}:%{_packagever}
 
 %description plugins-impexp
 This is a set of plugins for AbiWord. It includes support for
