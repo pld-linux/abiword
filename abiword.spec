@@ -15,8 +15,8 @@ BuildRequires:	Aiksaurus-devel
 BuildRequires:	ImageMagick-c++-devel
 BuildRequires:	ImageMagick-devel
 BuildRequires:	ORBit-devel
-BuildRequires:	autoconf >= 1.5-8
-BuildRequires:	automake
+BuildRequires:	autoconf
+BuildRequires:	automake >= 1.5-8
 BuildRequires:	bzip2-devel
 BuildRequires:	expat-devel
 BuildRequires:	gettext-devel
