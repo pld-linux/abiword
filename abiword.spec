@@ -17,6 +17,7 @@ BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	gal-devel >= 1.99
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk+2-devel >= 2.0.0
+BuildRequires:	gucharmap-devel >= 0.7
 BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgnomeprint-devel >= 2.2.0
@@ -27,7 +28,6 @@ BuildRequires:	librsvg-devel
 BuildRequires:	libwmf-devel
 BuildRequires:	libxml2-devel >= 2.4.2
 BuildRequires:	pspell-devel >= 0.11.1
-BuildRequires:	gucharmap-devel >= 0.7
 BuildRequires:	wv-devel >= 0.7.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -36,11 +36,12 @@ AbiWord is a multi-platform word processor with a GTK+ interface on
 the UNIX platform.
 
 %description -l pl
-AbiWord jest wieloplatformowym procesorem tekstu z interfejsem GTK+ na platformie UNIX.
+AbiWord jest wieloplatformowym procesorem tekstu z interfejsem GTK+ na
+platformie UNIX.
 
 %package plugins-tools
-Summary:	Various tools that can be used to extend AbiWord's capabilities.
-Summary(pl):	Ró¿ne narzêdzia powiêkszaj±ce mo¿liwo¶ci AbiWord.
+Summary:	Various tools that can be used to extend AbiWord's capabilities
+Summary(pl):	Ró¿ne narzêdzia powiêkszaj±ce mo¿liwo¶ci AbiWorda
 Group: 		Applications/Productivity
 Requires: 	%{name} = %{epoch}:%{version}
 
@@ -51,29 +52,55 @@ This is a set of plugins for AbiWord.  It includes
     abigimp: Process images in AbiWord using the Gimp.
   abimagick: Process images in AbiWord using ImageMagick.
   wikipedia: Access the Wikipedia reference from AbiWord.
-    urldict: Cross-platform url dictionary plugin.
-      gdict: Use the gnome dictionary application from within AbiWord.
+    urldict: Cross-platform URL dictionary plugin.
+      gdict: Use the GNOME dictionary application from within AbiWord.
   aiksaurus: Use the Aiksaurus thesaurus in AbiWord.
   babelfish: Translate text online using Babelfish.
-ScriptHappy: Run other programs in a shell and direct the output to AbiWord.
+ScriptHappy: Run other programs in a shell and direct the output to
+             AbiWord.
+
+%description plugins-tools -l pl
+Jest to zestaw wtyczek dla AbiWorda. Zawiera:
+        eml: U¿ywanie notacji matematycznej w AbiWordzie.
+ abicommand: Wykonywanie operacji AbiWordem z linii poleceñ.
+    abigimp: Obróbka obrazków w AbiWordzie przy u¿yciu Gimpa.
+  abimagick: Obróbka obrazków w AbiWordzie przy u¿yciu ImageMagick.
+  wikipedia: Dostêp do Wikipedii z Abiworda.
+    urldict: Wieloplatformowa wtyczka s³ownika URL.
+      gdict: U¿ywanie aplikacji s³ownikowej GNOME z poziomu AbiWorda.
+  aiksaurus: U¿ywanie tezaurusa Aiksaurus w AbiWordzie.
+  babelfish: Automatyczne t³umaczenie tekstu przy u¿yciu Babelfisha.
+ScriptHappy: Uruchamianie innych programów z poziomu pow³oki z
+             wyj¶ciem do AbiWorda.
 
 %package plugins-impexp
-Summary: 	Plugins to import and export otherwise unsupported formats.
-Summary(pl):	Wtyczki importuj±ce i eksportuj±ce do róznych formatów dokumentów.
+Summary: 	Plugins to import and export otherwise unsupported formats
+Summary(pl):	Wtyczki importuj±ce i eksportuj±ce do róznych formatów dokumentów
 Group: 		Applications/Productivity
 Requires: 	%{name} = %{epoch}:%{version}
 
 %description plugins-impexp
-This is a set of plugins for AbiWord.  It includes support for OpenWriter,
-bzipped AbiWord, and (x)html document formats.  Additionally, it adds support
-for certain image types to AbiWord builds that were not gnome-enabled.
+This is a set of plugins for AbiWord. It includes support for
+OpenWriter, bzipped AbiWord, and (x)html document formats.
+Additionally, it adds support for certain image types to AbiWord
+builds that were not gnome-enabled.
+
+%description plugins-impexp -l pl
+Ten zestaw wtyczek do AbiWorda zawiera obs³ugê formatów dokumentów
+OpenWritera, zbzipowanego AbiWorda  oraz (X)HTML. Ponadto dodaje
+obs³ugê ró¿nych rodzajów obrazków do AbiWorda zbudowanego bez
+obs³ugi GNOME.
 
 %package clipart
 Summary: 	AbiWord Clipart
+Summary(pl):	Cliparty dla AbiWorda
 Group: 		Applications/Productivity
-                                                                                                                                                    
+
 %description clipart
 This is the clipart portfolio used by AbiWord.
+
+%description clipart -l pl
+Jest to teczka clipartów u¿ywanych przez Abiworda.
 
 %prep
 %setup -q -a 1
@@ -190,46 +217,46 @@ rm -rf $RPM_BUILD_ROOT
 
 %files plugins-tools
 %defattr(644,root,root,755)
-%{_libdir}/AbiWord-2.0/plugins/libAbiCommand.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiBabelfish.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiFreeTranslation.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiGdict.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiGimp.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiGoogle.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiGypsython.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiURLDict.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiWikipedia.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiReferee.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiScriptHappy.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiCommand.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiBabelfish.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiFreeTranslation.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGdict.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGimp.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGoogle.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGypsython.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiURLDict.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWikipedia.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiReferee.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiScriptHappy.so
 
 %files plugins-impexp
 %defattr(644,root,root,755)
-%{_libdir}/AbiWord-2.0/plugins/libAbiApplix.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiBMP.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiBZ2.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiClarisWorks.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiCoquille.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiDocBook.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiEML.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiGdkPixbuf.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiHancom.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiHRText.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiISCII.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiJPEG.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiKWord.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiLaTeX.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiMIF.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiMSWrite.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiOpenWriter.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiPW.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiPalmDoc.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiRSVG.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiSDW.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiT602.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiWMF.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiWML.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiXHTML.so
-%{_libdir}/AbiWord-2.0/plugins/libAbiXSLFO.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiApplix.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiBMP.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiBZ2.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiClarisWorks.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiCoquille.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiDocBook.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiEML.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGdkPixbuf.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiHancom.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiHRText.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiISCII.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiJPEG.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiKWord.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiLaTeX.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMIF.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMSWrite.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiOpenWriter.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPW.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPalmDoc.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiRSVG.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiSDW.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiT602.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWMF.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWML.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiXHTML.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiXSLFO.so
 
 %files clipart
 %defattr(644,root,root,755)
