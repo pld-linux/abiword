@@ -34,18 +34,21 @@ gettextize --copy --force
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_bindir}
 cd abi
-
 %{__make} -f GNUmakefile install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 gzip -9nf CREDITS.TXT
 
-%find_lang %{name}
+#%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+#%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %doc abi/docs/*.abw abi/*.gz
+%attr(755,root,root) %{bindir}/*
+%{_datadir}/AbiSuite
