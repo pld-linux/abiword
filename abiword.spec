@@ -1,6 +1,6 @@
 #
 # TODO:
-# - check impexp-plugins, loading them on starup causes AbiWord to segfault
+# - check plugin-magick - causes AbiWord to segfault on startup
 # - polish/complete descriptions
 #
 %bcond_without	gnome 	# without GNOME libs
