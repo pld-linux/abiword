@@ -1,8 +1,12 @@
+#
+# Conditional build:
+%bcond_with	python23	# build for python 2.3
+
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.0.14
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -11,6 +15,7 @@ Source0:	http://dl.sourceforge.net/abiword/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-gucharmap.patch
+Patch3:		%{name}-python24.patch
 URL:		http://www.abisource.com/
 BuildRequires:	ImageMagick-c++-devel >= 5.4.0
 BuildRequires:	aiksaurus-gtk-devel >= 1.0
@@ -40,7 +45,12 @@ BuildRequires:	libxml2-devel >= 2.4.20
 BuildRequires:	nautilus-devel >= 2.0
 BuildRequires:	ots-devel >= 0.4.1
 BuildRequires:	psiconv-devel
+%if %{with python23}
 BuildRequires:	python-devel >= 1:2.3
+BuildRequires:	python-devel < 1:2.4
+%else
+BuildRequires:	python-devel >= 1:2.4
+%endif
 BuildRequires:	wv-devel >= 1.0.0
 BuildRequires:	xft-devel >= 2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -121,6 +131,9 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%if %{without python23}
+%patch3 -p1
+%endif
 
 %build
 cd abi
