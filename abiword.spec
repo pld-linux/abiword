@@ -39,23 +39,24 @@ gettextize --copy --force
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_applnkdir}/Office/Wordprocessors}
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Wordprocessors
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_applnkdir}/Office/Wordprocessors,%{_pixmapsdir}}
+
 cd abi
 %{__make} -f GNUmakefile install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-gzip -9nf CREDITS.TXT
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Wordprocessors
+install $RPM_BUILD_ROOT%{_datadir}/AbiSuite/icons/abiword_48.png $RPM_BUILD_ROOT%{_pixmapsdir}
 
-#%find_lang %{name}
+gzip -9nf CREDITS.TXT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-#%files -f %{name}.lang
 %files
 %defattr(644,root,root,755)
 %doc abi/docs/*.abw abi/*.gz
 %attr(755,root,root) %{_bindir}/[At]*
 %{_datadir}/AbiSuite
 %{_applnkdir}/Office/Wordprocessors/*
+%{_pixmapsdir}/*.png
