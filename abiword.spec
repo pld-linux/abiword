@@ -1,15 +1,15 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	1.99.1
+Version:	1.99.2
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-# Source0-md5:	e96b50aea36ebf935d001b436b2bc582
+# Source0-md5:	6319519f6f8b3eb70b0370bf694350d4
 Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{version}.tar.gz
-# Source1-md5:	c7b7bc8f1c875b31209e24b0d51f2e63
+# Source1-md5:	bc1bcbc16baa1c7026d0b7c0fa3b629b
 URL:		http://www.abisource.com/
 BuildRequires:	bzip2-devel
 BuildRequires:	fontconfig-devel
@@ -106,7 +106,7 @@ Jest to teczka clipartów u¿ywanych przez Abiworda.
 %setup -q -a 1
 
 #Shorten paths for easier build
-mv %{name}-plugins-%{version}/%{name}-plugins %{name}-plugins
+mv %{name}-plugins-%{version} %{name}-plugins
 
 %build
 cd abi
@@ -248,7 +248,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMIF.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiMSWrite.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiOpenWriter.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPW.so
+#%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPW.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiPalmDoc.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiRSVG.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiSDW.so
