@@ -1,5 +1,5 @@
-Summary:	AbiWord
-Summary(pl):	AbiWord
+Summary:	AbiWord - advanced wordprocessor
+Summary(pl):	AbiWord - zaawanoswany procesor tekstu
 Name:		abiword
 Version:	0.9.6.1
 Release:	1
@@ -18,8 +18,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix		/usr/X11R6
 
 %description
+AbiWord is a free word processing program similar to Microsoft Word. 
+It is suitable for typing papers, letters, reports, memos, and so forth.
 
 %description -l pl
+AbiWord jest darmowym procesorem tekstu podobnym do Microsoft Word.
+Jest idealnym narzêdziem do pisania dokumentów, listów, raportów itp.
 
 %prep
 %setup -q
