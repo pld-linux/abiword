@@ -13,8 +13,10 @@ Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{version}.tar.bz2
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-types.patch
 URL:		http://www.abisource.com/
+BuildRequires:	aiksaurus-gtk-devel >= 1.0
 BuildRequires:	aspell-devel >= 0.50.0
 BuildRequires:	bzip2-devel
+BuildRequires:	enchant-devel >= 0.4.0
 BuildRequires:	fontconfig-devel >= 1.0
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	gal-devel >= 1.99
@@ -30,10 +32,13 @@ BuildRequires:	libgsf-devel >= 1.4.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel >= 2.0
 BuildRequires:	libwmf-devel >= 0.2.8
+BuildRequires:	libwpd-devel >= 0.6.0
 BuildRequires:	libxml2-devel >= 2.4.2
 BuildRequires:	nautilus-devel >= 2.0
-BuildRequires:	xft-devel >= 2.0
+BuildRequires:	ots-devel >= 0.4.1
+BuildRequires:	python-devel >= 1:2.3
 BuildRequires:	wv-devel >= 1.0.0
+BuildRequires:	xft-devel >= 2.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -213,6 +218,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files plugins-tools
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiAikSaurus.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiCommand.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiBabelfish.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiFreeTranslation.so
@@ -220,10 +226,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGimp.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGoogle.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGypsython.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiURLDict.so
-%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWikipedia.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiOTS.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiReferee.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiScriptHappy.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiURLDict.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWikipedia.so
 
 %files plugins-impexp
 %defattr(644,root,root,755)
@@ -250,8 +257,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiT602.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWMF.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWML.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWordPerfect.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiXHTML.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiXSLFO.so
+%{_libdir}/AbiWord-2.0/plugins/AbiWord/glade/ots.glade
 
 %files clipart
 %defattr(644,root,root,755)
