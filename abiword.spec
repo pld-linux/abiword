@@ -8,7 +8,7 @@
 #
 %bcond_without	gnome 	# without GNOME libs
 #
-%define	mver	2.2
+%define		mver	2.2
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
@@ -19,7 +19,6 @@ License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	04e016f8cb15cab5873cedceef8790bc
-# Source0-size:	22768881
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 URL:		http://www.abisource.com/
@@ -39,9 +38,9 @@ BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libgda-devel >= 0.90.0
 BuildRequires:	libglade2-devel >= 2.0.0
 BuildRequires:	libgnomedb-devel >= 0.90.0
-BuildRequires:	libgnomeui-devel >= 2.2.0
-BuildRequires:	libgnomeprint-devel >= 2.2.1
 BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
+BuildRequires:	libgnomeprint-devel >= 2.2.1
+BuildRequires:	libgnomeui-devel >= 2.2.0
 BuildRequires:	libgsf-devel >= 1.4.0
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
