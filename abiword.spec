@@ -13,6 +13,7 @@ Source0:	http://dl.sourceforge.net/abiword/%{name}-%{version}.tar.bz2
 URL:		http://www.abisource.com/
 BuildRequires:	bzip2-devel
 BuildRequires:	fontconfig-devel
+BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	gal-devel >= 1.99
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk+2-devel >= 2.0.0
