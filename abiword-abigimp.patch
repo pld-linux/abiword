@@ -1,0 +1,12 @@
+diff -urN aa/abiword-2.1.6/abiword-plugins/tools/abigimp/xp/AbiGimp.cpp abiword-2.1.6/abiword-plugins/tools/abigimp/xp/AbiGimp.cpp
+--- aa/abiword-2.1.6/abiword-plugins/tools/abigimp/xp/AbiGimp.cpp	2004-08-07 19:41:08.000000000 +0200
++++ abiword-2.1.6/abiword-plugins/tools/abigimp/xp/AbiGimp.cpp	2004-08-28 15:20:33.876553536 +0200
+@@ -407,7 +407,7 @@
+ 					pView->cmdUnselectSelection();
+ 					pView->setPoint(pos);
+ 					pView->extSelHorizontal(true, 1); // move point forward one
+-					errorCode = pView->cmdInsertGraphic(pFG,szTmp.c_str());
++					errorCode = pView->cmdInsertGraphic(pFG);
+ 					if (errorCode)
+ 					{
+ 						pFrame->showMessageBox("Could not put image back into Abiword", XAP_Dialog_MessageBox::b_O,XAP_Dialog_MessageBox::a_OK);
