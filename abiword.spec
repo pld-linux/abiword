@@ -8,7 +8,7 @@ Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://dl.sourceforge.net/abiword/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	978644437cfaf56d46ea87fa6339ea4c
 URL:		http://www.abisource.com/
 BuildRequires:	bzip2-devel
