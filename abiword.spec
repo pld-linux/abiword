@@ -24,6 +24,7 @@ BuildRequires:	libgnomeprintui-devel >= 2.2.0
 BuildRequires:	libgsf-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	librsvg-devel
+BuildRequires:	libwmf-devel
 BuildRequires:	libxml2-devel >= 2.4.2
 BuildRequires:	pspell-devel >= 0.11.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
