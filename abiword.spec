@@ -1,6 +1,6 @@
 %define		_packagever 2.0.2
 %define		_pluginsver 2.0.1
-%define		_pluginsrel 3
+%define		_pluginsrel 4
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
