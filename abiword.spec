@@ -9,7 +9,8 @@ Release:	1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://download.sourceforge.net/abiword/%{name}-%{version}.tar.gz
-Source1:	%{name}.desktop
+Source1:	http://prdownloads.sourceforge.net/abiword/abiword-plugins.tar.gz
+Source2:	%{name}.desktop
 URL:		http://www.abisource.com/
 BuildRequires:	Aiksaurus-devel
 BuildRequires:	ImageMagick-c++-devel
@@ -47,7 +48,7 @@ AbiWord jest darmowym procesorem tekstu podobnym do Microsoft Word.
 Jest idealnym narzêdziem do pisania dokumentów, listów, raportów itp.
 
 %prep
-%setup -q
+%setup -q -a1
 
 %build
 cd abi
@@ -65,7 +66,7 @@ fi
 	--with-expat
 %{__make} -f GNUmakefile
 
-cd ../abiword-plugins
+cd ../abiword-plugins/abiword-plugins
 find . -name autogen.sh -type f -exec /bin/sh -c "echo \"libtoolize --copy --force\" >> {}" ";"
 ./autogen.sh; ./autogen.sh
 %configure CPPFLAGS="$CPPFLAGS `%{_bindir}/gtk-config --cflags`" \
@@ -82,13 +83,13 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_applnkdir}/Office/Wordprocessors,%{_pix
 
 %{__make} -C abi -f GNUmakefile install \
 	DESTDIR=$RPM_BUILD_ROOT
-%{__make} -C abiword-plugins -f GNUmakefile install \
+%{__make} -C abiword-plugins/abiword-plugins -f GNUmakefile install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 ln -sf %{_libdir}/AbiSuite/AbiWord/plugins  $RPM_BUILD_ROOT%{_datadir}/AbiSuite/AbiWord/plugins
 ln -sf %{_bindir}/AbiWord $RPM_BUILD_ROOT%{_bindir}/abiword
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Wordprocessors
+install %{SOURCE2} $RPM_BUILD_ROOT%{_applnkdir}/Office/Wordprocessors
 install $RPM_BUILD_ROOT%{_datadir}/AbiSuite/icons/abiword_48.png $RPM_BUILD_ROOT%{_pixmapsdir}
 
 gzip -9nf abi/CREDITS.TXT
