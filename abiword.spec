@@ -1,5 +1,5 @@
 Summary:	AbiWord - advanced wordprocessor
-Summary(pl):	AbiWord - zaawanoswany procesor tekstu
+Summary(pl):	AbiWord - zaawansowany procesor tekstu
 Name:		abiword
 Version:	0.9.6.1
 Release:	1
