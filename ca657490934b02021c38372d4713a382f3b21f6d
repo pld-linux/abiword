@@ -1,0 +1,4 @@
+- started uppgrade to 2.2.6
+- removed deprecated .nextgen.sh script, configure options
+- use generic icon name at pixmap directory, pass icondir to Makefile
+- post/postun R: deskop-file-util
