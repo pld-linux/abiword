@@ -14,6 +14,7 @@ Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/abiword/%{name}-%{version}.tar.gz
 # Source0-md5:	01336526136b7fbc66328d80931710e3
 Source1:	http://dl.sourceforge.net/abiword/%{name}-plugins.tar.gz
+# Source1-md5:	dac5b74539b46644a7ee6c7a157a40d4
 Source2:	%{name}.desktop
 Patch0:		%{name}-oldmagick.patch
 Patch1:		%{name}-fonts.patch
