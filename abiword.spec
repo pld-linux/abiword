@@ -27,7 +27,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel >= 1.2.0
 BuildRequires:	gnome-vfs-devel
 BuildRequires:	gtk+-devel >= 1.2.7
-BuildRequires:	libglade-devel
+BuildRequires:	libglade-gnome-devel
 BuildRequires:	libtool
 BuildRequires:	libltdl-devel
 BuildRequires:	libxml-devel
