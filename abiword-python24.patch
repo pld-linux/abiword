@@ -11,29 +11,29 @@
  		abi_plugin_disable=yes
  	elif test "x$withval" != "xyes"; then
 -		ABI_GYPSY_CPPFLAGS="-I$withval/include/python2.3"
-+		ABI_GYPSY_CPPFLAGS="-I$withval/include/python2.4"
++		ABI_GYPSY_CPPFLAGS="-I$withval/include/python2.4 -I$withval/include/python2.3"
  		ABI_GYPSY_LDFLAGS="-L$withval/lib"
 -		CPPFLAGS="$CPPFLAGS -I$withval/include/python2.3"
-+		CPPFLAGS="$CPPFLAGS -I$withval/include/python2.4"
++		CPPFLAGS="$CPPFLAGS -I$withval/include/python2.4 -I$withval/include/python2.3"
  		LDFLAGS="$LDFLAGS -L$withval/lib"
  	else
 -		ABI_GYPSY_CPPFLAGS="-I/usr/include/python2.3"
 -		CPPFLAGS="$CPPFLAGS -I/usr/include/python2.3"
-+		ABI_GYPSY_CPPFLAGS="-I/usr/include/python2.4"
-+		CPPFLAGS="$CPPFLAGS -I/usr/include/python2.4"
++		ABI_GYPSY_CPPFLAGS="-I/usr/include/python2.4 -I/usr/include/python2.3"
++		CPPFLAGS="$CPPFLAGS -I/usr/include/python2.4 -I/usr/include/python2.3"
  	fi
 -],[	ABI_GYPSY_CPPFLAGS="-I/usr/include/python2.3"
 -	CPPFLAGS="$CPPFLAGS -I/usr/include/python2.3"
-+],[	ABI_GYPSY_CPPFLAGS="-I/usr/include/python2.4"
-+	CPPFLAGS="$CPPFLAGS -I/usr/include/python2.4"
++],[	ABI_GYPSY_CPPFLAGS="-I/usr/include/python2.4 -I/usr/include/python2.3"
++	CPPFLAGS="$CPPFLAGS -I/usr/include/python2.4 -I/usr/include/python2.3"
  ])
  
  if test $abi_plugin_disable != yes; then
  	AC_CHECK_HEADER(Python.h,[
 -		AC_CHECK_LIB(python2.3,Py_Initialize,[
 -			ABI_GYPSY_LDFLAGS="$ABI_GYPSY_LDFLAGS -lpython2.3"
-+		AC_CHECK_LIB(python2.4,Py_Initialize,[
-+			ABI_GYPSY_LDFLAGS="$ABI_GYPSY_LDFLAGS -lpython2.4"
++		AC_CHECK_LIB(python,Py_Initialize,[
++			ABI_GYPSY_LDFLAGS="$ABI_GYPSY_LDFLAGS -lpython"
  			ABI_PLUGIN_REPORT([gypsython: okay])
  		],[	ABI_PLUGIN_REPORT([gypsython: error - Python library not found])
  			abi_plugin_disable=yes
@@ -44,7 +44,7 @@
  #include "xap_Frame.h"
  
 -#include <python2.3/Python.h>
-+#include <python2.4/Python.h>
++#include <Python.h>
   
   
   
