@@ -52,6 +52,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc abi/docs/*.abw abi/*.gz
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/[At]*
 %{_datadir}/AbiSuite
 %{_applnkdir}/Office/Wordprocessors/*
