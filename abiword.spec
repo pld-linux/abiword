@@ -88,6 +88,7 @@ cd ../abiword-plugins
 ./nextgen.sh
 %configure \
 	--disable-eg \
+	--disable-gda \
 	--enable-abicommand \
 	--enable-abigimp \
 	--enable-aiksaurus \
