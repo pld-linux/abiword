@@ -8,13 +8,13 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.2.5
-Release:	1
+Version:	2.2.6
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	265a6ece8fcfd37cb7c3fc4d13056ad2
+# Source0-md5:	59dff68efc89341bcc0f78349cc8eacd
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-python24.patch
@@ -56,6 +56,7 @@ BuildRequires:	wv-devel >= 1.0.3
 BuildRequires:	xft-devel >= 2.0
 Obsoletes:	abiword-plugin-gdkpixbuf
 Obsoletes:	abiword-plugin-magick
+Requires(post,postun):	desktop-file-utils
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -660,6 +661,10 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %patch1 -p1
 %patch2 -p1
 
+# use generic icon name
+sed -i -e 's|abiword_48.png|abiword.png|' abi/GNUmakefile.am
+mv abi/abiword_48.png abi/abiword.png
+
 %build
 cd abi
 %{__aclocal} -I ac-helpers
@@ -674,13 +679,13 @@ cd abi
 %{__make}
 
 cd ../abiword-plugins
-#%{__libtoolize}
-#%{__aclocal} -I ac-helpers
-#%{__automake}
-#%{__autoconf}
-./nextgen.sh
-%configure \
-      --disable-magick
+rm -rf autom4te.cache
+rm -f autogen.err
+%{__libtoolize}
+%{__aclocal} -I ac-helpers -I ac-helpers/pkg-config
+%{__automake}
+%{__autoconf}
+%configure
 %{__make}
 
 %install
@@ -690,11 +695,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__make} -C abi install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-# Manual fixes to Abi package
-install -d $RPM_BUILD_ROOT%{_pixmapsdir}
-mv $RPM_BUILD_ROOT%{_iconsdir}/abiword_48.png $RPM_BUILD_ROOT%{_pixmapsdir}
+	DESTDIR=$RPM_BUILD_ROOT \
+	icondir=%{_pixmapsdir}
 
 # Remove useless files
 rm -f $RPM_BUILD_ROOT%{_libdir}/AbiWord-%{mver}/plugins/*.la
@@ -705,11 +707,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 umask 022
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1 ||:
+/usr/bin/update-desktop-database
 
 %postun
 umask 022
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1
+/usr/bin/update-desktop-database
 
 %files
 %defattr(644,root,root,755)
