@@ -1,15 +1,16 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.0.0
+Version:	2.0.1
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	1b7153cdb5a8134b995505b6f362bfc1
+# Source0-md5:	4b927771a4e91db5de9cfe811aa7545f
 Source1:	http://dl.sourceforge.net/%{name}/%{name}-plugins-%{version}.tar.bz2
-# Source1-md5:	6e65725080d91cf81f6c8c057854aec4
+# Source1-md5:	5aa1e05c0f7b8ab7e92c2a296f1a5673
+Patch0:		%{name}-desktop.patch
 URL:		http://www.abisource.com/
 BuildRequires:	bzip2-devel
 BuildRequires:	fontconfig-devel
@@ -104,6 +105,7 @@ Jest to teczka clipartów u¿ywanych przez Abiworda.
 
 %prep
 %setup -q -a 1
+%patch -p1
 
 %build
 cd abi
@@ -212,6 +214,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGdict.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGimp.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGoogle.so
+%attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiGypsython.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiURLDict.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiWikipedia.so
 %attr(755,root,root) %{_libdir}/AbiWord-2.0/plugins/libAbiReferee.so
