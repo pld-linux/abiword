@@ -1,10 +1,8 @@
-# TODO:
-#	- use external wv library
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	1.99.1
-Release:	0.2
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -30,6 +28,7 @@ BuildRequires:	libwmf-devel
 BuildRequires:	libxml2-devel >= 2.4.2
 BuildRequires:	pspell-devel >= 0.11.1
 BuildRequires:	gucharmap-devel >= 0.7
+BuildRequires:	wv-devel >= 0.7.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -87,8 +86,8 @@ cd abi
 ./autogen.sh
 %configure \
 	--enable-gnome \
-	--enable-xft \
-	--with-pspell
+	--with-pspell \
+	--with-sys-wv
 %{__make}
 
 cd ../abiword-plugins
