@@ -79,7 +79,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Allows to use Aiksaurus thesaurus.
 
 %description plugin-aiksaurus -l pl
-Pozwala na u¿ycie Aiksaurusa - s³ownika wyrazów bliskoznacznych.
+Wtyczka ta pozwala na u¿ycie Aiksaurusa - s³ownika wyrazów
+bliskoznacznych.
 
 # abiBabelfish
 %package plugin-babelfish
@@ -92,7 +93,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Allows to translate selected text.
 
 %description plugin-babelfish -l pl
-Pozwala na przet³umaczenie wybranego tekstu.
+Wtyczka ta pozwala na przet³umaczenie wybranego tekstu.
 
 # abiCommand plugin
 %package plugin-command
@@ -105,7 +106,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Allows command line control of AbiWord.
 
 %description plugin-command -l pl
-Pozwala na kontrolowanie AbiWorda z poziomu linii poleceñ.
+Wtyczka ta pozwala na kontrolowanie AbiWorda z poziomu linii poleceñ.
 
 # abiDash - not documented
 %package plugin-dash
@@ -131,7 +132,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Allows to translate selected text.
 
 %description plugin-freetranslation -l pl
-Pozwala na przet³umaczenie wybranego tekstu.
+Wtyczka ta pozwala przet³umaczyæ wybrany tekst.
 
 # abiGDA
 %package plugin-gda
@@ -144,7 +145,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Allows access to any database provided by libgda.
 
 %description plugin-gda -l pl
-Pozwala na po³±czenie z dowoln± baz± danych dostarczan± za
+Wtyczka ta pozwala na po³±czenie z dowoln± baz± danych dostarczan± za
 po¶rednictwem libgda.
 
 # abiGdict
@@ -158,7 +159,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Look up definitions of selected text.
 
 %description plugin-gdict -l pl
-Wyszukuje definicje w zaznaczonym fragmencie tekstu.
+Wtyczka ta s³u¿y do wyszukiwania definicji w zaznaczonym fragmencie
+tekstu.
 
 # abiGimp plugin
 %package plugin-gimp
@@ -171,8 +173,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Allows to edit embedded images with a paint program like Gimp.
 
 %description plugin-gimp -l pl
-Pozwala na edycje osadzonych obrazów programem do ich obróbki jak
-Gimp.
+Wtyczka ta pozwala na edycjê osadzonych obrazów programem do ich
+obróbki, takim jak Gimp.
 
 # abiGoogle
 %package plugin-google
@@ -185,9 +187,9 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Search Google for selected text.
 
 %description plugin-google -l pl
-Przeszukuje Google w poszukiwaniu zaznaczonego tekstu.
+Wtyczka ta s³u¿y do przeszukiwania Google w poszukiwaniu zaznaczonego
+tekstu.
 
-# abiGypsython - todo: pl translation 
 %package plugin-gypsython
 Summary:	AbiWord Gyspsython plugin
 Summary(pl):	Wtyczka Gypsython dla Abiworda
@@ -211,7 +213,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Create document summaries.
 
 %description plugin-ots -l pl
-Tworzy podsumowanie dokumentu.
+Wtyczka ta s³u¿y do tworzenia podsumowania dokumentu.
 
 # abiReferee - not documented
 %package plugin-referee
@@ -263,7 +265,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Search Wikipedia for selected text.
 
 %description plugin-wikipedia -l pl
-Przeszukuje Wikipediê w poszukiwaniu zaznaczonego teksu.
+Wtyczka ta s³u¿y do przeszukiwania Wikipedii w poszukiwaniu
+zaznaczonego tekstu.
 
 # plugins import - export
 # abiApplix
@@ -277,7 +280,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export Applix Word files.
 
 %description plugin-applix -l pl
-Importuje/eksportuje pliki Applix Word.
+Wtyczka ta s³u¿y do importu/eksportu plików Applix Worda.
 
 # abiBMP
 %package plugin-bmp
@@ -290,7 +293,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 View Bitmap Images.
 
 %description plugin-bmp -l pl
-Wy¶wietla bitmapy.
+Wtyczka ta s³u¿y do wy¶wietlania bitmap.
 
 # abiBZ2
 %package plugin-bz2
@@ -303,7 +306,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export bzip2 compressed AbiWord files.
 
 %description plugin-bz2 -l pl
-Importuje/eksportuje pliki Abiworda spakowane przy pomocy bzip2.
+Wtyczka ta s³u¿y do importu/eksportu plików Abiworda spakowanych przy
+pomocy bzip2.
 
 # abiClarisWorks
 %package plugin-clarisworks
@@ -316,7 +320,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export Clarisworks files.
 
 %description plugin-clarisworks -l pl
-Importuje/eksportuje pliki Clarisworks.
+Wtyczka ta s³u¿y do importu/eksportu plików Clarisworks.
 
 # abiCoquille
 %package plugin-coquille
@@ -342,7 +346,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export Docbook files.
 
 %description plugin-docbook -l pl
-Importuje/eksportuje pliki zapisane w formacie Docbook.
+Wtyczka ta s³u¿y do importu/eksportu plików zapisanych w formacie
+Docbook.
 
 # abiEML
 %package plugin-eml
@@ -355,7 +360,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export as MS Outlook Email files.
 
 %description plugin-eml -l pl
-Importuje/eksportuje pliki poczty programu MS Outlook.
+Wtyczka ta s³u¿y do importu/eksportu plików poczty programu MS
+Outlook.
 
 # abiHRText
 %package plugin-hrtext
@@ -368,7 +374,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Export text with "newsgroup" markup.
 
 %description plugin-hrtext -l pl
-Eksportuje ze znacznikiem "grupa news".
+Wtyczka ta s³u¿y do eksportu ze znacznikiem "grupa news".
 
 # abiHancom
 %package plugin-hancom
@@ -381,12 +387,12 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Hancom Word Importer.
 
 %description plugin-hancom -l pl
-Importer formatu Hancom Word.
+Wtyczka ta s³u¿y jest importerem formatu Hancom Word.
 
 # abiISCII
 %package plugin-iscii
 Summary:	AbiWord ISCII plugin
-Summary(pl):	Wtyczka  dla Abiworda
+Summary(pl):	Wtyczka dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -394,7 +400,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export ISCII text files (Indic script).
 
 %description plugin-iscii -l pl
-Importuje/eksportuje tekstowe pliki formatu ISCII (Indic script).
+Wtyczka ta s³u¿y do importu/eksportu plików tekstowych w kodowaniu
+ISCII (Indic script).
 
 # abiJPEG
 %package plugin-jpeg
@@ -407,7 +414,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 View JPEG Images.
 
 %description plugin-jpeg -l pl
-Wy¶wietla obrazy formatu JPEG.
+Wtyczka ta s³u¿y do wy¶wietlania obrazów w formacie JPEG.
 
 # abiKWord
 %package plugin-kword
@@ -420,7 +427,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 KWord import/export.
 
 %description plugin-kword -l pl
-Import/Eksport plików KWorda.
+Wtyczka ta s³u¿y do importu/eksportu plików KWorda.
 
 # abiLaTeX
 %package plugin-latex
@@ -433,7 +440,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 LaTeX export.
 
 %description plugin-latex -l pl
-Eksport do LaTeX.
+Wtyczka ta s³u¿y do eksportu do LaTeXa.
 
 # abiMIF - not documented
 %package plugin-mif
@@ -459,7 +466,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import MS Write files.
 
 %description plugin-mswrite -l pl
-Importuje pliki MS Write.
+Wtyczka ta s³u¿y do importu plików MS Write'a.
 
 # abiNroff - lack of precise description (export?/import?)
 %package plugin-nroff
@@ -485,7 +492,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export OpenOffice files.
 
 %description plugin-openwritter -l pl
-Importuje/eksportuje pliki OpenOffice.
+Wtyczka ta s³u¿y do importu/eksportu plików OpenOffice'a.
 
 # abiPalmDoc - not documented
 %package plugin-palmdoc
@@ -524,7 +531,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export Psion files.
 
 %description plugin-psion -l pl
-Imporuje/eksportuje pliki Psiona.
+Wtyczka ta s³u¿y do importu/eksportu plików Psiona.
 
 # abiRSVG
 %package plugin-rsvg
@@ -537,7 +544,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 View Scalable Vector Graphics.
 
 %description plugin-rsvg -l pl
-Wy¶wietla pliki SVG.
+Wtyczka ta s³u¿y do wy¶wietlania plików SVG.
 
 # abiSDW
 %package plugin-sdw
@@ -550,7 +557,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import StarOffice 5.x files.
 
 %description plugin-sdw -l pl
-Importuje pliki StarOffice 5.x.
+Wtyczka ta s³u¿y do importu plików StarOffice'a 5.x.
 
 # abiT602
 %package plugin-t602
@@ -563,7 +570,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import T602 files.
 
 %description plugin-t602 -l pl
-Importuje pliki T602.
+Wtyczka ta s³u¿y do importu plików T602.
 
 # abiWMF
 %package plugin-wmf
@@ -576,7 +583,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 View Windows Metafiles.
 
 %description plugin-wmf -l pl
-Wy¶wietla pliki typu Windows Metafiles.
+Wtyczka ta s³u¿y do wy¶wietlania plików typu Windows Metafile.
 
 # abiWML
 %package plugin-wml
@@ -589,7 +596,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export WML files.
 
 %description plugin-wml -l pl
-Importuje/eksportuje pliki WML.
+Wtyczka ta s³u¿y do importu/eksportu plików WML.
 
 # abiWordPerfect
 %package plugin-wordperfect
@@ -602,7 +609,8 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export Corel WordPerfect files.
 
 %description plugin-wordperfect -l pl
-Importuje/eksportuje pliki formatu Corel WordPerfect.
+Wtyczka ta s³u¿y do importu/eksportu plików w formacie Corel
+WordPerfect.
 
 # abiXHTML
 %package plugin-xhtml
@@ -615,7 +623,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import HTML/multipart HTML.
 
 %description plugin-xhtml -l pl
-Importuje pliki HTML/wieloczê¶ciowy HTML.
+Wtyczka ta s³u¿y do importu plików HTML/wieloczê¶ciowego HTML.
 
 # abiXSLFO 
 %package plugin-xslfo
@@ -628,7 +636,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Import/export XSL-FO.
 
 %description plugin-xslfo -l pl
-Importuje/eksportuje XSL-FO.
+Wtyczka ta s³u¿y do importu/eksportu XSL-FO.
 
 # no one knows category
 # abiCAPI 
