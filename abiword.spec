@@ -8,6 +8,7 @@ Group:		X11/Applications
 Group(de):	X11/Applikationen
 Group(pl):	X11/Aplikacje
 Source0:	http://prodownloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source1:	%{name}.desktop
 URL:		http://www.abisource.com/
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel
@@ -34,7 +35,8 @@ gettextize --copy --force
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_bindir}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_applnkdir}/Office/Wordprocessors}
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Office/Wordprocessors
 cd abi
 %{__make} -f GNUmakefile install \
 	DESTDIR=$RPM_BUILD_ROOT
@@ -52,3 +54,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc abi/docs/*.abw abi/*.gz
 %attr(755,root,root) %{bindir}/*
 %{_datadir}/AbiSuite
+%{_applnkdir}/Office/Wordprocessors/*
