@@ -113,6 +113,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/AbiSuite/AbiWord
 %dir %{_libdir}/AbiSuite/AbiWord/plugins
 %attr(755,root,root) %{_libdir}/AbiSuite/AbiWord/plugins/*.so
-%attr(755,root,root) %{_libdir}/AbiSuite/AbiWord/plugins/*.la
+%{_libdir}/AbiSuite/AbiWord/plugins/*.la
 %{_applnkdir}/Office/Wordprocessors/*
 %{_pixmapsdir}/*.png
