@@ -3,6 +3,7 @@ Name=AbiWord
 Name[pl]=AbiWord
 Comment=Advanced wordprocessor
 Comment[pl]=Zaawansowany procesor tekstu
+MimeType=application/x-abiword;application/msexcel
 Exec=AbiWord
 Icon=abiword_48.png
 Terminal=0
