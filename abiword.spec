@@ -9,7 +9,7 @@ Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.2.7
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -56,6 +56,8 @@ BuildRequires:	wv-devel >= 1.0.3
 BuildRequires:	xft-devel >= 2.0
 Obsoletes:	abiword-plugin-gdkpixbuf
 Obsoletes:	abiword-plugin-magick
+Obsoletes:	abiword-plugins-impexp
+Obsoletes:	abiword-plugins-tools
 Requires(post,postun):	desktop-file-utils
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
