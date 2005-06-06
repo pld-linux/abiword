@@ -1,0 +1,37 @@
+diff -Nru abiword-2.0.1.orig/abi/src/af/xap/unix/xap_UnixApp.cpp abiword-2.0.1/abi/src/af/xap/unix/xap_UnixApp.cpp
+--- abiword-2.0.1.orig/abi/src/af/xap/unix/xap_UnixApp.cpp	2003-06-07 18:28:14.000000000 +0200
++++ abiword-2.0.1/abi/src/af/xap/unix/xap_UnixApp.cpp	2003-11-14 09:12:37.000000000 +0100
+@@ -176,7 +176,7 @@
+ 	static char buf[PATH_MAX];
+ 	memset(buf,0,sizeof(buf));
+ 	
+-	char * szHome = getenv("HOME");
++	char * szHome = getenv("HOME_ETC") ? getenv("HOME_ETC") : getenv("HOME");
+ 	if (!szHome || !*szHome)
+ 		szHome = "./";
+ 	
+diff -Nru abiword-2.0.1.orig/abi/src/wp/ap/unix/ap_UnixApp.cpp abiword-2.0.1/abi/src/wp/ap/unix/ap_UnixApp.cpp
+--- abiword-2.0.1.orig/abi/src/wp/ap/unix/ap_UnixApp.cpp	2003-10-10 15:35:35.000000000 +0200
++++ abiword-2.0.1/abi/src/wp/ap/unix/ap_UnixApp.cpp	2003-11-14 09:14:05.000000000 +0100
+@@ -1099,7 +1099,7 @@
+ 	static char buf[PATH_MAX];
+ 	memset(buf,0,sizeof(buf));
+ 	
+-	char * szHome = getenv("HOME");
++	char * szHome = getenv("HOME_ETC") ? getenv("HOME_ETC") : getenv("HOME");
+ 	if (!szHome || !*szHome)
+ 		szHome = "./";
+ 	
+--- abiword-2.0.1.orig/popt/poptconfig.c	2002-11-11 03:00:51.000000000 +0100
++++ abiword-2.0.1/popt/poptconfig.c	2003-11-14 09:55:31.000000000 +0100
+@@ -144,7 +144,9 @@
+     }
+ #endif
+ 
+-    if ((home = getenv("HOME"))) {
++	home = getenv("HOME_ETC");
++	if (!home) home = getenv("HOME");
++    if (home) {
+ 	fn = alloca(strlen(home) + 20);
+ 	strcpy(fn, home);
+ 	strcat(fn, "/.popt");
