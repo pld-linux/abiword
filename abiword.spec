@@ -1,23 +1,24 @@
 #
 # TODO:
+# - link-grammar
+# - mathview
 # - polish/complete descriptions
 #
 %bcond_without	gnome	# without GNOME libs
 #
-%define		mver	2.2
+%define		mver	2.4
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.2.8
+Version:	2.3.4
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	f6f58e6ea4720ca635ede7b7f13cf156
+# Source0-md5:	b205d8bb5240fdcb126daf8a7a9e45c8
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
-Patch2:		%{name}-python24.patch
 Patch3:		%{name}-mailmerge.patch
 URL:		http://www.abisource.com/
 BuildRequires:	autoconf
@@ -40,7 +41,8 @@ BuildRequires:	libgnomedb-devel >= 0.90.0
 BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
 BuildRequires:	libgnomeprint-devel >= 2.2.1
 BuildRequires:	libgnomeui-devel >= 2.2.0
-BuildRequires:	libgsf-devel >= 1.4.0
+BuildRequires:	libgoffice >= 0.0.2
+BuildRequires:	libgsf-devel >= 1.12.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 2.0
@@ -50,9 +52,9 @@ BuildRequires:	libwpd-devel >= 0.8.0
 BuildRequires:	libxml2-devel >= 2.4.20
 BuildRequires:	ots-devel >= 0.4.1
 BuildRequires:	pkgconfig >= 0.9.0
+BuildRequires:	poppler-glib-devel >= 0.2.1
 BuildRequires:	popt-devel
 BuildRequires:	psiconv-devel >= 0.9.6
-BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	wv-devel >= 1.0.3
 BuildRequires:	xft-devel >= 2.0
 Obsoletes:	abiword-plugin-gdkpixbuf
@@ -97,6 +99,19 @@ Allows to translate selected text.
 
 %description plugin-babelfish -l pl
 Wtyczka ta pozwala na przet³umaczenie wybranego tekstu.
+
+# abiCollab plugin
+%package plugin-collab
+Summary:	Remote collaborate for AbiWord
+Summary(pl):	Zdalna wspó³praca dla AbiWord
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-collab
+Allows to collaborate with a remote user.
+
+%description plugin-collab -l pl
+Pozwala na wspó³pracê z innym u¿ytkownikiem przez sieæ.
 
 # abiCommand plugin
 %package plugin-command
@@ -179,6 +194,21 @@ Allows to edit embedded images with a paint program like Gimp.
 Wtyczka ta pozwala na edycjê osadzonych obrazów programem do ich
 obróbki, takim jak Gimp.
 
+# abiGOChart plugin
+%package plugin-goffice
+Summary:	GNOME Office plugin
+Summary(pl):	Wtyczka GNOME Office
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-goffice
+Allows to share GNOME Office objects between GOffice
+appplications.
+
+%description plugin-goffice -l pl
+Pozwala na wspó³dzielenie obiektów GNOME Office pomiêdzy jego
+aplikacjami.
+
 # abiGoogle
 %package plugin-google
 Summary:	AbiWord Google plugin
@@ -193,18 +223,6 @@ Search Google for selected text.
 Wtyczka ta s³u¿y do przeszukiwania Google w poszukiwaniu zaznaczonego
 tekstu.
 
-%package plugin-gypsython
-Summary:	AbiWord Gyspsython plugin
-Summary(pl):	Wtyczka Gypsython dla Abiworda
-Group:		Applications/Productivity
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description plugin-gypsython
-Python MailMerge.
-
-%description plugin-gypsython -l pl
-Python MailMerge.
-
 # abiOTS
 %package plugin-ots
 Summary:	AbiWord OTS plugin
@@ -217,19 +235,6 @@ Create document summaries.
 
 %description plugin-ots -l pl
 Wtyczka ta s³u¿y do tworzenia podsumowania dokumentu.
-
-# abiReferee - not documented
-%package plugin-referee
-Summary:	AbiWord Referee plugin
-Summary(pl):	Wtyczka Referee dla Abiworda
-Group:		Applications/Productivity
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description plugin-referee
-Referee plugin.
-
-%description plugin-referee -l pl
-Wtyczka Referee.
 
 # abiScriptHappy - not documented
 %package plugin-scripthappy
@@ -484,6 +489,19 @@ nroff/man file format.
 %description plugin-nroff -l pl
 Typy plików nroff/man.
 
+# abiOpenDocument
+%package plugin-opendocument
+Summary:	AbiWord OpenDocument plugin
+Summary(pl):	Wtyczka OpenDocument dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-opendocument
+Import/export OpenDocument files.
+
+%description plugin-opendocument -l pl
+Wtyczka ta s³u¿y do importu/eksportu plików OpenDocument.
+
 # abiOpenWriter
 %package plugin-openwritter
 Summary:	AbiWord OpenWriter plugin
@@ -522,6 +540,19 @@ Passepartout plugin.
 
 %description plugin-passepartout -l pl
 Wtyczka Passepartout.
+
+# abiPDF
+%package plugin-pdf
+Summary:	AbiWord PDF plugin
+Summary(pl):	Wtyczka PDF dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-pdf
+Exports documents to PDF format.
+
+%description plugin-pdf -l pl
+Eksportuje dokumenty do formatu PDF.
 
 # abiPsion
 %package plugin-psion
@@ -670,7 +701,7 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
+#%patch2 -p1
 %patch3 -p1
 
 # use generic icon name
@@ -749,6 +780,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCAPI.so
 
+%files plugin-collab
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCollab.so
+
 %files plugin-command
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCommand.so
@@ -773,21 +808,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGimp.so
 
+%files plugin-goffice
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGOChart.so
+
 %files plugin-google
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGoogle.so
 
-%files plugin-gypsython
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGypsython.so
-
 %files plugin-ots
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiOTS.so
-
-%files plugin-referee
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiReferee.so
 
 %files plugin-scripthappy
 %defattr(644,root,root,755)
@@ -816,10 +847,6 @@ rm -rf $RPM_BUILD_ROOT
 %files plugin-clarisworks
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiClarisWorks.so
-
-#%files plugin-coquille
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCoquille.so
 
 %files plugin-docbook
 %defattr(644,root,root,755)
@@ -865,6 +892,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiNroff.so
 
+%files plugin-opendocument
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiOpenDocument.so
+
 %files plugin-openwritter
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiOpenWriter.so
@@ -876,6 +907,10 @@ rm -rf $RPM_BUILD_ROOT
 %files plugin-passepartout
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPassepartout.so
+
+%files plugin-pdf
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPDF.so
 
 %files plugin-psion
 %defattr(644,root,root,755)
