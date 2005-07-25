@@ -19,7 +19,7 @@ Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{
 # Source0-md5:	b205d8bb5240fdcb126daf8a7a9e45c8
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
-Patch3:		%{name}-mailmerge.patch
+Patch2:		%{name}-mailmerge.patch
 URL:		http://www.abisource.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -701,8 +701,7 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1
-%patch3 -p1
+%patch2 -p1
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' abi/GNUmakefile.am
