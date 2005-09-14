@@ -3,6 +3,7 @@
 # - link-grammar
 # - mathview
 # - polish/complete descriptions
+# - check missing plugin gimp
 #
 %bcond_without	gnome	# without GNOME libs
 #
@@ -10,13 +11,13 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.3.5
+Version:	2.3.6
 Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	2b2f2b5f5379b6dd7fe4145b3f7a28d4
+# Source0-md5:	8a1fc6a2a9cec61ed15231d2fa1b3110
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mailmerge.patch
