@@ -234,7 +234,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 MathML or LaTeX style equation inserting and editing.
 
 %description plugin-mathview -l pl
-Pozwala na wstawianie i edycjê równañ w style MathML lub LaTeX.
+Pozwala na wstawianie i edycjê równañ w styleuMathML lub LaTeX.
 
 # abiOTS
 %package plugin-ots
