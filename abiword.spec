@@ -1,7 +1,6 @@
 #
 # TODO:
 # - link-grammar
-# - mathview
 # - polish/complete descriptions
 #
 %bcond_without	gnome	# without GNOME libs
@@ -33,6 +32,7 @@ BuildRequires:	fontconfig-devel >= 1.0
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	glib2-devel >= 2.0.0
 BuildRequires:	gtk+2-devel >= 2.2.0
+BuildRequires:	gtkmathview-devel >= 0.7.5
 BuildRequires:	gucharmap-devel >= 1.4.0
 BuildRequires:	libbonobo-devel >= 2.2.0
 BuildRequires:	libgda-devel >= 0.90.0
@@ -222,6 +222,19 @@ Search Google for selected text.
 %description plugin-google -l pl
 Wtyczka ta s³u¿y do przeszukiwania Google w poszukiwaniu zaznaczonego
 tekstu.
+
+# abiMathView
+%package plugin-mathview
+Summary:	AbiWord MathView plugin
+Summary(pl):	Wtyczka MAthView dla AbiWorda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-mathview
+MathML or LaTeX style equation inserting and editing.
+
+%description plugin-mathview -l pl
+Pozwala na wstawianie i edycjê równañ w style MathML lub LaTeX.
 
 # abiOTS
 %package plugin-ots
@@ -814,6 +827,10 @@ rm -rf $RPM_BUILD_ROOT
 %files plugin-google
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGoogle.so
+
+%files plugin-mathview
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMathView.so
 
 %files plugin-ots
 %defattr(644,root,root,755)
