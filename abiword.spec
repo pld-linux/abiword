@@ -58,7 +58,9 @@ BuildRequires:	psiconv-devel >= 0.9.6
 BuildRequires:	wv-devel >= 1.0.3
 BuildRequires:	xft-devel >= 2.0
 Obsoletes:	abiword-plugin-gdkpixbuf
+Obsoletes:	abiword-plugin-gypsython
 Obsoletes:	abiword-plugin-magick
+Obsoletes:	abiword-plugin-referee
 Obsoletes:	abiword-plugins-impexp
 Obsoletes:	abiword-plugins-tools
 Requires(post,postun):	desktop-file-utils
