@@ -51,7 +51,7 @@ BuildRequires:	libtool
 BuildRequires:	libwmf-devel >= 2:0.2.8
 BuildRequires:	libwpd-devel >= 0.8.0
 BuildRequires:	libxml2-devel >= 2.4.20
-BuildRequires:	link-grammar-devel
+BuildRequires:	link-grammar-devel >= 4.1.1
 BuildRequires:	ots-devel >= 0.4.1
 BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	poppler-glib-devel >= 0.2.1
