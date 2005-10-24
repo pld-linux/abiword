@@ -1,0 +1,31 @@
+diff -urbB abiword-2.4.1.org/abiword-plugins/tools/gda/plugin.m4 abiword-2.4.1/abiword-plugins/tools/gda/plugin.m4
+--- abiword-2.4.1.org/abiword-plugins/tools/gda/plugin.m4	2005-09-25 13:28:14.000000000 +0200
++++ abiword-2.4.1/abiword-plugins/tools/gda/plugin.m4	2005-10-24 22:22:34.922621500 +0200
+@@ -29,7 +29,7 @@
+ # Checks for header files.
+ 
+ dnl only unix builds should need this stuff, so why...?
+-PKG_CHECK_MODULES(_abi_gda,[libgda >= 1.2.0 libgnomedb >= 1.2.0],[
++PKG_CHECK_MODULES(_abi_gda,[libgda-2.0 >= 1.2.0 libgnomedb-2.0 >= 1.2.0],[
+ 	ABI_PLUGIN_REPORT([gda: okay])
+ ],[	ABI_PLUGIN_REPORT([gda: error - libgda and libgnomedb >= 1.2.0 required])
+ 	abi_plugin_disable=yes
+diff -urbB abiword-2.4.1.org/abiword-plugins/tools/gda/unix/AbiGDA.cpp abiword-2.4.1/abiword-plugins/tools/gda/unix/AbiGDA.cpp
+--- abiword-2.4.1.org/abiword-plugins/tools/gda/unix/AbiGDA.cpp	2005-01-12 18:54:57.000000000 +0100
++++ abiword-2.4.1/abiword-plugins/tools/gda/unix/AbiGDA.cpp	2005-10-24 22:20:32.000000000 +0200
+@@ -283,13 +283,13 @@
+ 	sql = editable_txt;
+ 	g_free (editable_txt);
+ 	
+-	cnc = gda_client_open_connection (connection_pool, dsn_name.utf8_str(), user_name.utf8_str(), password.utf8_str(), GDA_CONNECTION_OPTIONS_READ_ONLY);
++	cnc = gda_client_open_connection (connection_pool, dsn_name.utf8_str(), user_name.utf8_str(), password.utf8_str(), GDA_CONNECTION_OPTIONS_READ_ONLY, 0);
+ 	if (!GDA_IS_CONNECTION (cnc))
+ 		return false;
+ 	
+ 	/* execute command */
+ 	cmd = gda_command_new (sql.utf8_str(), GDA_COMMAND_TYPE_SQL, (GdaCommandOptions)0);
+-	recset = gda_connection_execute_single_command (cnc, cmd, NULL);
++	recset = gda_connection_execute_single_command (cnc, cmd, NULL, 0);
+ 	gda_command_free (cmd);
+ 	
+ 	if (recset == NULL || !GDA_IS_DATA_MODEL (recset))
