@@ -1,16 +1,16 @@
 #
 # TODO:
-# - link-grammar
 # - polish/complete descriptions
 #
 %bcond_without	gnome	# without GNOME libs
+%bcond_without	gda	# libgda support
 #
 %define		mver	2.4
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.4.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -19,6 +19,7 @@ Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mailmerge.patch
+Patch3:		%{name}-gda.patch
 URL:		http://www.abisource.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -35,7 +36,7 @@ BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	gtkmathview-devel >= 0.7.5
 BuildRequires:	gucharmap-devel >= 1.4.0
 BuildRequires:	libbonobo-devel >= 2.2.0
-BuildRequires:	libgda-devel >= 0.90.0
+%{?with_gda:BuildRequires:	libgda-devel >= 0.90.0}
 BuildRequires:	libglade2-devel >= 2.0.0
 BuildRequires:	libgnomedb-devel >= 0.90.0
 BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
@@ -50,6 +51,7 @@ BuildRequires:	libtool
 BuildRequires:	libwmf-devel >= 2:0.2.8
 BuildRequires:	libwpd-devel >= 0.8.0
 BuildRequires:	libxml2-devel >= 2.4.20
+BuildRequires:	link-grammar-devel
 BuildRequires:	ots-devel >= 0.4.1
 BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	poppler-glib-devel >= 0.2.1
@@ -465,6 +467,19 @@ LaTeX export.
 %description plugin-latex -l pl
 Wtyczka ta s³u¿y do eksportu do LaTeXa.
 
+# AbiGrammar
+%package plugin-link-grammar
+Summary:	AbiWord Link Grammar plugin
+Summary(pl):	Wtyczka Gramatyki dla Abiworda
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-link-grammar
+AbiWord Link Grammar plugin.
+
+%description plugin-link-grammar -l pl
+Wtyczka Gramatyki dla Abiworda.
+
 # abiMIF - not documented
 %package plugin-mif
 Summary:	AbiWord MIF plugin
@@ -717,6 +732,7 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' abi/GNUmakefile.am
@@ -810,9 +826,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiFreeTranslation.so
 
+%if %{with gda}
 %files plugin-gda
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGDA.so
+%endif
 
 %files plugin-gdict
 %defattr(644,root,root,755)
@@ -897,6 +915,10 @@ rm -rf $RPM_BUILD_ROOT
 %files plugin-latex
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiLaTeX.so
+
+%files plugin-link-grammar
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGrammar.so
 
 %files plugin-mif
 %defattr(644,root,root,755)
