@@ -1,6 +1,6 @@
-diff -aurN abiword-2.2.6.orig/abi/abiword.desktop abiword-2.2.6/abi/abiword.desktop
---- abiword-2.2.6.orig/abi/abiword.desktop	2005-04-04 08:08:43.000000000 +0200
-+++ abiword-2.2.6/abi/abiword.desktop	2005-04-04 10:42:04.361374488 +0200
+diff -aurN abiword-2.4.2.orig/abi/abiword.desktop abiword-2.4.2/abi/abiword.desktop
+--- abiword-2.4.2.orig/abi/abiword.desktop	2005-11-20 17:10:15.000000000 +0100
++++ abiword-2.4.2/abi/abiword.desktop	2006-01-11 17:18:30.000000000 +0100
 @@ -1,13 +1,12 @@
  [Desktop Entry]
  Exec=abiword
@@ -15,10 +15,10 @@ diff -aurN abiword-2.2.6.orig/abi/abiword.desktop abiword-2.2.6/abi/abiword.desk
 -X-Desktop-File-Install-Version=0.9
 -MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;text/plain;application/vnd.ms-word;application/rtf;application/vnd.plain;application/xhtml+xml;text/html;
 +MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;
- Name=Word Processor
+ Name=AbiWord
+ GenericName=Word Processor
  Comment=AbiWord Word Processor
- Name[de]=Textverarbeitung
-@@ -18,7 +17,6 @@
+@@ -19,7 +18,6 @@
  Comment[nl]=AbiWord tekstverwerker
  Name[nn]=Tekstbehandling
  Comment[nn]=AbiWord Tekstbehandling
