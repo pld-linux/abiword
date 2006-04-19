@@ -43,7 +43,7 @@ BuildRequires:	libgnomedb-devel >= 0.90.0
 BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
 BuildRequires:	libgnomeprint-devel >= 2.2.1
 BuildRequires:	libgnomeui-devel >= 2.2.0
-BuildRequires:	libgoffice >= 0.0.2
+BuildRequires:	libgoffice >= 0.1.0
 BuildRequires:	libgsf-devel >= 1.12.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
