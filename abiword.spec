@@ -22,44 +22,43 @@ Patch2:		%{name}-mailmerge.patch
 Patch3:		%{name}-gda.patch
 Patch4:		%{name}-poppler05x.patch
 Patch5:		%{name}-x86_64.patch
+Patch6:		%{name}-goffice03.patch
 URL:		http://www.abisource.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	aiksaurus-gtk-devel >= 1.0
-BuildRequires:	aspell-devel >= 0.50.0
+BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
+BuildRequires:	aspell-devel >= 0.60.4
 BuildRequires:	bzip2-devel
 BuildRequires:	curl-devel
-BuildRequires:	enchant-devel >= 1.1.5
+BuildRequires:	enchant-devel >= 1.2.6
 BuildRequires:	eps-devel >= 1.2
-BuildRequires:	fontconfig-devel >= 1.0
+BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
-BuildRequires:	glib2-devel >= 2.0.0
-BuildRequires:	gtk+2-devel >= 2.2.0
-BuildRequires:	gtkmathview-devel >= 0.7.5
-BuildRequires:	gucharmap-devel >= 1.4.0
-BuildRequires:	libbonobo-devel >= 2.2.0
-%{?with_gda:BuildRequires:	libgda-devel >= 0.90.0}
-BuildRequires:	libglade2-devel >= 2.0.0
-BuildRequires:	libgnomedb-devel >= 0.90.0
-BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
-BuildRequires:	libgnomeprint-devel >= 2.2.1
-BuildRequires:	libgnomeui-devel >= 2.2.0
-BuildRequires:	libgoffice-devel >= 0.1.0
-BuildRequires:	libgsf-devel >= 1.12.1
+BuildRequires:	glib2-devel >= 1:2.11.2
+BuildRequires:	gtk+2-devel >= 2:2.9.2
+BuildRequires:	gtkmathview-devel >= 0.7.6
+BuildRequires:	gucharmap-devel >= 1.6.0
+%{?with_gda:BuildRequires:	libgda-devel >= 1.9.100}
+BuildRequires:	libglade2-devel >= 1:2.5.1
+BuildRequires:	libgnomedb-devel >= 1.9.100
+BuildRequires:	libgnomeprintui-devel >= 2.12.0
+BuildRequires:	libgnomeui-devel >= 2.15.1
+BuildRequires:	libgoffice-devel >= 0.3.0
+BuildRequires:	libgsf-devel >= 1.14.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:	librsvg-devel >= 2.0
+BuildRequires:	librsvg-devel >= 1:2.15.0
 BuildRequires:	libtool
 BuildRequires:	libwmf-devel >= 2:0.2.8
-BuildRequires:	libwpd-devel >= 0.8.0
-BuildRequires:	libxml2-devel >= 2.4.20
+BuildRequires:	libwpd-devel >= 0.8.5
+BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	link-grammar-devel >= 4.2.1
 BuildRequires:	ots-devel >= 0.4.1
 BuildRequires:	pkgconfig >= 0.9.0
-BuildRequires:	poppler-glib-devel >= 0.2.1
+BuildRequires:	poppler-glib-devel >= 0.5.3
 BuildRequires:	popt-devel
 BuildRequires:	psiconv-devel >= 0.9.6
-BuildRequires:	wv-devel >= 1.0.3
+BuildRequires:	wv-devel >= 1.2.1
 Obsoletes:	abiword-plugin-collab
 Obsoletes:	abiword-plugin-gdkpixbuf
 Obsoletes:	abiword-plugin-gypsython
@@ -724,6 +723,7 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p0
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' abi/GNUmakefile.am
