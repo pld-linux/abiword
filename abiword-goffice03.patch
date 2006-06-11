@@ -10,3 +10,15 @@ diff -aurN abiword-plugins.orig/tools/abigochart/plugin.m4 abiword-plugins/tools
          ABI_PLUGIN_REPORT([abigochart: okay])
  ],[        ABI_PLUGIN_REPORT([abigochart: error libgoffice >= $LIBGOffice_REQUIRED_VERSION required])
          abi_plugin_disable=yes
+diff -aurN abiword-plugins.orig/tools/abigochart/unix/AbiGOChart.cpp abiword-plugins/tools/abigochart/unix/AbiGOChart.cpp
+--- abiword-plugins.orig/tools/abigochart/unix/AbiGOChart.cpp	2006-03-26 15:28:54.000000000 +0200
++++ abiword-plugins/tools/abigochart/unix/AbiGOChart.cpp	2006-06-11 19:56:15.363628992 +0200
+@@ -1256,7 +1256,7 @@
+ 	/* the resolution of symbols in libgoffice must be forced because when
+ 	creating the guru window, libglade needs foo_canvas_new. There might
+ 	be a better solution..., I could not find one */
+-	g_module_close (g_module_open ("libgoffice-1", (GModuleFlags)0));
++	g_module_close (g_module_open ("libgoffice-0.3", (GModuleFlags)0));
+    return 1;
+ }
+ 
