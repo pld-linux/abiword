@@ -1,0 +1,12 @@
+diff -aurN abiword-plugins.orig/tools/abigochart/plugin.m4 abiword-plugins/tools/abigochart/plugin.m4
+--- abiword-plugins.orig/tools/abigochart/plugin.m4	2005-12-27 12:09:54.000000000 +0100
++++ abiword-plugins/tools/abigochart/plugin.m4	2006-06-11 19:18:51.900687200 +0200
+@@ -23,7 +23,7 @@
+ 
+ LIBGOffice_REQUIRED_VERSION=0.1.0
+ 
+-PKG_CHECK_MODULES(GOFFICE, [libgoffice-1 >= $LIBGOffice_REQUIRED_VERSION],[
++PKG_CHECK_MODULES(GOFFICE, [libgoffice-0.3 >= $LIBGOffice_REQUIRED_VERSION],[
+         ABI_PLUGIN_REPORT([abigochart: okay])
+ ],[        ABI_PLUGIN_REPORT([abigochart: error libgoffice >= $LIBGOffice_REQUIRED_VERSION required])
+         abi_plugin_disable=yes
