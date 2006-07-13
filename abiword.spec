@@ -9,20 +9,19 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.4.4
-Release:	4
+Version:	2.4.5
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	69dd69179b861a41613291afd10af9ab
+# Source0-md5:	e018669a154164d31c768f773a1c95b4
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mailmerge.patch
 Patch3:		%{name}-gda.patch
 Patch4:		%{name}-poppler05x.patch
-Patch5:		%{name}-x86_64.patch
-Patch6:		%{name}-goffice03.patch
+Patch5:		%{name}-goffice03.patch
 URL:		http://www.abisource.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -722,8 +721,7 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
-%patch6 -p0
+%patch5 -p0
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' abi/GNUmakefile.am
