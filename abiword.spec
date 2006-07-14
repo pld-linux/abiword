@@ -33,22 +33,22 @@ BuildRequires:	enchant-devel >= 1.2.6
 BuildRequires:	eps-devel >= 1.2
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
-BuildRequires:	glib2-devel >= 1:2.11.2
+BuildRequires:	glib2-devel >= 1:2.12.0
 BuildRequires:	gtk+2-devel >= 2:2.9.2
 BuildRequires:	gtkmathview-devel >= 0.7.6
 BuildRequires:	gucharmap-devel >= 1.6.0
 %{?with_gda:BuildRequires:	libgda-devel >= 1.9.100}
-BuildRequires:	libglade2-devel >= 1:2.5.1
+BuildRequires:	libglade2-devel >= 1:2.6.0
 BuildRequires:	libgnomedb-devel >= 1.9.100
-BuildRequires:	libgnomeprintui-devel >= 2.12.0
-BuildRequires:	libgnomeui-devel >= 2.15.1
+BuildRequires:	libgnomeprintui-devel >= 2.12.1
+BuildRequires:	libgnomeui-devel >= 2.15.2
 BuildRequires:	libgoffice-devel >= 0.3.0
 BuildRequires:	libgsf-devel >= 1.14.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 1:2.15.0
 BuildRequires:	libtool
-BuildRequires:	libwmf-devel >= 2:0.2.8
+BuildRequires:	libwmf-devel >= 2:0.2.8.4
 BuildRequires:	libwpd-devel >= 0.8.5
 BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	link-grammar-devel >= 4.2.1
@@ -732,6 +732,7 @@ cd abi
 %{__aclocal} -I ac-helpers
 %{__automake}
 %{__autoconf}
+LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	--%{!?with_gnome:dis}%{?with_gnome:en}able-gnome \
 	--disable-static \
@@ -743,6 +744,7 @@ cd abi
 
 cd ../abiword-plugins
 ./nextgen.sh
+LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure
 %{__make}
 
