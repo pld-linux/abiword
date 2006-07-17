@@ -9,13 +9,13 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.4.2
-Release:	3
+Version:	2.4.5
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	935f1218eab7ff96b7a23cfeba4e76d1
+# Source0-md5:	e018669a154164d31c768f773a1c95b4
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mailmerge.patch
@@ -43,7 +43,7 @@ BuildRequires:	libgnomedb-devel >= 0.90.0
 BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
 BuildRequires:	libgnomeprint-devel >= 2.2.1
 BuildRequires:	libgnomeui-devel >= 2.2.0
-BuildRequires:	libgoffice >= 0.0.2
+BuildRequires:	libgoffice-devel >= 0.1.0
 BuildRequires:	libgsf-devel >= 1.12.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
@@ -52,13 +52,14 @@ BuildRequires:	libtool
 BuildRequires:	libwmf-devel >= 2:0.2.8
 BuildRequires:	libwpd-devel >= 0.8.0
 BuildRequires:	libxml2-devel >= 2.4.20
-BuildRequires:	link-grammar-devel >= 4.1.1
+BuildRequires:	link-grammar-devel >= 4.2.1
 BuildRequires:	ots-devel >= 0.4.1
 BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	poppler-glib-devel >= 0.2.1
 BuildRequires:	popt-devel
 BuildRequires:	psiconv-devel >= 0.9.6
 BuildRequires:	wv-devel >= 1.0.3
+Obsoletes:	abiword-plugin-collab
 Obsoletes:	abiword-plugin-gdkpixbuf
 Obsoletes:	abiword-plugin-gypsython
 Obsoletes:	abiword-plugin-magick
@@ -103,19 +104,6 @@ Allows to translate selected text.
 
 %description plugin-babelfish -l pl
 Wtyczka ta pozwala na przet³umaczenie wybranego tekstu.
-
-# abiCollab plugin
-%package plugin-collab
-Summary:	Remote collaborate for AbiWord
-Summary(pl):	Zdalna wspó³praca dla AbiWord
-Group:		Applications/Productivity
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description plugin-collab
-Allows to collaborate with a remote user.
-
-%description plugin-collab -l pl
-Pozwala na wspó³pracê z innym u¿ytkownikiem przez sieæ.
 
 # abiCommand plugin
 %package plugin-command
@@ -810,10 +798,6 @@ rm -rf $RPM_BUILD_ROOT
 %files plugin-capi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCAPI.so
-
-%files plugin-collab
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCollab.so
 
 %files plugin-command
 %defattr(644,root,root,755)
