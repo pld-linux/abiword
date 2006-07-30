@@ -57,6 +57,7 @@ BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	poppler-glib-devel >= 0.5.3
 BuildRequires:	popt-devel
 BuildRequires:	psiconv-devel >= 0.9.6
+BuildRequires:	t1lib-devel
 BuildRequires:	wv-devel >= 1.2.1
 Obsoletes:	abiword-plugin-collab
 Obsoletes:	abiword-plugin-gdkpixbuf
