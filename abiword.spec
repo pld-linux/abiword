@@ -2,15 +2,13 @@
 # TODO:
 # - polish/complete descriptions
 #
-%bcond_without	gnome	# without GNOME libs
-%bcond_without	gda	# libgda support
-#
 %define		mver	2.4
+#
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.4.5
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -19,8 +17,7 @@ Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mailmerge.patch
-Patch3:		%{name}-gda.patch
-Patch4:		%{name}-poppler05x.patch
+Patch3:		%{name}-poppler05x.patch
 URL:		http://www.abisource.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -37,9 +34,9 @@ BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	gtkmathview-devel >= 0.7.5
 BuildRequires:	gucharmap-devel >= 1.4.0
 BuildRequires:	libbonobo-devel >= 2.2.0
-%{?with_gda:BuildRequires:	libgda-devel >= 0.90.0}
+BuildRequires:	libgda-devel >= 1:1.2.3
 BuildRequires:	libglade2-devel >= 2.0.0
-BuildRequires:	libgnomedb-devel >= 0.90.0
+BuildRequires:	libgnomedb-devel >= 1:1.2.2
 BuildRequires:	libgnomeprintui-devel >= 2.2.1.3-2
 BuildRequires:	libgnomeprint-devel >= 2.2.1
 BuildRequires:	libgnomeui-devel >= 2.2.0
@@ -721,7 +718,6 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' abi/GNUmakefile.am
@@ -733,7 +729,6 @@ cd abi
 %{__automake}
 %{__autoconf}
 %configure \
-	--%{!?with_gnome:dis}%{?with_gnome:en}able-gnome \
 	--disable-static \
 	--enable-threads \
 	--with-libxml2 \
@@ -811,11 +806,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiFreeTranslation.so
 
-%if %{with gda}
 %files plugin-gda
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGDA.so
-%endif
 
 %files plugin-gdict
 %defattr(644,root,root,755)
