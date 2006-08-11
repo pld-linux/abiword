@@ -1,16 +1,18 @@
 #
 # TODO:
 # - polish/complete descriptions
+# - fix broken bconds
 #
-%bcond_without	gnome	# without GNOME libs
-%bcond_without	gda	# libgda support
+#%bcond_without	gnome	# without GNOME libs
+#%bcond_without	gda	# libgda support
 #
 %define		mver	2.4
+#
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.4.5
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -19,9 +21,8 @@ Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mailmerge.patch
-Patch3:		%{name}-gda.patch
-Patch4:		%{name}-poppler05x.patch
-Patch5:		%{name}-goffice03.patch
+Patch3:		%{name}-poppler05x.patch
+Patch4:		%{name}-goffice03.patch
 URL:		http://www.abisource.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -33,20 +34,20 @@ BuildRequires:	enchant-devel >= 1.2.6
 BuildRequires:	eps-devel >= 1.2
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
-BuildRequires:	glib2-devel >= 1:2.12.0
-BuildRequires:	gtk+2-devel >= 2:2.9.2
+BuildRequires:	glib2-devel >= 1:2.12.1
+BuildRequires:	gtk+2-devel >= 2:2.10.1
 BuildRequires:	gtkmathview-devel >= 0.7.6
-BuildRequires:	gucharmap-devel >= 1.6.0
-%{?with_gda:BuildRequires:	libgda-devel >= 1.9.100}
+BuildRequires:	gucharmap-devel >= 1.7.0
+BuildRequires:	libgda-devel >= 1:1.2.3
 BuildRequires:	libglade2-devel >= 1:2.6.0
-BuildRequires:	libgnomedb-devel >= 1.9.100
+BuildRequires:	libgnomedb-devel >= 1:1.2.2
 BuildRequires:	libgnomeprintui-devel >= 2.12.1
-BuildRequires:	libgnomeui-devel >= 2.15.2
+BuildRequires:	libgnomeui-devel >= 2.15.91
 BuildRequires:	libgoffice-devel >= 0.3.0
 BuildRequires:	libgsf-devel >= 1.14.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
-BuildRequires:	librsvg-devel >= 1:2.15.0
+BuildRequires:	librsvg-devel >= 1:2.15.90
 BuildRequires:	libtool
 BuildRequires:	libwmf-devel >= 2:0.2.8.4
 BuildRequires:	libwpd-devel >= 0.8.5
@@ -150,6 +151,7 @@ Summary:	AbiWord GDA plugin
 Summary(pl):	Wtyczka AbiWorda dla GDA
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	gnome-database-access-properties >= 1:1.2.1
 
 %description plugin-gda
 Allows access to any database provided by libgda.
@@ -721,8 +723,7 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p0
+%patch4 -p0
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' abi/GNUmakefile.am
@@ -733,19 +734,20 @@ cd abi
 %{__aclocal} -I ac-helpers
 %{__automake}
 %{__autoconf}
-LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
-	--%{!?with_gnome:dis}%{?with_gnome:en}able-gnome \
 	--disable-static \
 	--enable-threads \
 	--with-libxml2 \
 	--with-pspell \
 	--with-sys-wv 
+
+# see TODO	
+#	--%{!?with_gnome:dis}%{?with_gnome:en}able-gnome \
+
 %{__make}
 
 cd ../abiword-plugins
 ./nextgen.sh
-LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure
 %{__make}
 
