@@ -5,6 +5,8 @@
 #
 #%bcond_without	gnome	# without GNOME libs
 #%bcond_without	gda	# libgda support
+%bcond_without	eps	# without inter7 EPS support (doesn't build with
+			# eps-1.5)
 #
 %define		mver	2.4
 #
@@ -31,7 +33,10 @@ BuildRequires:	aspell-devel >= 0.60.4
 BuildRequires:	bzip2-devel
 BuildRequires:	curl-devel
 BuildRequires:	enchant-devel >= 1.2.6
+%if %{with eps}
 BuildRequires:	eps-devel >= 1.2
+BuildConflicts:	eps-devel >= 1.5
+%endif
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	glib2-devel >= 1:2.12.1
@@ -739,7 +744,7 @@ cd abi
 	--enable-threads \
 	--with-libxml2 \
 	--with-pspell \
-	--with-sys-wv 
+	--with-sys-wv
 
 # see TODO	
 #	--%{!?with_gnome:dis}%{?with_gnome:en}able-gnome \
@@ -748,7 +753,8 @@ cd abi
 
 cd ../abiword-plugins
 ./nextgen.sh
-%configure
+%configure \
+	%{!?with_eps:--with-inter7eps=no}
 %{__make}
 
 %install
