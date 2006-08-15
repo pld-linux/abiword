@@ -5,8 +5,6 @@
 #
 #%bcond_without	gnome	# without GNOME libs
 #%bcond_without	gda	# libgda support
-%bcond_without	eps	# without inter7 EPS support (doesn't build with
-			# eps-1.5)
 #
 %define		mver	2.4
 #
@@ -25,6 +23,7 @@ Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mailmerge.patch
 Patch3:		%{name}-poppler05x.patch
 Patch4:		%{name}-goffice03.patch
+Patch5:		%{name}-eps15.patch
 URL:		http://www.abisource.com/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -33,10 +32,7 @@ BuildRequires:	aspell-devel >= 0.60.4
 BuildRequires:	bzip2-devel
 BuildRequires:	curl-devel
 BuildRequires:	enchant-devel >= 1.2.6
-%if %{with eps}
-BuildRequires:	eps-devel >= 1.2
-BuildConflicts:	eps-devel >= 1.5
-%endif
+BuildRequires:	eps-devel >= 1.5
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	glib2-devel >= 1:2.12.1
@@ -729,6 +725,7 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p0
+%patch5 -p1
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' abi/GNUmakefile.am
@@ -753,8 +750,7 @@ cd abi
 
 cd ../abiword-plugins
 ./nextgen.sh
-%configure \
-	%{!?with_eps:--with-inter7eps=no}
+%configure
 %{__make}
 
 %install
