@@ -12,7 +12,38 @@ diff -aurN abiword-plugins.orig/tools/abigochart/plugin.m4 abiword-plugins/tools
          abi_plugin_disable=yes
 diff -aurN abiword-plugins.orig/tools/abigochart/unix/AbiGOChart.cpp abiword-plugins/tools/abigochart/unix/AbiGOChart.cpp
 --- abiword-plugins.orig/tools/abigochart/unix/AbiGOChart.cpp	2006-03-26 15:28:54.000000000 +0200
-+++ abiword-plugins/tools/abigochart/unix/AbiGOChart.cpp	2006-06-11 19:56:15.363628992 +0200
++++ abiword-plugins/tools/abigochart/unix/AbiGOChart.cpp	2006-10-26 22:36:49.179956728 +0200
+@@ -72,7 +72,7 @@
+ #include <goffice/graph/gog-data-allocator.h>
+ #include <goffice/graph/gog-series.h>
+ #include <goffice/graph/gog-guru.h>
+-#include <goffice/graph/gog-renderer-pixbuf.h>
++#include <goffice/graph/gog-renderer-cairo.h>
+ #include <goffice/graph/gog-data-set.h>
+ #include <goffice/graph/gog-object-xml.h>
+ #include <goffice/data/go-data-simple.h>
+@@ -1102,7 +1102,7 @@
+ {
+ 	m_Graph = NULL;
+ 	m_Image = NULL;
+-	m_Renderer = GOG_RENDERER (g_object_new (GOG_RENDERER_PIXBUF_TYPE, NULL));
++	m_Renderer = GOG_RENDERER (g_object_new (GOG_RENDERER_CAIRO_TYPE, NULL));
+ 	width = height = 0;
+ 	m_Guru = NULL;
+ }
+@@ -1157,10 +1157,10 @@
+ 			GdkPixbuf *pixbuf;
+ 			width = _width;
+ 			height = _height;
+-			gog_renderer_pixbuf_update (GOG_RENDERER_PIXBUF (m_Renderer), _width, _height, 1.0);	
++			gog_renderer_cairo_update (GOG_RENDERER_CAIRO (m_Renderer), _width, _height, 1.0);	
+ 			if (m_Image)
+ 				delete m_Image;
+-			pixbuf = gog_renderer_pixbuf_get (GOG_RENDERER_PIXBUF (m_Renderer));
++			pixbuf = gog_renderer_cairo_get_pixbuf (GOG_RENDERER_CAIRO (m_Renderer));
+ 			m_Image = new GR_UnixImage(NULL, pixbuf);
+ 			g_object_ref(pixbuf);
+ 			m_Image->scaleImageTo(m_pGOMan->getGraphics(),rec);
 @@ -1256,7 +1256,7 @@
  	/* the resolution of symbols in libgoffice must be forced because when
  	creating the guru window, libglade needs foo_canvas_new. There might
