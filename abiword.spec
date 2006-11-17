@@ -11,18 +11,17 @@
 Summary:	Multi-platform word processor
 Summary(pl):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.4.5
-Release:	3
+Version:	2.4.6
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	e018669a154164d31c768f773a1c95b4
+# Source0-md5:	8ed5fb282b9741aca75b9e47500d39a1
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mailmerge.patch
 Patch3:		%{name}-poppler05x.patch
-Patch4:		%{name}-goffice03.patch
 Patch5:		%{name}-eps15.patch
 URL:		http://www.abisource.com/
 BuildRequires:	autoconf
@@ -190,19 +189,19 @@ Wtyczka ta pozwala na edycjê osadzonych obrazów programem do ich
 obróbki, takim jak Gimp.
 
 # abiGOChart plugin
-%package plugin-goffice
-Summary:	GNOME Office plugin
-Summary(pl):	Wtyczka GNOME Office
-Group:		Applications/Productivity
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+#%%package plugin-goffice
+#Summary:	GNOME Office plugin
+#Summary(pl):	Wtyczka GNOME Office
+#Group:		Applications/Productivity
+#Requires:	%{name} = %{epoch}:%{version}-%{release}
 
-%description plugin-goffice
-Allows to share GNOME Office objects between GOffice
-appplications.
+#%%description plugin-goffice
+#Allows to share GNOME Office objects between GOffice
+#appplications.
 
-%description plugin-goffice -l pl
-Pozwala na wspó³dzielenie obiektów GNOME Office pomiêdzy jego
-aplikacjami.
+#%%description plugin-goffice -l pl
+#Pozwala na wspó³dzielenie obiektów GNOME Office pomiêdzy jego
+#aplikacjami.
 
 # abiGoogle
 %package plugin-google
@@ -724,7 +723,6 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p0
 %patch5 -p1
 
 # use generic icon name
@@ -832,9 +830,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGimp.so
 
-%files plugin-goffice
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGOChart.so
+#%%files plugin-goffice
+#%%defattr(644,root,root,755)
+#%%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGOChart.so
 
 %files plugin-google
 %defattr(644,root,root,755)
