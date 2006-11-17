@@ -724,8 +724,8 @@ Jest to teczka clipartów u¿ywanych przez AbiWorda.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p0
 %patch5 -p1
+%patch4 -p0
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' abi/GNUmakefile.am
