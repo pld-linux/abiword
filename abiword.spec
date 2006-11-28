@@ -1,6 +1,6 @@
 #
 # TODO:
-# - polish/complete descriptions
+# - complete descriptions
 # - fix broken bconds
 #
 #%bcond_without	gnome	# without GNOME libs
