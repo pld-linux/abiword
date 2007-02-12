@@ -9,7 +9,7 @@
 %define		mver	2.4
 #
 Summary:	Multi-platform word processor
-Summary(pl.UTF-8):   Wieloplatformowy procesor tekstu
+Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.4.6
 Release:	1
@@ -83,7 +83,7 @@ platformie UNIX.
 # abiAiksaurus
 %package plugin-aiksaurus
 Summary:	AbiWord Aiksaurus plugin
-Summary(pl.UTF-8):   Wtyczka AbiWorda Aiksaurus
+Summary(pl.UTF-8):	Wtyczka AbiWorda Aiksaurus
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -97,7 +97,7 @@ bliskoznacznych.
 # abiBabelfish
 %package plugin-babelfish
 Summary:	AbiWord Babelfish plugin
-Summary(pl.UTF-8):   Wtyczka AbiWorda Babelfish
+Summary(pl.UTF-8):	Wtyczka AbiWorda Babelfish
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -110,7 +110,7 @@ Wtyczka ta pozwala na przetłumaczenie wybranego tekstu.
 # abiCommand plugin
 %package plugin-command
 Summary:	AbiWord command line control
-Summary(pl.UTF-8):   Konrolowanie AbiWorda z linii poleceń
+Summary(pl.UTF-8):	Konrolowanie AbiWorda z linii poleceń
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -123,7 +123,7 @@ Wtyczka ta pozwala na kontrolowanie AbiWorda z poziomu linii poleceń.
 # abiDash - not documented
 %package plugin-dash
 Summary:	AbiWord Dash plugin
-Summary(pl.UTF-8):   Wtyczka Dash dla Abiworda
+Summary(pl.UTF-8):	Wtyczka Dash dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -136,7 +136,7 @@ Wtyczka Dash.
 # abiFreeTranslation
 %package plugin-freetranslation
 Summary:	AbiWord freetranslation.com plugin
-Summary(pl.UTF-8):   Wtyczka AbiWorda dla freetranslation.com
+Summary(pl.UTF-8):	Wtyczka AbiWorda dla freetranslation.com
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -149,7 +149,7 @@ Wtyczka ta pozwala przetłumaczyć wybrany tekst.
 # abiGDA
 %package plugin-gda
 Summary:	AbiWord GDA plugin
-Summary(pl.UTF-8):   Wtyczka AbiWorda dla GDA
+Summary(pl.UTF-8):	Wtyczka AbiWorda dla GDA
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gnome-database-access-properties >= 1:1.2.1
@@ -164,7 +164,7 @@ pośrednictwem libgda.
 # abiGdict
 %package plugin-gdict
 Summary:	AbiWord gDict plugin
-Summary(pl.UTF-8):   Wtyczka AbiWorda gDict
+Summary(pl.UTF-8):	Wtyczka AbiWorda gDict
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -178,7 +178,7 @@ tekstu.
 # abiGimp plugin
 %package plugin-gimp
 Summary:	AbiWord image editor plugin
-Summary(pl.UTF-8):   Wtyczka AbiWorda dla edytorów obrazu
+Summary(pl.UTF-8):	Wtyczka AbiWorda dla edytorów obrazu
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -192,7 +192,7 @@ obróbki, takim jak Gimp.
 # abiGOChart plugin
 %package plugin-goffice
 Summary:	GNOME Office plugin
-Summary(pl.UTF-8):   Wtyczka GNOME Office
+Summary(pl.UTF-8):	Wtyczka GNOME Office
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -207,7 +207,7 @@ aplikacjami.
 # abiGoogle
 %package plugin-google
 Summary:	AbiWord Google plugin
-Summary(pl.UTF-8):   Wtyczka Google dla AbiWorda
+Summary(pl.UTF-8):	Wtyczka Google dla AbiWorda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -221,7 +221,7 @@ tekstu.
 # abiMathView
 %package plugin-mathview
 Summary:	AbiWord MathView plugin
-Summary(pl.UTF-8):   Wtyczka MAthView dla AbiWorda
+Summary(pl.UTF-8):	Wtyczka MAthView dla AbiWorda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -234,7 +234,7 @@ Pozwala na wstawianie i edycję równań w stylu MathML lub LaTeX.
 # abiOTS
 %package plugin-ots
 Summary:	AbiWord OTS plugin
-Summary(pl.UTF-8):   Wtyczka OTS dla Abiworda
+Summary(pl.UTF-8):	Wtyczka OTS dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -247,7 +247,7 @@ Wtyczka ta służy do tworzenia podsumowania dokumentu.
 # abiScriptHappy - not documented
 %package plugin-scripthappy
 Summary:	AbiWord ScriptHappy plugin
-Summary(pl.UTF-8):   Wtyczka ScriptHappy dla Abiworda
+Summary(pl.UTF-8):	Wtyczka ScriptHappy dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -260,7 +260,7 @@ Wtyczka ScriptHappy.
 # abiURLDict
 %package plugin-urldict
 Summary:	AbiWord URLDict plugin
-Summary(pl.UTF-8):   Wtyczka URLDict dla Abiworda
+Summary(pl.UTF-8):	Wtyczka URLDict dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -273,7 +273,7 @@ Słownik internetowy.
 # abiWikipedia
 %package plugin-wikipedia
 Summary:	AbiWord Wikipedia plugin
-Summary(pl.UTF-8):   Wtyczka Wikipedia dla Abiworda
+Summary(pl.UTF-8):	Wtyczka Wikipedia dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -288,7 +288,7 @@ zaznaczonego tekstu.
 # abiApplix
 %package plugin-applix
 Summary:	AbiWord Applix plugin
-Summary(pl.UTF-8):   Wtyczka Applix dla Abiworda
+Summary(pl.UTF-8):	Wtyczka Applix dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -301,7 +301,7 @@ Wtyczka ta służy do importu/eksportu plików Applix Worda.
 # abiBMP
 %package plugin-bmp
 Summary:	AbiWord BMP plugin
-Summary(pl.UTF-8):   Wtyczka BMP dla Abiworda
+Summary(pl.UTF-8):	Wtyczka BMP dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -314,7 +314,7 @@ Wtyczka ta służy do wyświetlania bitmap.
 # abiBZ2
 %package plugin-bz2
 Summary:	AbiWord BZ2 plugin
-Summary(pl.UTF-8):   Wtyczka BZ2 dla Abiworda
+Summary(pl.UTF-8):	Wtyczka BZ2 dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -328,7 +328,7 @@ pomocy bzip2.
 # abiClarisWorks
 %package plugin-clarisworks
 Summary:	AbiWord ClarisWorks plugin
-Summary(pl.UTF-8):   Wtyczka ClarisWorks dla Abiworda
+Summary(pl.UTF-8):	Wtyczka ClarisWorks dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -341,7 +341,7 @@ Wtyczka ta służy do importu/eksportu plików Clarisworks.
 # abiCoquille
 %package plugin-coquille
 Summary:	AbiWord Coquille plugin
-Summary(pl.UTF-8):   Wtyczka Coquille dla Abiworda
+Summary(pl.UTF-8):	Wtyczka Coquille dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -354,7 +354,7 @@ Rozszerzenia Docbooka.
 # abiDocBook
 %package plugin-docbook
 Summary:	AbiWord DocBook plugin
-Summary(pl.UTF-8):   Wtyczka DocBook dla Abiworda
+Summary(pl.UTF-8):	Wtyczka DocBook dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -368,7 +368,7 @@ Docbook.
 # abiEML
 %package plugin-eml
 Summary:	AbiWord EML plugin
-Summary(pl.UTF-8):   Wtyczka EML dla Abiworda
+Summary(pl.UTF-8):	Wtyczka EML dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -382,7 +382,7 @@ Outlook.
 # abiHRText
 %package plugin-hrtext
 Summary:	AbiWord HRText plugin
-Summary(pl.UTF-8):   Wtyczka HRText dla Abiworda
+Summary(pl.UTF-8):	Wtyczka HRText dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -395,7 +395,7 @@ Wtyczka ta służy do eksportu ze znacznikiem "grupa news".
 # abiHancom
 %package plugin-hancom
 Summary:	AbiWord Hancom plugin
-Summary(pl.UTF-8):   Wtyczka Hancom dla Abiworda
+Summary(pl.UTF-8):	Wtyczka Hancom dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -408,7 +408,7 @@ Wtyczka ta służy jest importerem formatu Hancom Word.
 # abiISCII
 %package plugin-iscii
 Summary:	AbiWord ISCII plugin
-Summary(pl.UTF-8):   Wtyczka dla Abiworda
+Summary(pl.UTF-8):	Wtyczka dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -422,7 +422,7 @@ ISCII (Indic script).
 # abiJPEG
 %package plugin-jpeg
 Summary:	AbiWord JPEG plugin
-Summary(pl.UTF-8):   Wtyczka JPEG dla Abiworda
+Summary(pl.UTF-8):	Wtyczka JPEG dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -435,7 +435,7 @@ Wtyczka ta służy do wyświetlania obrazów w formacie JPEG.
 # abiKWord
 %package plugin-kword
 Summary:	AbiWord KWord plugin
-Summary(pl.UTF-8):   Wtyczka KWord dla Abiworda
+Summary(pl.UTF-8):	Wtyczka KWord dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -448,7 +448,7 @@ Wtyczka ta służy do importu/eksportu plików KWorda.
 # abiLaTeX
 %package plugin-latex
 Summary:	AbiWord LaTeX plugin
-Summary(pl.UTF-8):   Wtyczka LaTeX dla Abiworda
+Summary(pl.UTF-8):	Wtyczka LaTeX dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -461,7 +461,7 @@ Wtyczka ta służy do eksportu do LaTeXa.
 # AbiGrammar
 %package plugin-link-grammar
 Summary:	AbiWord Link Grammar plugin
-Summary(pl.UTF-8):   Wtyczka Gramatyki dla Abiworda
+Summary(pl.UTF-8):	Wtyczka Gramatyki dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -474,7 +474,7 @@ Wtyczka Gramatyki dla Abiworda.
 # abiMIF - not documented
 %package plugin-mif
 Summary:	AbiWord MIF plugin
-Summary(pl.UTF-8):   Wtyczka MIF dla Abiworda
+Summary(pl.UTF-8):	Wtyczka MIF dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -487,7 +487,7 @@ Wtyczka MIF.
 # abiMSWrite
 %package plugin-mswrite
 Summary:	AbiWord MSWrite plugin
-Summary(pl.UTF-8):   Wtyczka MSWrite dla Abiworda
+Summary(pl.UTF-8):	Wtyczka MSWrite dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -500,7 +500,7 @@ Wtyczka ta służy do importu plików MS Write'a.
 # abiNroff - lack of precise description (export?/import?)
 %package plugin-nroff
 Summary:	AbiWord Nroff plugin
-Summary(pl.UTF-8):   Wtyczka Nroff dla Abiworda
+Summary(pl.UTF-8):	Wtyczka Nroff dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -513,7 +513,7 @@ Typy plików nroff/man.
 # abiOpenDocument
 %package plugin-opendocument
 Summary:	AbiWord OpenDocument plugin
-Summary(pl.UTF-8):   Wtyczka OpenDocument dla Abiworda
+Summary(pl.UTF-8):	Wtyczka OpenDocument dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -526,7 +526,7 @@ Wtyczka ta służy do importu/eksportu plików OpenDocument.
 # abiOpenWriter
 %package plugin-openwritter
 Summary:	AbiWord OpenWriter plugin
-Summary(pl.UTF-8):   Wtyczka OpenWriter dla Abiworda
+Summary(pl.UTF-8):	Wtyczka OpenWriter dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -539,7 +539,7 @@ Wtyczka ta służy do importu/eksportu plików OpenOffice'a.
 # abiPalmDoc - not documented
 %package plugin-palmdoc
 Summary:	AbiWord PalmDoc plugin
-Summary(pl.UTF-8):   Wtyczka PalmDoc dla Abiworda
+Summary(pl.UTF-8):	Wtyczka PalmDoc dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -552,7 +552,7 @@ Wtyczka PalmDoc.
 # abiPassepartout - not documented
 %package plugin-passepartout
 Summary:	AbiWord Passepartout plugin
-Summary(pl.UTF-8):   Wtyczka Passepartout dla Abiworda
+Summary(pl.UTF-8):	Wtyczka Passepartout dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -565,7 +565,7 @@ Wtyczka Passepartout.
 # abiPDF
 %package plugin-pdf
 Summary:	AbiWord PDF plugin
-Summary(pl.UTF-8):   Wtyczka PDF dla Abiworda
+Summary(pl.UTF-8):	Wtyczka PDF dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -578,7 +578,7 @@ Eksportuje dokumenty do formatu PDF.
 # abiPsion
 %package plugin-psion
 Summary:	AbiWord Psion plugin
-Summary(pl.UTF-8):   Wtyczka Psion dla Abiworda
+Summary(pl.UTF-8):	Wtyczka Psion dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -591,7 +591,7 @@ Wtyczka ta służy do importu/eksportu plików Psiona.
 # abiRSVG
 %package plugin-rsvg
 Summary:	AbiWord RSVG plugin
-Summary(pl.UTF-8):   Wtyczka RSVG dla Abiworda
+Summary(pl.UTF-8):	Wtyczka RSVG dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -604,7 +604,7 @@ Wtyczka ta służy do wyświetlania plików SVG.
 # abiSDW
 %package plugin-sdw
 Summary:	AbiWord SDW plugin
-Summary(pl.UTF-8):   Wtyczka SDW dla Abiworda
+Summary(pl.UTF-8):	Wtyczka SDW dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -617,7 +617,7 @@ Wtyczka ta służy do importu plików StarOffice'a 5.x.
 # abiT602
 %package plugin-t602
 Summary:	AbiWord T602 plugin
-Summary(pl.UTF-8):   Wtyczka T602 dla Abiworda
+Summary(pl.UTF-8):	Wtyczka T602 dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -630,7 +630,7 @@ Wtyczka ta służy do importu plików T602.
 # abiWMF
 %package plugin-wmf
 Summary:	AbiWord WMF plugin
-Summary(pl.UTF-8):   Wtyczka WMF dla Abiworda
+Summary(pl.UTF-8):	Wtyczka WMF dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -643,7 +643,7 @@ Wtyczka ta służy do wyświetlania plików typu Windows Metafile.
 # abiWML
 %package plugin-wml
 Summary:	AbiWord WML plugin
-Summary(pl.UTF-8):   Wtyczka WML dla Abiworda
+Summary(pl.UTF-8):	Wtyczka WML dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -656,7 +656,7 @@ Wtyczka ta służy do importu/eksportu plików WML.
 # abiWordPerfect
 %package plugin-wordperfect
 Summary:	AbiWord WordPerfect plugin
-Summary(pl.UTF-8):   Wtyczka WordPerfect dla Abiworda
+Summary(pl.UTF-8):	Wtyczka WordPerfect dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -670,7 +670,7 @@ WordPerfect.
 # abiXHTML
 %package plugin-xhtml
 Summary:	AbiWord XHTML plugin
-Summary(pl.UTF-8):   Wtyczka XHTML dla Abiworda
+Summary(pl.UTF-8):	Wtyczka XHTML dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -683,7 +683,7 @@ Wtyczka ta służy do importu plików HTML/wieloczęściowego HTML.
 # abiXSLFO 
 %package plugin-xslfo
 Summary:	AbiWord XSLFO plugin
-Summary(pl.UTF-8):   Wtyczka XSLFO dla Abiworda
+Summary(pl.UTF-8):	Wtyczka XSLFO dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -697,7 +697,7 @@ Wtyczka ta służy do importu/eksportu XSL-FO.
 # abiCAPI 
 %package plugin-capi
 Summary:	AbiWord CAPI plugin
-Summary(pl.UTF-8):   Wtyczka CAPI dla Abiworda
+Summary(pl.UTF-8):	Wtyczka CAPI dla Abiworda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -709,7 +709,7 @@ Wtyczka CAPI.
 
 %package clipart
 Summary:	AbiWord Clipart
-Summary(pl.UTF-8):   Cliparty dla AbiWorda
+Summary(pl.UTF-8):	Cliparty dla AbiWorda
 Group:		Applications/Productivity
 
 %description clipart
