@@ -12,7 +12,7 @@ Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.4.6
-Release:	5
+Release:	5.1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -22,7 +22,7 @@ Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mailmerge.patch
 Patch3:		%{name}-poppler05x.patch
-Patch4:		%{name}-goffice03.patch
+Patch4:		%{name}-goffice05.patch
 Patch5:		%{name}-eps15.patch
 Patch6:		%{name}-poppler-0.6-api.patch
 URL:		http://www.abisource.com/
@@ -45,7 +45,7 @@ BuildRequires:	libglade2-devel >= 1:2.6.0
 BuildRequires:	libgnomedb-devel >= 1:1.2.2
 BuildRequires:	libgnomeprintui-devel >= 2.12.1
 BuildRequires:	libgnomeui-devel >= 2.15.91
-BuildRequires:	libgoffice-devel >= 0.3.1
+BuildRequires:	libgoffice-devel >= 0.5.0
 BuildRequires:	libgsf-devel >= 1.14.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
