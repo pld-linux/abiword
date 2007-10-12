@@ -5,6 +5,7 @@
 #
 #%bcond_without	gnome	# without GNOME libs
 #%bcond_without	gda	# libgda support
+%bcond_with	goffice	# try build plugin-goffice
 #
 %define		mver	2.4
 #
@@ -45,7 +46,7 @@ BuildRequires:	libglade2-devel >= 1:2.6.0
 BuildRequires:	libgnomedb-devel >= 1:1.2.2
 BuildRequires:	libgnomeprintui-devel >= 2.12.1
 BuildRequires:	libgnomeui-devel >= 2.15.91
-BuildRequires:	libgoffice-devel >= 0.5.0
+%{?with_goffice:BuildRequires:	libgoffice-devel >= 0.5.0}
 BuildRequires:	libgsf-devel >= 1.14.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
@@ -752,7 +753,8 @@ cd abi
 
 cd ../abiword-plugins
 ./nextgen.sh
-%configure
+%configure \
+	%{!?with_goffice:--disable-abigochart}
 %{__make}
 
 %install
@@ -834,9 +836,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGimp.so
 
+%if %{with goffice}
 %files plugin-goffice
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGOChart.so
+%endif
 
 %files plugin-google
 %defattr(644,root,root,755)
