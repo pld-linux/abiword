@@ -778,7 +778,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/AbiSuite-%{mver}/AbiWord/system.profile*
 %{_datadir}/AbiSuite-%{mver}/icons
 %{_datadir}/AbiSuite-%{mver}/templates
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_pixmapsdir}/*.png
 %{_datadir}/AbiSuite-%{mver}/AbiWord/readme.txt
 %{_libdir}/AbiWord-%{mver}/plugins/AbiWord
