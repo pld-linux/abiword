@@ -3,8 +3,8 @@
 # - complete descriptions
 # - fix broken bconds
 #
-#%bcond_without	gnome	# without GNOME libs
-#%bcond_without	gda	# libgda support
+%bcond_without	gnome	# without GNOME libs
+%bcond_without	gda	# libgda support
 %bcond_with	goffice	# try build plugin-goffice
 #
 %define		mver	2.4
