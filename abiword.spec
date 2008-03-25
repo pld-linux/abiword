@@ -46,7 +46,7 @@ BuildRequires:	libglade2-devel >= 1:2.6.0
 BuildRequires:	libgnomedb-devel >= 1:1.2.2
 BuildRequires:	libgnomeprintui-devel >= 2.12.1
 BuildRequires:	libgnomeui-devel >= 2.15.91
-%{?with_goffice:BuildRequires:	libgoffice-devel >= 0.5.0}
+%{?with_goffice:BuildRequires:	libgoffice-devel >= 0.2.1}
 BuildRequires:	libgsf-devel >= 1.14.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
