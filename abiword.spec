@@ -27,7 +27,7 @@ Patch3:		%{name}-poppler05x.patch
 Patch5:		%{name}-eps15.patch
 Patch6:		%{name}-poppler-0.6-api.patch
 URL:		http://www.abisource.com/
-BuildRequires:	aiksaurus-gtk-devel >= 1.0
+BuildRequires:	aiksaurus-gtk-devel >= 1.2.1-5
 BuildRequires:	aspell-devel >= 0.50.0
 BuildRequires:	autoconf
 BuildRequires:	automake
