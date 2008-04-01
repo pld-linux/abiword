@@ -4,6 +4,8 @@
 # - restore cliparts
 # - complete descriptions
 # - fix broken bconds
+# - consider subpackage for helps
+# - consider lang()ed helps
 # - installed, but unpackaged files
 #	   /usr/include/abiword-2.6/abiwidget.h
 #	   /usr/include/abiword-2.6/xap_UnixTableWidget.h
@@ -34,7 +36,7 @@ Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.6.0
-Release:	0.3
+Release:	0.4
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -42,9 +44,13 @@ Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{
 # Source0-md5:	d627a5d1061160c683f2257da498355b
 Source1:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-plugins-%{version}.tar.gz
 # Source1-md5:	ebdc165d1b6c3c69f11148cf7841f257
+Source2:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-extras-%{version}.tar.gz
+# Source2-md5:	3daf3cbd59621fab0326512bf663d2d9
+Source3:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-docs-%{version}.tar.gz
+# Source3-md5:	7403e74ee977e16fcaa7bcb24be16d23
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
-Patch2:		%{name}-mailmerge.patch
+Patch2:		%{name}-extras-destdir.patch
 Patch3:		%{name}-poppler05x.patch
 Patch4:		%{name}-goffice05.patch
 Patch5:		%{name}-eps15.patch
@@ -747,12 +753,11 @@ This is the clipart portfolio used by AbiWord.
 Jest to teczka clipartów używanych przez AbiWorda.
 
 %prep
-%setup -q -a1
+%setup -q -a1 -a2 -a3
 %patch0 -p1
 # needs some work
 #patch1 -p1
-# seems applied
-#patch2 -p1
+%patch2 -p0
 
 #plugins stuff
 #patch3 -p1
@@ -791,6 +796,24 @@ cd abiword-plugins-%{version}
 	%{!?with_goffice:--disable-abigoffice} \
 	%{!?with_xhtml:--disable-xhtml}
 %{__make}
+cd ..
+
+export PKG_CONFIG_PATH=`pwd`
+cd abiword-extras-%{version}
+%{__aclocal}
+%{__automake}
+%{__autoconf}
+%configure
+%{__make}
+cd ..
+
+export PATH="$PATH:`pwd`/src/wp/main/unix"
+cd abiword-docs-%{version}
+%{__aclocal}
+%{__automake}
+%{__autoconf}
+%configure
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -801,6 +824,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	icondir=%{_pixmapsdir}
+
+%{__make} -C abiword-extras-%{version} install \
+	DESTDIR=$RPM_BUILD_ROOT
+%{__make} -C abiword-docs-%{version} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 # Remove useless files
 rm -f $RPM_BUILD_ROOT%{_libdir}/abiword-%{mver}/plugins/*.la
@@ -820,7 +848,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/abiword-%{mver}
 %dir %{_libdir}/abiword-%{mver}/plugins
 %dir %{_datadir}/abiword-%{mver}
+%{_datadir}/abiword-%{mver}/dictionary
 %{_datadir}/abiword-%{mver}/glade
+%{_datadir}/abiword-%{mver}/help
 %{_datadir}/abiword-%{mver}/readme.txt
 %{_datadir}/abiword-%{mver}/strings
 %{_datadir}/abiword-%{mver}/system.profile*
@@ -1026,4 +1056,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files clipart
 %defattr(644,root,root,755)
-#{_datadir}/AbiSuite-%{mver}/clipart
+%{_datadir}/abiword-%{mver}/clipart
