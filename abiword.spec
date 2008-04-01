@@ -817,11 +817,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-#dir %{_datadir}/AbiSuite-%{mver}
-#dir %{_datadir}/AbiSuite-%{mver}/AbiWord
-#dir %{_datadir}/AbiSuite-%{mver}/AbiWord/scripts
-#{_datadir}/AbiSuite-%{mver}/AbiWord/scripts/*
-#{_datadir}/AbiSuite-%{mver}/icons
+%dir %{_lib}/abiword-%{mver}
+%dir %{_lib}/abiword-%{mver}/plugins
 %{_datadir}/abiword-%{mver}/glade
 %{_datadir}/abiword-%{mver}/readme.txt
 %{_datadir}/abiword-%{mver}/strings
