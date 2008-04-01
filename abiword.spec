@@ -819,6 +819,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %dir %{_lib}/abiword-%{mver}
 %dir %{_lib}/abiword-%{mver}/plugins
+%dir %{_datadir}/abiword-%{mver}
 %{_datadir}/abiword-%{mver}/glade
 %{_datadir}/abiword-%{mver}/readme.txt
 %{_datadir}/abiword-%{mver}/strings
