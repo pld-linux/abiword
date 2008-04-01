@@ -34,7 +34,7 @@ Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.6.0
-Release:	0.2
+Release:	0.3
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -817,8 +817,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%dir %{_lib}/abiword-%{mver}
-%dir %{_lib}/abiword-%{mver}/plugins
+%dir %{_libdir}/abiword-%{mver}
+%dir %{_libdir}/abiword-%{mver}/plugins
 %dir %{_datadir}/abiword-%{mver}
 %{_datadir}/abiword-%{mver}/glade
 %{_datadir}/abiword-%{mver}/readme.txt
