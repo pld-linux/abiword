@@ -11,6 +11,7 @@
 #	   /usr/lib/abiword-2.6/plugins/libAbiGremlin.so
 #	   /usr/lib/abiword-2.6/plugins/libAbiOPML.so
 #	   /usr/lib/abiword-2.6/plugins/libAbiOpenXML.so
+#	   /usr/lib/abiword-2.6/plugins/libAbiWPG.so
 #	   /usr/lib/abiword-2.6/plugins/libLoadBindings.so
 #	   /usr/lib/abiword-2.6/plugins/libPresentation.so
 #	   /usr/lib/pkgconfig/abiword-2.6.pc
@@ -18,13 +19,14 @@
 #	   /usr/share/abiword-2.6/scripts/abw2html.pl
 #	   /usr/share/mime-info/abiword.keys
 #
-%bcond_without	gnome	# without GNOME libs
-%bcond_without	gda	# libgda support
-%bcond_with	goffice	# try build plugin-goffice
-%bcond_with	xhtml	# try build plugin-xhtml
-%bcond_with	ots	# try build plugin-ots
-%bcond_with	dash	# try build plugin-dash
-%bcond_with	bz2	# try build plugin-bz2
+%bcond_without	gnome		# without GNOME libs
+%bcond_without	gnomevfs	# gnome-vfs support
+%bcond_without	gda		# libgda support
+%bcond_with	goffice		# try build plugin-goffice (requires goffice < 0.6.0)
+%bcond_with	xhtml		# try build plugin-xhtml (compile error)
+%bcond_with	ots		# try build plugin-ots (requires ots >= 0.5.0)
+%bcond_with	dash		# try build plugin-dash (absolutly no idea)
+%bcond_with	bz2		# try build plugin-bz2
 #
 %define		mver	2.6
 #
@@ -59,6 +61,7 @@ BuildRequires:	eps-devel >= 1.5
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	glib2-devel >= 1:2.12.1
+#BuildRequires:	gnome-scan-devel < 0.6
 BuildRequires:	gtk+2-devel >= 2:2.10.1
 BuildRequires:	gtkmathview-devel >= 0.7.6
 BuildRequires:	gucharmap-devel >= 1.7.0
@@ -67,7 +70,7 @@ BuildRequires:	libglade2-devel >= 1:2.6.0
 BuildRequires:	libgnomedb-devel >= 1:1.2.2
 BuildRequires:	libgnomeprintui-devel >= 2.12.1
 BuildRequires:	libgnomeui-devel >= 2.15.91
-%{?with_goffice:BuildRequires:	libgoffice-devel >= 0.2.1}
+%{?with_goffice:BuildRequires:	libgoffice-devel >= 0.6.0}
 BuildRequires:	libgsf-devel >= 1.14.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
@@ -75,9 +78,12 @@ BuildRequires:	librsvg-devel >= 1:2.15.90
 BuildRequires:	libtool
 BuildRequires:	libwmf-devel >= 2:0.2.8.4
 BuildRequires:	libwpd-devel >= 0.8.5
+BuildRequires:	libwpg-devel >= 0.1.0
+BuildRequires:	libwps-devel >= 0.1.0
 BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	link-grammar-devel >= 4.2.1
-BuildRequires:	ots-devel >= 0.4.1
+BuildRequires:	loudmouth-devel >= 1.0.1
+%{?with_ots:BuildRequires:	ots-devel >= 0.5.0}
 BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	poppler-glib-devel >= 0.6
 BuildRequires:	popt-devel
@@ -764,13 +770,14 @@ mv abiword_48.png abiword.png
 %{__autoconf}
 %configure \
 	--disable-static \
+	--%{!?with_gnome:dis}%{?with_gnome:en}able-gnomeui \
+	--%{!?with_gnomevfs:dis}%{?with_gnomevfs:en}able-gnomevfs \
+	--enable-printing \
+	--enable-scripting \
 	--enable-threads \
 	--with-libxml2 \
 	--with-pspell \
 	--with-sys-wv
-
-# see TODO
-#	--%{!?with_gnome:dis}%{?with_gnome:en}able-gnome \
 
 %{__make}
 
@@ -781,7 +788,7 @@ cd abiword-plugins-%{version}
 %{__autoconf}
 %configure \
 	--with-abiword=.. \
-	%{!?with_goffice:--disable-abigochart} \
+	%{!?with_goffice:--disable-abigoffice} \
 	%{!?with_xhtml:--disable-xhtml}
 %{__make}
 
