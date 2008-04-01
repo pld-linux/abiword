@@ -7,18 +7,18 @@
 %bcond_without	gda	# libgda support
 %bcond_with	goffice	# try build plugin-goffice
 #
-%define		mver	2.4
+%define		mver	2.6
 #
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.4.6
-Release:	6
+Version:	2.6.0
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
-Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.bz2
-# Source0-md5:	8ed5fb282b9741aca75b9e47500d39a1
+Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
+# Source0-md5:	d627a5d1061160c683f2257da498355b
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mailmerge.patch
