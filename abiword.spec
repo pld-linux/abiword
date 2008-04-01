@@ -1,11 +1,30 @@
 #
 # TODO:
+# - package new plugins
+# - restore cliparts
 # - complete descriptions
 # - fix broken bconds
+# - installed, but unpackaged files
+#	   /usr/include/abiword-2.6/abiwidget.h
+#	   /usr/include/abiword-2.6/xap_UnixTableWidget.h
+#	   /usr/lib/abiword-2.6/plugins/libAbiCollab.so
+#	   /usr/lib/abiword-2.6/plugins/libAbiGremlin.so
+#	   /usr/lib/abiword-2.6/plugins/libAbiOPML.so
+#	   /usr/lib/abiword-2.6/plugins/libAbiOpenXML.so
+#	   /usr/lib/abiword-2.6/plugins/libLoadBindings.so
+#	   /usr/lib/abiword-2.6/plugins/libPresentation.so
+#	   /usr/lib/pkgconfig/abiword-2.6.pc
+#	   /usr/share/abiword-2.6/readme.abw
+#	   /usr/share/abiword-2.6/scripts/abw2html.pl
+#	   /usr/share/mime-info/abiword.keys
 #
 %bcond_without	gnome	# without GNOME libs
 %bcond_without	gda	# libgda support
 %bcond_with	goffice	# try build plugin-goffice
+%bcond_with	xhtml	# try build plugin-xhtml
+%bcond_with	ots	# try build plugin-ots
+%bcond_with	dash	# try build plugin-dash
+%bcond_with	bz2	# try build plugin-bz2
 #
 %define		mver	2.6
 #
@@ -13,12 +32,14 @@ Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.6.0
-Release:	0.1
+Release:	0.2
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
 # Source0-md5:	d627a5d1061160c683f2257da498355b
+Source1:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-plugins-%{version}.tar.gz
+# Source1-md5:	ebdc165d1b6c3c69f11148cf7841f257
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mailmerge.patch
@@ -720,21 +741,24 @@ This is the clipart portfolio used by AbiWord.
 Jest to teczka clipartów używanych przez AbiWorda.
 
 %prep
-%setup -q
+%setup -q -a1
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p0
-%patch5 -p1
-%patch6 -p0
+# needs some work
+#patch1 -p1
+# seems applied
+#patch2 -p1
+
+#plugins stuff
+#patch3 -p1
+#patch4 -p0
+#patch5 -p1
+#patch6 -p0
 
 # use generic icon name
-sed -i -e 's|abiword_48.png|abiword.png|' abi/GNUmakefile.am
-mv abi/abiword_48.png abi/abiword.png
+sed -i -e 's|abiword_48.png|abiword.png|' GNUmakefile.am
+mv abiword_48.png abiword.png
 
 %build
-cd abi
 %{__aclocal} -I ac-helpers
 %{__automake}
 %{__autoconf}
@@ -750,24 +774,29 @@ cd abi
 
 %{__make}
 
-cd ../abiword-plugins
-./nextgen.sh
+cd abiword-plugins-%{version}
+%{__libtoolize}
+%{__aclocal} -I ac-helpers
+%{__automake}
+%{__autoconf}
 %configure \
-	%{!?with_goffice:--disable-abigochart}
+	--with-abiword=.. \
+	%{!?with_goffice:--disable-abigochart} \
+	%{!?with_xhtml:--disable-xhtml}
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} -C abiword-plugins install \
+%{__make} -C abiword-plugins-%{version} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__make} -C abi install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	icondir=%{_pixmapsdir}
 
 # Remove useless files
-rm -f $RPM_BUILD_ROOT%{_libdir}/AbiWord-%{mver}/plugins/*.la
+rm -f $RPM_BUILD_ROOT%{_libdir}/abiword-%{mver}/plugins/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -781,210 +810,215 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%dir %{_datadir}/AbiSuite-%{mver}
-%dir %{_datadir}/AbiSuite-%{mver}/AbiWord
-%dir %{_datadir}/AbiSuite-%{mver}/AbiWord/scripts
-%dir %{_libdir}/AbiWord-%{mver}
-%dir %{_libdir}/AbiWord-%{mver}/plugins
-%{_datadir}/AbiSuite-%{mver}/AbiWord/glade
-%{_datadir}/AbiSuite-%{mver}/AbiWord/scripts/*
-%{_datadir}/AbiSuite-%{mver}/AbiWord/strings
-%{_datadir}/AbiSuite-%{mver}/AbiWord/system.profile*
-%{_datadir}/AbiSuite-%{mver}/icons
-%{_datadir}/AbiSuite-%{mver}/templates
+#dir %{_datadir}/AbiSuite-%{mver}
+#dir %{_datadir}/AbiSuite-%{mver}/AbiWord
+#dir %{_datadir}/AbiSuite-%{mver}/AbiWord/scripts
+#{_datadir}/AbiSuite-%{mver}/AbiWord/scripts/*
+#{_datadir}/AbiSuite-%{mver}/icons
+%{_datadir}/abiword-%{mver}/glade
+%{_datadir}/abiword-%{mver}/readme.txt
+%{_datadir}/abiword-%{mver}/strings
+%{_datadir}/abiword-%{mver}/system.profile*
+%{_datadir}/abiword-%{mver}/templates
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*.png
-%{_datadir}/AbiSuite-%{mver}/AbiWord/readme.txt
-%{_libdir}/AbiWord-%{mver}/plugins/AbiWord
 
 %files plugin-aiksaurus
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiAikSaurus.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiAikSaurus.so
 
 %files plugin-babelfish
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBabelfish.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiBabelfish.so
 
 %files plugin-capi
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCAPI.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiCAPI.so
 
 %files plugin-command
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiCommand.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiCommand.so
 
+%if %{with dash}
 %files plugin-dash
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiDash.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiDash.so
+%endif
 
 %files plugin-freetranslation
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiFreeTranslation.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiFreeTranslation.so
 
 %if %{with gda}
 %files plugin-gda
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGDA.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiGDA.so
 %endif
 
 %files plugin-gdict
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGdict.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiGdict.so
 
 %files plugin-gimp
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGimp.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiGimp.so
 
 %if %{with goffice}
 %files plugin-goffice
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGOChart.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiGOChart.so
 %endif
 
 %files plugin-google
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGoogle.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiGoogle.so
 
 %files plugin-mathview
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMathView.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiMathView.so
 
+%if %{with ots}
 %files plugin-ots
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiOTS.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiOTS.so
+%endif
 
 %files plugin-scripthappy
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiScriptHappy.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiScriptHappy.so
 
 %files plugin-urldict
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiURLDict.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiURLDict.so
 
 %files plugin-wikipedia
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWikipedia.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiWikipedia.so
 
 %files plugin-applix
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiApplix.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiApplix.so
 
 %files plugin-bmp
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBMP.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiBMP.so
 
+%if %{with bz2}
 %files plugin-bz2
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiBZ2.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiBZ2.so
+%endif
 
 %files plugin-clarisworks
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiClarisWorks.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiClarisWorks.so
 
 %files plugin-docbook
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiDocBook.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiDocBook.so
 
 %files plugin-eml
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiEML.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiEML.so
 
 %files plugin-hrtext
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiHRText.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiHRText.so
 
 %files plugin-hancom
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiHancom.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiHancom.so
 
 %files plugin-iscii
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiISCII.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiISCII.so
 
 %files plugin-jpeg
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiJPEG.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiJPEG.so
 
 %files plugin-kword
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiKWord.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiKWord.so
 
 %files plugin-latex
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiLaTeX.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiLaTeX.so
 
 %files plugin-link-grammar
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiGrammar.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiGrammar.so
 
 %files plugin-mif
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMIF.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiMIF.so
 
 %files plugin-mswrite
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiMSWrite.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiMSWrite.so
 
 %files plugin-nroff
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiNroff.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiNroff.so
 
 %files plugin-opendocument
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiOpenDocument.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiOpenDocument.so
 
 %files plugin-openwritter
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiOpenWriter.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiOpenWriter.so
 
 %files plugin-palmdoc
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPalmDoc.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiPalmDoc.so
 
 %files plugin-passepartout
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPassepartout.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiPassepartout.so
 
 %files plugin-pdf
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPDF.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiPDF.so
 
 %files plugin-psion
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiPsion.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiPsion.so
 
 %files plugin-rsvg
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiRSVG.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiRSVG.so
 
 %files plugin-sdw
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiSDW.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiSDW.so
 
 %files plugin-t602
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiT602.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiT602.so
 
 %files plugin-wmf
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWMF.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiWMF.so
 
 %files plugin-wml
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWML.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiWML.so
 
 %files plugin-wordperfect
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiWordPerfect.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiWordPerfect.so
 
+%if %{with xhtml}
 %files plugin-xhtml
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiXHTML.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiXHTML.so
+%endif
 
 %files plugin-xslfo
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/AbiWord-%{mver}/plugins/libAbiXSLFO.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiXSLFO.so
 
 %files clipart
 %defattr(644,root,root,755)
-%{_datadir}/AbiSuite-%{mver}/clipart
+#{_datadir}/AbiSuite-%{mver}/clipart
