@@ -1,0 +1,30 @@
+diff -u -r abiword-extras-2.6.0.orig/clipart/Makefile.am abiword-extras-2.6.0/clipart/Makefile.am
+--- abiword-extras-2.6.0.orig/clipart/Makefile.am	2008-03-18 23:18:48.000000000 +0100
++++ abiword-extras-2.6.0/clipart/Makefile.am	2008-03-26 13:43:30.000000000 +0100
+@@ -1,5 +1,5 @@
+ 
+-clipartdir = $(DESTDIR)/$(ABIWORD_EXTRAS_PKGDATADIR)/clipart
++clipartdir = $(ABIWORD_EXTRAS_PKGDATADIR)/clipart
+ clipart_DATA = \
+ 	book.png \
+ 	chip.png \
+diff -u -r abiword-extras-2.6.0.orig/dictionary/Makefile.am abiword-extras-2.6.0/dictionary/Makefile.am
+--- abiword-extras-2.6.0.orig/dictionary/Makefile.am	2008-03-18 23:18:47.000000000 +0100
++++ abiword-extras-2.6.0/dictionary/Makefile.am	2008-03-26 13:43:43.000000000 +0100
+@@ -1,5 +1,5 @@
+ 
+-dictionarydir = $(DESTDIR)/$(ABIWORD_EXTRAS_PKGDATADIR)/dictionary
++dictionarydir = $(ABIWORD_EXTRAS_PKGDATADIR)/dictionary
+ 
+ if BIGENDIAN
+ hash = BigEndian32.american.hash
+diff -u -r abiword-extras-2.6.0.orig/templates/Makefile.am abiword-extras-2.6.0/templates/Makefile.am
+--- abiword-extras-2.6.0.orig/templates/Makefile.am	2008-03-18 23:18:49.000000000 +0100
++++ abiword-extras-2.6.0/templates/Makefile.am	2008-03-26 13:43:51.000000000 +0100
+@@ -1,5 +1,5 @@
+ 
+-templatesdir = $(DESTDIR)/$(ABIWORD_EXTRAS_PKGDATADIR)/templates
++templatesdir = $(ABIWORD_EXTRAS_PKGDATADIR)/templates
+ templates_DATA = \
+ 	A4.awt \
+ 	Business-Letter.awt \
