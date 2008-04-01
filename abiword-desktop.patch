@@ -1,6 +1,7 @@
+MimeType: rm text/plain
 diff -aurN abiword-2.4.4.orig/abi/abiword.desktop abiword-2.4.4/abi/abiword.desktop
 --- abiword-2.4.4.orig/abi/abiword.desktop	2006-04-03 14:14:01.000000000 +0200
-+++ abiword-2.4.4/abi/abiword.desktop	2006-04-13 18:25:02.328406136 +0200
++++ abiword-2.4.4/abiword.desktop	2006-04-13 18:25:02.328406136 +0200
 @@ -1,13 +1,12 @@
  [Desktop Entry]
  Exec=abiword
@@ -13,8 +14,8 @@ diff -aurN abiword-2.4.4.orig/abi/abiword.desktop abiword-2.4.4/abi/abiword.desk
  StartupNotify=true
  Encoding=UTF-8
 -X-Desktop-File-Install-Version=0.9
--MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;text/plain;application/msword;application/rtf;application/vnd.plain;application/xhtml+xml;text/html;
-+MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;application/msword;application/rtf;
+-MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;text/plain;application/msword;application/rtf;application/vnd.plain;application/xhtml+xml;text/html;application/x-crossmark;application/docbook+xml;application/x-t602;application/vnd.oasis.opendocument.text;application/vnd.sun.xml.writer;application/vnd.stardivision.writer;text/vnd.wap.wml;application/wordperfect6;application/wordperfect5.1;
++MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;application/msword;application/rtf;application/vnd.plain;application/xhtml+xml;text/html;application/x-crossmark;application/docbook+xml;application/x-t602;application/vnd.oasis.opendocument.text;application/vnd.sun.xml.writer;application/vnd.stardivision.writer;text/vnd.wap.wml;application/wordperfect6;application/wordperfect5.1;
  Name=AbiWord
  GenericName=Word Processor
  Comment=AbiWord Word Processor
