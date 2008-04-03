@@ -9,7 +9,6 @@
 # - installed, but unpackaged files
 #	   /usr/include/abiword-2.6/abiwidget.h
 #	   /usr/include/abiword-2.6/xap_UnixTableWidget.h
-#	   /usr/lib/abiword-2.6/plugins/libAbiCollab.so
 #	   /usr/lib/abiword-2.6/plugins/libAbiGremlin.so
 #	   /usr/lib/abiword-2.6/plugins/libAbiOPML.so
 #	   /usr/lib/abiword-2.6/plugins/libAbiOpenXML.so
@@ -97,7 +96,6 @@ BuildRequires:	psiconv-devel >= 0.9.6
 BuildRequires:	t1lib-devel
 BuildRequires:	wv-devel >= 1.2.1
 Requires(post,postun):	desktop-file-utils
-Obsoletes:	abiword-plugin-collab
 Obsoletes:	abiword-plugin-gdkpixbuf
 Obsoletes:	abiword-plugin-gypsython
 Obsoletes:	abiword-plugin-magick
@@ -141,6 +139,19 @@ Allows to translate selected text.
 
 %description plugin-babelfish -l pl.UTF-8
 Wtyczka ta pozwala na przetłumaczenie wybranego tekstu.
+
+# abiCollab plugin
+%package plugin-collab
+Summary:	Remote collaborate for AbiWord
+Summary(pl):	Zdalna współpraca dla AbiWord
+Group:		Applications/Productivity
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+
+%description plugin-collab
+Allows to collaborate with a remote user.
+
+%description plugin-collab -l pl
+Pozwala na współpracę z innym użytkownikiem przez sieć.
 
 # abiCommand plugin
 %package plugin-command
@@ -869,6 +880,10 @@ rm -rf $RPM_BUILD_ROOT
 %files plugin-capi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiCAPI.so
+
+%files plugin-collab
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiCollab.so
 
 %files plugin-command
 %defattr(644,root,root,755)
