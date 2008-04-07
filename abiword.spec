@@ -88,6 +88,7 @@ BuildRequires:	loudmouth-devel >= 1.0.1
 BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	popt-devel
 BuildRequires:	psiconv-devel >= 0.9.6
+BuildRequires:	readline-devel
 BuildRequires:	t1lib-devel
 BuildRequires:	wv-devel >= 1.2.1
 Requires(post,postun):	desktop-file-utils
