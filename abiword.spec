@@ -1,7 +1,6 @@
 #
 # TODO:
 # - package new plugins
-# - restore cliparts
 # - complete descriptions
 # - fix broken bconds
 # - consider subpackage for helps
@@ -9,25 +8,26 @@
 # - installed, but unpackaged files
 #	   /usr/include/abiword-2.6/abiwidget.h
 #	   /usr/include/abiword-2.6/xap_UnixTableWidget.h
-#	   /usr/lib/abiword-2.6/plugins/libAbiGremlin.so
 #	   /usr/lib/abiword-2.6/plugins/libAbiOPML.so
 #	   /usr/lib/abiword-2.6/plugins/libAbiOpenXML.so
 #	   /usr/lib/abiword-2.6/plugins/libAbiWPG.so
 #	   /usr/lib/abiword-2.6/plugins/libLoadBindings.so
 #	   /usr/lib/abiword-2.6/plugins/libPresentation.so
 #	   /usr/lib/pkgconfig/abiword-2.6.pc
+#	   /usr/share/abiword-2.6/Presentation.xml
 #	   /usr/share/abiword-2.6/readme.abw
 #	   /usr/share/abiword-2.6/scripts/abw2html.pl
 #	   /usr/share/mime-info/abiword.keys
 #
+%bcond_with	capi		# AbiCAPI plugin (disappeared)
+%bcond_without	gda		# libgda support
 %bcond_without	gnome		# without GNOME libs
 %bcond_without	gnomevfs	# gnome-vfs support
-%bcond_without	gda		# libgda support
 %bcond_with	goffice		# try build plugin-goffice (requires goffice < 0.6.0)
 %bcond_with	xhtml		# try build plugin-xhtml (compile error)
 %bcond_with	ots		# try build plugin-ots (requires ots >= 0.5.0)
 %bcond_with	dash		# try build plugin-dash (absolutly no idea)
-%bcond_with	bz2		# try build plugin-bz2
+%bcond_with	bz2		# try build plugin-bz2 (disappeared)
 #
 %define		mver	2.6
 #
@@ -49,20 +49,16 @@ Source3:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-do
 # Source3-md5:	6907a7279e9da78f2e7b04fa81cc994c
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
-Patch2:		%{name}-extras-destdir.patch
-Patch3:		%{name}-poppler05x.patch
 Patch4:		%{name}-goffice05.patch
-Patch5:		%{name}-eps15.patch
-Patch6:		%{name}-poppler-0.6-api.patch
 URL:		http://www.abisource.com/
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
 BuildRequires:	aspell-devel >= 0.60.4
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	boost-devel >= 1.33.1
 BuildRequires:	bzip2-devel
 BuildRequires:	curl-devel
 BuildRequires:	enchant-devel >= 1.2.6
-BuildRequires:	eps-devel >= 1.5
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	glib2-devel >= 1:2.12.1
@@ -90,7 +86,6 @@ BuildRequires:	link-grammar-devel >= 4.2.1
 BuildRequires:	loudmouth-devel >= 1.0.1
 %{?with_ots:BuildRequires:	ots-devel >= 0.5.0}
 BuildRequires:	pkgconfig >= 0.9.0
-BuildRequires:	poppler-glib-devel >= 0.6
 BuildRequires:	popt-devel
 BuildRequires:	psiconv-devel >= 0.9.6
 BuildRequires:	t1lib-devel
@@ -768,13 +763,8 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %patch0 -p1
 # needs some work
 #patch1 -p1
-%patch2 -p0
 
-#plugins stuff
-#patch3 -p1
 #patch4 -p0
-#patch5 -p1
-#patch6 -p0
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' GNUmakefile.am
@@ -877,9 +867,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiBabelfish.so
 
+%if %{with capi}
 %files plugin-capi
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiCAPI.so
+%endif
 
 %files plugin-collab
 %defattr(644,root,root,755)
