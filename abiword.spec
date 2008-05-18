@@ -85,6 +85,7 @@ BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	link-grammar-devel >= 4.2.1
 BuildRequires:	loudmouth-devel >= 1.0.1
 %{?with_ots:BuildRequires:	ots-devel >= 0.5.0}
+BuildRequires:	perl-devel
 BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	popt-devel
 BuildRequires:	psiconv-devel >= 0.9.6
