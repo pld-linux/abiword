@@ -34,19 +34,19 @@
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.6.3
-Release:	2
+Version:	2.6.4
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
-# Source0-md5:	40d9da8b04c70035b89f8ad7fcc4519d
+# Source0-md5:	16748b2d6e318e0e2a25581005e1943a
 Source1:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-plugins-%{version}.tar.gz
-# Source1-md5:	92a2e98fb26595666cb68e9bb56babd0
+# Source1-md5:	3bf973c5a1446ef3eaf980724821d6e9
 Source2:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-extras-%{version}.tar.gz
-# Source2-md5:	4985165b8e166b35d9f9a2ca3090e928
+# Source2-md5:	d0893e611d37c3ba09b77fa720a3904d
 Source3:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-docs-%{version}.tar.gz
-# Source3-md5:	400702fa12e07e39c7a6153c942511ee
+# Source3-md5:	9f8c0cd81d8889cc90550049f40a484a
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch4:		%{name}-goffice05.patch
@@ -860,6 +860,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/abiword-%{mver}/templates
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*.png
+
+# XXX TODO: move to subpackages?
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiOPML.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiOpenXML.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiWPG.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libLoadBindings.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libPresentation.so
 
 %files plugin-aiksaurus
 %defattr(644,root,root,755)
