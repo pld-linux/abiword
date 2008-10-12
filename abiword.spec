@@ -22,7 +22,7 @@
 %bcond_with	capi		# AbiCAPI plugin (disappeared)
 %bcond_without	gda		# libgda support
 %bcond_without	gnome		# without GNOME libs
-%bcond_without	gnomevfs	# gnome-vfs support
+%bcond_with	gnomevfs	# gnome-vfs support
 %bcond_with	goffice		# try build plugin-goffice (requires goffice < 0.6.0)
 %bcond_with	xhtml		# try build plugin-xhtml (compile error)
 %bcond_with	ots		# try build plugin-ots (requires ots >= 0.5.0)
@@ -35,7 +35,7 @@ Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.6.4
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		X11/Applications
@@ -72,7 +72,8 @@ BuildRequires:	libgnomedb-devel >= 1:1.2.2
 BuildRequires:	libgnomeprintui-devel >= 2.12.1
 BuildRequires:	libgnomeui-devel >= 2.15.91
 %{?with_goffice:BuildRequires:	libgoffice-devel >= 0.6.0}
-BuildRequires:	libgsf-gnome-devel >= 1.14.1
+%{?with_gnomevfs:BuildRequires:	libgsf-gnome-devel >= 1.14.1}
+BuildRequires:	libgsf-devel >= 1.14.1
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 1:2.15.90
