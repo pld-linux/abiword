@@ -4,7 +4,6 @@
 # - complete descriptions
 # - fix broken bconds
 # - consider subpackage for helps
-# - consider lang()ed helps
 # - installed, but unpackaged files
 #	   /usr/include/abiword-2.6/abiwidget.h
 #	   /usr/include/abiword-2.6/xap_UnixTableWidget.h
@@ -854,7 +853,10 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/abiword-%{mver}
 %{_datadir}/abiword-%{mver}/dictionary
 %{_datadir}/abiword-%{mver}/glade
-%{_datadir}/abiword-%{mver}/help
+%dir %{_datadir}/abiword-%{mver}/help
+%{_datadir}/abiword-%{mver}/help/en-US
+%lang(fr) %{_datadir}/abiword-%{mver}/help/fr-FR
+%lang(pl) %{_datadir}/abiword-%{mver}/help/pl-PL
 %{_datadir}/abiword-%{mver}/readme.txt
 %{_datadir}/abiword-%{mver}/strings
 %{_datadir}/abiword-%{mver}/system.profile*
