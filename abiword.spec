@@ -141,7 +141,7 @@ Wtyczka ta pozwala na przetłumaczenie wybranego tekstu.
 # abiCollab plugin
 %package plugin-collab
 Summary:	Remote collaborate for AbiWord
-Summary(pl):	Zdalna współpraca dla AbiWord
+Summary(pl):	Zdalna współpraca dla AbiWorda
 Group:		Applications/Productivity
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -149,7 +149,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Allows to collaborate with a remote user.
 
 %description plugin-collab -l pl
-Pozwala na współpracę z innym użytkownikiem przez sieć.
+Wtyczka pozwalająca na współpracę z innym użytkownikiem przez sieć.
 
 # abiCommand plugin
 %package plugin-command
