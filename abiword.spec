@@ -5,17 +5,6 @@
 # - fix broken bconds
 # - consider subpackage for helps
 # - installed, but unpackaged files
-#	   /usr/include/abiword-2.6/abiwidget.h
-#	   /usr/include/abiword-2.6/xap_UnixTableWidget.h
-#	   /usr/lib/abiword-2.6/plugins/libAbiOPML.so
-#	   /usr/lib/abiword-2.6/plugins/libAbiOpenXML.so
-#	   /usr/lib/abiword-2.6/plugins/libAbiWPG.so
-#	   /usr/lib/abiword-2.6/plugins/libLoadBindings.so
-#	   /usr/lib/abiword-2.6/plugins/libPresentation.so
-#	   /usr/lib/pkgconfig/abiword-2.6.pc
-#	   /usr/share/abiword-2.6/Presentation.xml
-#	   /usr/share/abiword-2.6/readme.abw
-#	   /usr/share/abiword-2.6/scripts/abw2html.pl
 #	   /usr/share/mime-info/abiword.keys
 #
 %bcond_with	capi		# AbiCAPI plugin (disappeared)
@@ -108,6 +97,18 @@ the UNIX platform.
 %description -l pl.UTF-8
 AbiWord jest wieloplatformowym procesorem tekstu z interfejsem GTK+ na
 platformie UNIX.
+
+%package devel
+Summary:	Files for AbiWord plugins development
+Summary(pl.UTF-8):	Pliki do tworzenia wtyczek dla AbiWorda
+Group:		Development/Libraries
+# doesn't require base
+
+%description devel
+Files for AbiWord plugins development.
+
+%description devel -l pl.UTF-8
+Pliki do tworzenia wtyczek dla AbiWorda.
 
 # plugins - tools
 # abiAiksaurus
@@ -851,14 +852,18 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/abiword-%{mver}
 %dir %{_libdir}/abiword-%{mver}/plugins
 %dir %{_datadir}/abiword-%{mver}
+%{_datadir}/abiword-%{mver}/Presentation.xml
 %{_datadir}/abiword-%{mver}/dictionary
 %{_datadir}/abiword-%{mver}/glade
 %dir %{_datadir}/abiword-%{mver}/help
 %{_datadir}/abiword-%{mver}/help/en-US
 %lang(fr) %{_datadir}/abiword-%{mver}/help/fr-FR
 %lang(pl) %{_datadir}/abiword-%{mver}/help/pl-PL
+%{_datadir}/abiword-%{mver}/readme.abw
 %{_datadir}/abiword-%{mver}/readme.txt
 %{_datadir}/abiword-%{mver}/strings
+%dir %{_datadir}/abiword-%{mver}/scripts
+%attr(755,root,root) %{_datadir}/abiword-%{mver}/scripts/abw2html.pl
 %{_datadir}/abiword-%{mver}/system.profile*
 %{_datadir}/abiword-%{mver}/templates
 %{_desktopdir}/*.desktop
@@ -870,6 +875,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libAbiWPG.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libLoadBindings.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/libPresentation.so
+
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/abiword-%{mver}
+%{_pkgconfigdir}/abiword-%{mver}.pc
 
 %files plugin-aiksaurus
 %defattr(644,root,root,755)
