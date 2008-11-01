@@ -754,6 +754,7 @@ Wtyczka CAPI.
 Summary:	AbiWord Clipart
 Summary(pl.UTF-8):	Cliparty dla AbiWorda
 Group:		X11/Applications/Editors
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description clipart
 This is the clipart portfolio used by AbiWord.
