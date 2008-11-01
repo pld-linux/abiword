@@ -26,7 +26,7 @@ Version:	2.6.4
 Release:	4
 Epoch:		1
 License:	GPL
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
 # Source0-md5:	16748b2d6e318e0e2a25581005e1943a
 Source1:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-plugins-%{version}.tar.gz
@@ -115,7 +115,7 @@ Pliki do tworzenia wtyczek dla AbiWorda.
 %package plugin-aiksaurus
 Summary:	AbiWord Aiksaurus plugin
 Summary(pl.UTF-8):	Wtyczka AbiWorda Aiksaurus
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-aiksaurus
@@ -129,7 +129,7 @@ bliskoznacznych.
 %package plugin-babelfish
 Summary:	AbiWord Babelfish plugin
 Summary(pl.UTF-8):	Wtyczka AbiWorda Babelfish
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-babelfish
@@ -142,7 +142,7 @@ Wtyczka ta pozwala na przetłumaczenie wybranego tekstu.
 %package plugin-collab
 Summary:	Remote collaborate for AbiWord
 Summary(pl):	Zdalna współpraca dla AbiWorda
-Group:		Applications/Productivity
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-collab
@@ -155,7 +155,7 @@ Wtyczka pozwalająca na współpracę z innym użytkownikiem przez sieć.
 %package plugin-command
 Summary:	AbiWord command line control
 Summary(pl.UTF-8):	Konrolowanie AbiWorda z linii poleceń
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-command
@@ -168,7 +168,7 @@ Wtyczka ta pozwala na kontrolowanie AbiWorda z poziomu linii poleceń.
 %package plugin-dash
 Summary:	AbiWord Dash plugin
 Summary(pl.UTF-8):	Wtyczka Dash dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-dash
@@ -181,7 +181,7 @@ Wtyczka Dash.
 %package plugin-freetranslation
 Summary:	AbiWord freetranslation.com plugin
 Summary(pl.UTF-8):	Wtyczka AbiWorda dla freetranslation.com
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-freetranslation
@@ -194,7 +194,7 @@ Wtyczka ta pozwala przetłumaczyć wybrany tekst.
 %package plugin-gda
 Summary:	AbiWord GDA plugin
 Summary(pl.UTF-8):	Wtyczka AbiWorda dla GDA
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gnome-database-access-properties >= 1:1.2.1
 
@@ -209,7 +209,7 @@ pośrednictwem libgda.
 %package plugin-gdict
 Summary:	AbiWord gDict plugin
 Summary(pl.UTF-8):	Wtyczka AbiWorda gDict
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-gdict
@@ -223,7 +223,7 @@ tekstu.
 %package plugin-gimp
 Summary:	AbiWord image editor plugin
 Summary(pl.UTF-8):	Wtyczka AbiWorda dla edytorów obrazu
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-gimp
@@ -237,7 +237,7 @@ obróbki, takim jak Gimp.
 %package plugin-goffice
 Summary:	GNOME Office plugin
 Summary(pl.UTF-8):	Wtyczka GNOME Office
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-goffice
@@ -251,7 +251,7 @@ aplikacjami.
 %package plugin-google
 Summary:	AbiWord Google plugin
 Summary(pl.UTF-8):	Wtyczka Google dla AbiWorda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-google
@@ -265,7 +265,7 @@ tekstu.
 %package plugin-mathview
 Summary:	AbiWord MathView plugin
 Summary(pl.UTF-8):	Wtyczka MAthView dla AbiWorda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-mathview
@@ -278,7 +278,7 @@ Pozwala na wstawianie i edycję równań w stylu MathML lub LaTeX.
 %package plugin-ots
 Summary:	AbiWord OTS plugin
 Summary(pl.UTF-8):	Wtyczka OTS dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-ots
@@ -291,7 +291,7 @@ Wtyczka ta służy do tworzenia podsumowania dokumentu.
 %package plugin-scripthappy
 Summary:	AbiWord ScriptHappy plugin
 Summary(pl.UTF-8):	Wtyczka ScriptHappy dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-scripthappy
@@ -304,7 +304,7 @@ Wtyczka ScriptHappy.
 %package plugin-urldict
 Summary:	AbiWord URLDict plugin
 Summary(pl.UTF-8):	Wtyczka URLDict dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-urldict
@@ -317,7 +317,7 @@ Słownik internetowy.
 %package plugin-wikipedia
 Summary:	AbiWord Wikipedia plugin
 Summary(pl.UTF-8):	Wtyczka Wikipedia dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-wikipedia
@@ -332,7 +332,7 @@ zaznaczonego tekstu.
 %package plugin-applix
 Summary:	AbiWord Applix plugin
 Summary(pl.UTF-8):	Wtyczka Applix dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-applix
@@ -345,7 +345,7 @@ Wtyczka ta służy do importu/eksportu plików Applix Worda.
 %package plugin-bmp
 Summary:	AbiWord BMP plugin
 Summary(pl.UTF-8):	Wtyczka BMP dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-bmp
@@ -358,7 +358,7 @@ Wtyczka ta służy do wyświetlania bitmap.
 %package plugin-bz2
 Summary:	AbiWord BZ2 plugin
 Summary(pl.UTF-8):	Wtyczka BZ2 dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-bz2
@@ -372,7 +372,7 @@ pomocy bzip2.
 %package plugin-clarisworks
 Summary:	AbiWord ClarisWorks plugin
 Summary(pl.UTF-8):	Wtyczka ClarisWorks dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-clarisworks
@@ -385,7 +385,7 @@ Wtyczka ta służy do importu/eksportu plików Clarisworks.
 %package plugin-coquille
 Summary:	AbiWord Coquille plugin
 Summary(pl.UTF-8):	Wtyczka Coquille dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-coquille
@@ -398,7 +398,7 @@ Rozszerzenia Docbooka.
 %package plugin-docbook
 Summary:	AbiWord DocBook plugin
 Summary(pl.UTF-8):	Wtyczka DocBook dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-docbook
@@ -412,7 +412,7 @@ Docbook.
 %package plugin-eml
 Summary:	AbiWord EML plugin
 Summary(pl.UTF-8):	Wtyczka EML dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-eml
@@ -426,7 +426,7 @@ Outlook.
 %package plugin-hrtext
 Summary:	AbiWord HRText plugin
 Summary(pl.UTF-8):	Wtyczka HRText dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-hrtext
@@ -439,7 +439,7 @@ Wtyczka ta służy do eksportu ze znacznikiem "grupa news".
 %package plugin-hancom
 Summary:	AbiWord Hancom plugin
 Summary(pl.UTF-8):	Wtyczka Hancom dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-hancom
@@ -452,7 +452,7 @@ Wtyczka ta służy jest importerem formatu Hancom Word.
 %package plugin-iscii
 Summary:	AbiWord ISCII plugin
 Summary(pl.UTF-8):	Wtyczka dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-iscii
@@ -466,7 +466,7 @@ ISCII (Indic script).
 %package plugin-jpeg
 Summary:	AbiWord JPEG plugin
 Summary(pl.UTF-8):	Wtyczka JPEG dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-jpeg
@@ -479,7 +479,7 @@ Wtyczka ta służy do wyświetlania obrazów w formacie JPEG.
 %package plugin-kword
 Summary:	AbiWord KWord plugin
 Summary(pl.UTF-8):	Wtyczka KWord dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-kword
@@ -492,7 +492,7 @@ Wtyczka ta służy do importu/eksportu plików KWorda.
 %package plugin-latex
 Summary:	AbiWord LaTeX plugin
 Summary(pl.UTF-8):	Wtyczka LaTeX dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-latex
@@ -505,7 +505,7 @@ Wtyczka ta służy do eksportu do LaTeXa.
 %package plugin-link-grammar
 Summary:	AbiWord Link Grammar plugin
 Summary(pl.UTF-8):	Wtyczka Gramatyki dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-link-grammar
@@ -518,7 +518,7 @@ Wtyczka Gramatyki dla Abiworda.
 %package plugin-mif
 Summary:	AbiWord MIF plugin
 Summary(pl.UTF-8):	Wtyczka MIF dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-mif
@@ -531,7 +531,7 @@ Wtyczka MIF.
 %package plugin-mswrite
 Summary:	AbiWord MSWrite plugin
 Summary(pl.UTF-8):	Wtyczka MSWrite dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-mswrite
@@ -544,7 +544,7 @@ Wtyczka ta służy do importu plików MS Write'a.
 %package plugin-nroff
 Summary:	AbiWord Nroff plugin
 Summary(pl.UTF-8):	Wtyczka Nroff dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-nroff
@@ -557,7 +557,7 @@ Typy plików nroff/man.
 %package plugin-opendocument
 Summary:	AbiWord OpenDocument plugin
 Summary(pl.UTF-8):	Wtyczka OpenDocument dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-opendocument
@@ -570,7 +570,7 @@ Wtyczka ta służy do importu/eksportu plików OpenDocument.
 %package plugin-openwritter
 Summary:	AbiWord OpenWriter plugin
 Summary(pl.UTF-8):	Wtyczka OpenWriter dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-openwritter
@@ -583,7 +583,7 @@ Wtyczka ta służy do importu/eksportu plików OpenOffice'a.
 %package plugin-palmdoc
 Summary:	AbiWord PalmDoc plugin
 Summary(pl.UTF-8):	Wtyczka PalmDoc dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-palmdoc
@@ -596,7 +596,7 @@ Wtyczka PalmDoc.
 %package plugin-passepartout
 Summary:	AbiWord Passepartout plugin
 Summary(pl.UTF-8):	Wtyczka Passepartout dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-passepartout
@@ -609,7 +609,7 @@ Wtyczka Passepartout.
 %package plugin-pdf
 Summary:	AbiWord PDF plugin
 Summary(pl.UTF-8):	Wtyczka PDF dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-pdf
@@ -622,7 +622,7 @@ Eksportuje dokumenty do formatu PDF.
 %package plugin-psion
 Summary:	AbiWord Psion plugin
 Summary(pl.UTF-8):	Wtyczka Psion dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-psion
@@ -635,7 +635,7 @@ Wtyczka ta służy do importu/eksportu plików Psiona.
 %package plugin-rsvg
 Summary:	AbiWord RSVG plugin
 Summary(pl.UTF-8):	Wtyczka RSVG dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-rsvg
@@ -648,7 +648,7 @@ Wtyczka ta służy do wyświetlania plików SVG.
 %package plugin-sdw
 Summary:	AbiWord SDW plugin
 Summary(pl.UTF-8):	Wtyczka SDW dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-sdw
@@ -661,7 +661,7 @@ Wtyczka ta służy do importu plików StarOffice'a 5.x.
 %package plugin-t602
 Summary:	AbiWord T602 plugin
 Summary(pl.UTF-8):	Wtyczka T602 dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-t602
@@ -674,7 +674,7 @@ Wtyczka ta służy do importu plików T602.
 %package plugin-wmf
 Summary:	AbiWord WMF plugin
 Summary(pl.UTF-8):	Wtyczka WMF dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-wmf
@@ -687,7 +687,7 @@ Wtyczka ta służy do wyświetlania plików typu Windows Metafile.
 %package plugin-wml
 Summary:	AbiWord WML plugin
 Summary(pl.UTF-8):	Wtyczka WML dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-wml
@@ -700,7 +700,7 @@ Wtyczka ta służy do importu/eksportu plików WML.
 %package plugin-wordperfect
 Summary:	AbiWord WordPerfect plugin
 Summary(pl.UTF-8):	Wtyczka WordPerfect dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-wordperfect
@@ -714,7 +714,7 @@ WordPerfect.
 %package plugin-xhtml
 Summary:	AbiWord XHTML plugin
 Summary(pl.UTF-8):	Wtyczka XHTML dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-xhtml
@@ -727,7 +727,7 @@ Wtyczka ta służy do importu plików HTML/wieloczęściowego HTML.
 %package plugin-xslfo
 Summary:	AbiWord XSLFO plugin
 Summary(pl.UTF-8):	Wtyczka XSLFO dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-xslfo
@@ -741,7 +741,7 @@ Wtyczka ta służy do importu/eksportu XSL-FO.
 %package plugin-capi
 Summary:	AbiWord CAPI plugin
 Summary(pl.UTF-8):	Wtyczka CAPI dla Abiworda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description plugin-capi
@@ -753,7 +753,7 @@ Wtyczka CAPI.
 %package clipart
 Summary:	AbiWord Clipart
 Summary(pl.UTF-8):	Cliparty dla AbiWorda
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 
 %description clipart
 This is the clipart portfolio used by AbiWord.
