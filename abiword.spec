@@ -22,19 +22,19 @@
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.6.4
-Release:	4
+Version:	2.6.6
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications/Editors
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
-# Source0-md5:	16748b2d6e318e0e2a25581005e1943a
+# Source0-md5:	b9de84f03f555d4490b63e5b7f53e2f1
 Source1:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-plugins-%{version}.tar.gz
-# Source1-md5:	3bf973c5a1446ef3eaf980724821d6e9
+# Source1-md5:	45dabc491976e3f21d943817e61b9d89
 Source2:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-extras-%{version}.tar.gz
-# Source2-md5:	d0893e611d37c3ba09b77fa720a3904d
+# Source2-md5:	15db5e3ffa5429d2ce773351fc6fdb72
 Source3:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-docs-%{version}.tar.gz
-# Source3-md5:	9f8c0cd81d8889cc90550049f40a484a
+# Source3-md5:	833129f266e699b3cf0f3774e005a312
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch4:		%{name}-goffice05.patch
@@ -863,10 +863,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/abiword-%{mver}/readme.abw
 %{_datadir}/abiword-%{mver}/readme.txt
 %{_datadir}/abiword-%{mver}/strings
-%dir %{_datadir}/abiword-%{mver}/scripts
-%attr(755,root,root) %{_datadir}/abiword-%{mver}/scripts/abw2html.pl
 %{_datadir}/abiword-%{mver}/system.profile*
 %{_datadir}/abiword-%{mver}/templates
+%{_datadir}/abiword-%{mver}/xsltml
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*.png
 
