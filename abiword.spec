@@ -22,19 +22,19 @@
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.6.6
+Version:	2.6.8
 Release:	2
 Epoch:		1
 License:	GPL
 Group:		X11/Applications/Editors
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
-# Source0-md5:	b9de84f03f555d4490b63e5b7f53e2f1
+# Source0-md5:	fab04d8ef999c303f720197adf261310
 Source1:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-plugins-%{version}.tar.gz
-# Source1-md5:	45dabc491976e3f21d943817e61b9d89
+# Source1-md5:	421c49723e209c971ddb0798c1b313a9
 Source2:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-extras-%{version}.tar.gz
-# Source2-md5:	15db5e3ffa5429d2ce773351fc6fdb72
+# Source2-md5:	e3cfff6ad4cda3e4200a75fd2665857a
 Source3:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-docs-%{version}.tar.gz
-# Source3-md5:	833129f266e699b3cf0f3774e005a312
+# Source3-md5:	5698c79cfa179f4b15c82a699d11a309
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch4:		%{name}-goffice05.patch
