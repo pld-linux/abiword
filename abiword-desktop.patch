@@ -1,23 +1,22 @@
 MimeType: rm text/plain
 --- abiword-2.6.2/abiword.desktop.orig	2008-04-07 04:09:52.249900986 +0200
 +++ abiword-2.6.2/abiword.desktop	2008-04-07 04:12:52.237530844 +0200
-@@ -1,13 +1,12 @@
+@@ -1,12 +1,12 @@
  [Desktop Entry]
  Exec=abiword
 -Icon=abiword_48
-+Icon=abiword.png
++Icon=abiword
  Terminal=false
  Type=Application
--Categories=Application;Office;WordProcessor;GNOME;GTK;X-Red-Hat-Base;
+-Categories=Office;WordProcessor;GNOME;GTK;X-Red-Hat-Base;
 +Categories=GTK;GNOME;Office;WordProcessor;
  StartupNotify=true
- Encoding=UTF-8
--X-Desktop-File-Install-Version=0.9
--MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;text/plain;application/msword;application/rtf;application/vnd.plain;application/xhtml+xml;text/html;application/x-crossmark;application/docbook+xml;application/x-t602;application/vnd.oasis.opendocument.text;application/vnd.sun.xml.writer;application/vnd.stardivision.writer;text/vnd.wap.wml;application/wordperfect6;application/wordperfect5.1;
-+MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;application/msword;application/rtf;application/vnd.plain;application/xhtml+xml;text/html;application/x-crossmark;application/docbook+xml;application/x-t602;application/vnd.oasis.opendocument.text;application/vnd.sun.xml.writer;application/vnd.stardivision.writer;text/vnd.wap.wml;application/wordperfect6;application/wordperfect5.1;
+ X-Desktop-File-Install-Version=0.9
+-MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;text/plain;application/msword;application/rtf;application/vnd.plain;application/xhtml+xml;text/html;application/x-crossmark;application/docbook+xml;application/x-t602;application/vnd.oasis.opendocument.text;application/vnd.sun.xml.writer;application/vnd.stardivision.writer;text/vnd.wap.wml;application/wordperfect6;application/wordperfect5.1;application/vnd.wordperfect;application/x-abicollab;
++MimeType=application/x-abiword;text/x-abiword;text/x-xml-abiword;application/msword;application/rtf;application/vnd.plain;application/xhtml+xml;text/html;application/x-crossmark;application/docbook+xml;application/x-t602;application/vnd.oasis.opendocument.text;application/vnd.sun.xml.writer;application/vnd.stardivision.writer;text/vnd.wap.wml;application/wordperfect6;application/wordperfect5.1;application/vnd.wordperfect;application/x-abicollab;
  Name=AbiWord
  GenericName=Word Processor
- Comment=AbiWord Word Processor
+ Comment=Compose, edit, and view documents
 @@ -29,7 +28,7 @@
  Name[fr]=Traitement de texte AbiWord
  GenericName[fr]=Traitement de texte
