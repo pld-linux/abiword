@@ -22,6 +22,7 @@ Group:		X11/Applications/Editors
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
 # Source0-md5:	284fe25289c160c3797b527a8aacad12
 Patch0:		%{name}-desktop.patch
+Patch1:		libpngX.patch
 URL:		http://www.abisource.com/
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
 BuildRequires:	aspell-devel >= 0.60.4
@@ -309,6 +310,7 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' Makefile.am

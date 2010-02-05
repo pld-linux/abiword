@@ -1,0 +1,33 @@
+--- abiword-2.8.1/plugins/garble/Makefile.am.orig	2009-10-20 17:07:49.000000000 +0200
++++ abiword-2.8.1/plugins/garble/Makefile.am	2010-02-05 17:05:16.644285818 +0100
+@@ -8,7 +8,7 @@ plugin_LTLIBRARIES = garble.la
+ 
+ garble_la_LIBADD = \
+ 	xp/libxp.la \
+-	$(GARBLE_LIBS) -lpng12 -ljpeg
++	$(GARBLE_LIBS) -lpng -ljpeg
+ 
+ garble_la_LDFLAGS = \
+ 	$(GARBLE_LIBS) \
+--- abiword-2.8.1/plugins/rsvg/Makefile.am.orig	2009-10-20 17:07:49.000000000 +0200
++++ abiword-2.8.1/plugins/rsvg/Makefile.am	2010-02-05 17:05:16.870953670 +0100
+@@ -6,7 +6,7 @@ plugin_LTLIBRARIES = rsvg.la
+ 
+ rsvg_la_LIBADD = \
+ 	xp/libxp.la \
+-	$(RSVG_LIBS) -lpng12
++	$(RSVG_LIBS) -lpng
+ 
+ rsvg_la_LDFLAGS = \
+ 	-avoid-version \
+--- abiword-2.8.1/plugin-configure.m4.orig	2010-02-05 17:05:54.863451295 +0100
++++ abiword-2.8.1/plugin-configure.m4	2010-02-05 17:06:05.057616795 +0100
+@@ -1553,7 +1553,7 @@ if test "$enable_bmp" == "yes" || \
+ # TODO check for libpng, well abiword links to it anyways
+ 
+ BMP_CFLAGS="$BMP_CFLAGS "'${PLUGIN_CFLAGS}'
+-BMP_LIBS="$BMP_LIBS "'${PLUGIN_LIBS} -lpng12'
++BMP_LIBS="$BMP_LIBS "'${PLUGIN_LIBS} -lpng'
+ 
+ if test "$enable_bmp_builtin" == "yes"; then
+ 	BMP_CFLAGS="$BMP_CFLAGS -DABI_PLUGIN_BUILTIN"
