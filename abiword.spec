@@ -25,13 +25,13 @@ Patch0:		%{name}-desktop.patch
 Patch1:		libpngX.patch
 URL:		http://www.abisource.com/
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
-BuildRequires:	aspell-devel >= 0.60.4
+#BuildRequires:	aspell-devel >= 0.60.4
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	boost-devel >= 1.33.1
 BuildRequires:	bzip2-devel
 BuildRequires:	cairo-devel
-BuildRequires:	curl-devel
+#BuildRequires:	curl-devel
 BuildRequires:	enchant-devel >= 1.2.6
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
@@ -42,12 +42,12 @@ BuildRequires:	gtkmathview-devel >= 0.7.6
 BuildRequires:	gucharmap-devel >= 1.7.0
 %{?with_gda:BuildRequires:	libgda-devel >= 1:1.2.3}
 %{?with_gda:BuildRequires:	libgnomedb-devel >= 1:1.2.0}
-BuildRequires:	libgnomeprintui-devel >= 2.12.1
+#BuildRequires:	libgnomeprintui-devel >= 2.12.1
 BuildRequires:	libgnomeui-devel >= 2.15.91
 BuildRequires:	libgoffice-devel >= 0.6.0
 %{?with_goffice:BuildRequires:	libgoffice-devel >= 0.8.0}
-%{?with_gnomevfs:BuildRequires:	libgsf-gnome-devel >= 1.14.1}
 BuildRequires:	libgsf-devel >= 1.14.9
+#%{?with_gnomevfs:BuildRequires:	libgsf-gnome-devel >= 1.14.1}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librsvg-devel >= 1:2.16.0
