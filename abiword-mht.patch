@@ -1,0 +1,56 @@
+--- abiword-2.8.1.orig/plugins/mht/xp/ie_imp_MHT.cpp	2009-05-27 14:49:02.000000000 +0200
++++ abiword-2.8.1/plugins/mht/xp/ie_imp_MHT.cpp	2010-02-14 18:57:15.942889982 +0100
+@@ -292,7 +292,7 @@
+ 		}
+ 
+ 	IE_ImpGraphic * pieg = 0;
+-	if (IE_ImpGraphic::constructImporter (pBB, IEGFT_Unknown, &pieg) != UT_OK)
++	if (IE_ImpGraphic::constructImporter (*pBB, IEGFT_Unknown, &pieg) != UT_OK)
+ 		{
+ 			UT_DEBUGMSG(("unable to construct image importer!\n"));
+ 			return 0;
+--- abiword-2.8.1.orig/src/wp/impexp/xp/ie_imp_XML.cpp	2009-06-25 07:28:16.000000000 +0200
++++ abiword-2.8.1/src/wp/impexp/xp/ie_imp_XML.cpp	2010-02-14 18:59:07.409540483 +0100
+@@ -128,6 +128,32 @@
+ 	return m_error;
+ }
+ 
++UT_Error IE_Imp_XML::importFile(const char * fname)
++{
++	m_szFileName = 0;
++
++	UT_XML default_xml;
++	UT_XML * parser = &default_xml;
++	if (m_pParser) parser = m_pParser;
++
++	parser->setListener (this);
++	if (m_pReader) parser->setReader (m_pReader);
++
++	UT_Error err = parser->parse (fname);
++
++	if ((err != UT_OK) && (err != UT_IE_SKIPINVALID))
++		m_error = UT_IE_BOGUSDOCUMENT;
++
++	if (m_error != UT_OK)
++	{
++		UT_DEBUGMSG(("Problem reading document\n"));
++		if(m_error != UT_IE_SKIPINVALID)
++			m_szFileName = 0;
++	}
++
++	return m_error;
++}
++
+ UT_Error IE_Imp_XML::importFile(const char * data, UT_uint32 length)
+ {
+ 	m_szFileName = 0;
+--- abiword-2.8.1.orig/src/wp/impexp/xp/ie_imp_XML.h	2009-06-25 07:28:16.000000000 +0200
++++ abiword-2.8.1/src/wp/impexp/xp/ie_imp_XML.h	2010-02-14 18:58:02.799427644 +0100
+@@ -57,6 +57,7 @@
+ public:
+     IE_Imp_XML(PD_Document * pDocument, bool whiteSignificant);
+     virtual ~IE_Imp_XML();
++    virtual UT_Error	importFile(const char * fname);
+     virtual UT_Error	importFile(const char * data, UT_uint32 length);
+ 	virtual UT_Error    importFile(const UT_ByteBuf * data);
+ 
