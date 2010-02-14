@@ -23,6 +23,7 @@ Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{
 # Source0-md5:	284fe25289c160c3797b527a8aacad12
 Patch0:		%{name}-desktop.patch
 Patch1:		libpngX.patch
+Patch2:		%{name}-mht.patch
 URL:		http://www.abisource.com/
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
 #BuildRequires:	aspell-devel >= 0.60.4
@@ -33,6 +34,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	cairo-devel
 #BuildRequires:	curl-devel
 BuildRequires:	enchant-devel >= 1.2.6
+BuildRequires:	eps-devel
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	glib2-devel >= 1:2.12.1
@@ -311,6 +313,7 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' Makefile.am
