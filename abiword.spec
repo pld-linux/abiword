@@ -14,16 +14,15 @@
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.8.1
-Release:	5
+Version:	2.8.2
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		X11/Applications/Editors
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
-# Source0-md5:	284fe25289c160c3797b527a8aacad12
+# Source0-md5:	b44ffbebd5bd0f5f98f34dc8c688b4ed
 Patch0:		%{name}-desktop.patch
-Patch1:		libpngX.patch
-Patch2:		%{name}-mht.patch
+Patch1:		%{name}-mht.patch
 URL:		http://www.abisource.com/
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
 #BuildRequires:	aspell-devel >= 0.60.4
@@ -313,7 +312,6 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 # use generic icon name
 sed -i -e 's|abiword_48.png|abiword.png|' Makefile.am
