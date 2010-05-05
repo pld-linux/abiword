@@ -4,9 +4,9 @@
 #	   /usr/share/mime-info/abiword.keys
 #
 %bcond_without	gda		# libgda support
+%bcond_without	goffice		# without plugin-goffice
 %bcond_without	gnome		# without GNOME libs
 %bcond_with	gnomevfs	# gnome-vfs support
-%bcond_with	goffice		# without plugin-goffice
 %bcond_with	ots		# try build plugin-ots (requires ots >= 0.5.0)
 #
 %define		mver	2.8
@@ -15,7 +15,7 @@ Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	2.8.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		X11/Applications/Editors
@@ -25,28 +25,31 @@ Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-mht.patch
 URL:		http://www.abisource.com/
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
-#BuildRequires:	aspell-devel >= 0.60.4
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	boost-devel >= 1.33.1
 BuildRequires:	bzip2-devel
 BuildRequires:	cairo-devel
-#BuildRequires:	curl-devel
 BuildRequires:	enchant-devel >= 1.2.6
 BuildRequires:	eps-devel
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	glib2-devel >= 1:2.12.1
-#BuildRequires:	gnome-scan-devel < 0.6
 BuildRequires:	gtk+2-devel >= 2:2.12.0
 BuildRequires:	gtkmathview-devel >= 0.7.6
 BuildRequires:	gucharmap-devel >= 1.7.0
-%{?with_gda:BuildRequires:	libgda-devel >= 1:1.2.3}
-%{?with_gda:BuildRequires:	libgnomedb-devel >= 1:1.2.0}
-#BuildRequires:	libgnomeprintui-devel >= 2.12.1
+%if %{with gda}
+BuildRequires:	libgda-devel >= 1:1.2.3
+BuildRequires:	libgnomedb-devel >= 1:1.2.0
+%else
+Obsoletes:	abiword-plugin-gda
+%endif
 BuildRequires:	libgnomeui-devel >= 2.15.91
-BuildRequires:	libgoffice-devel >= 0.6.0
-%{?with_goffice:BuildRequires:	libgoffice-devel >= 0.8.0}
+%if %{with goffice}
+BuildRequires:	libgoffice-devel >= 0.8.0
+%else
+Obsoletes:	abiword-plugin-goffice
+%endif
 BuildRequires:	libgsf-devel >= 1.14.9
 #%{?with_gnomevfs:BuildRequires:	libgsf-gnome-devel >= 1.14.1}
 BuildRequires:	libjpeg-devel
@@ -374,6 +377,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/abiword-%{mver}/xsltml
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*.png
+%{_mandir}/man1/abiword.1*
 
 # These don't add any additional dependencies so there's no reason to split
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/applix.so
