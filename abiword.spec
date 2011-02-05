@@ -160,7 +160,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 %description plugin-collab
 Allows to collaborate with a remote user.
 
-%description plugin-collab -l pl
+%description plugin-collab -l pl.UTF-8
 Wtyczka pozwalająca na współpracę z innym użytkownikiem przez sieć.
 
 %package plugin-command
