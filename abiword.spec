@@ -153,7 +153,7 @@ bliskoznacznych.
 
 %package plugin-collab
 Summary:	Remote collaborate for AbiWord
-Summary(pl):	Zdalna współpraca dla AbiWorda
+Summary(pl.UTF-8):	Zdalna współpraca dla AbiWorda
 Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
