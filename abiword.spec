@@ -14,13 +14,13 @@
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.8.2
-Release:	6
+Version:	2.8.6
+Release:	1
 Epoch:		1
-License:	GPL
+License:	GPL v2+
 Group:		X11/Applications/Editors
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
-# Source0-md5:	b44ffbebd5bd0f5f98f34dc8c688b4ed
+# Source0-md5:	f883b0a7f26229a9c66fd6a1a94381aa
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-mht.patch
 Patch2:		%{name}-libwpd.patch
@@ -71,6 +71,7 @@ BuildRequires:	pkgconfig >= 0.9.0
 BuildRequires:	popt-devel
 BuildRequires:	psiconv-devel >= 0.9.6
 BuildRequires:	readline-devel
+BuildRequires:	sed >= 4.0
 BuildRequires:	t1lib-devel
 BuildRequires:	wv-devel >= 1.2.1
 Requires(post,postun):	desktop-file-utils
@@ -319,8 +320,8 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %patch2 -p1
 
 # use generic icon name
-sed -i -e 's|abiword_48.png|abiword.png|' Makefile.am
-sed -i -e 's|abiword_48|abiword|' src/wp/ap/gtk/ap_UnixFrameImpl.cpp
+%{__sed} -i -e 's|abiword_48.png|abiword.png|' Makefile.am
+%{__sed} -i -e 's|abiword_48|abiword|' src/wp/ap/gtk/ap_UnixFrameImpl.cpp
 mv abiword_48.png abiword.png
 
 %build
@@ -351,7 +352,7 @@ rm -rf $RPM_BUILD_ROOT
 	icondir=%{_pixmapsdir}
 
 # Remove useless files
-rm -f $RPM_BUILD_ROOT%{_libdir}/abiword-%{mver}/plugins/*.la
+%{__rm} -f $RPM_BUILD_ROOT%{_libdir}/abiword-%{mver}/plugins/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
