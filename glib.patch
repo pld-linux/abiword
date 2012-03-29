@@ -1,0 +1,10 @@
+--- abiword-2.8.6/src/af/util/xp/ut_go_file.h.wiget	2012-03-29 15:50:57.933517971 +0200
++++ abiword-2.8.6/src/af/util/xp/ut_go_file.h	2012-03-29 15:51:06.500184500 +0200
+@@ -31,7 +31,6 @@
+ 
+ #include <glib.h>
+ #include <gsf/gsf.h>
+-#include <glib/gerror.h>
+ #include <time.h>
+ 
+ G_BEGIN_DECLS

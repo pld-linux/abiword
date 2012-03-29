@@ -26,6 +26,7 @@ Patch1:		%{name}-mht.patch
 Patch2:		%{name}-libwpd.patch
 Patch3:		%{name}-link.patch
 Patch4:		%{name}-libpng15.patch
+Patch5:		glib.patch
 URL:		http://www.abisource.com/
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
 BuildRequires:	autoconf
@@ -42,7 +43,7 @@ BuildRequires:	gtk+2-devel >= 2:2.12.0
 BuildRequires:	gtkmathview-devel >= 0.7.6
 BuildRequires:	gucharmap-devel >= 1.7.0
 %if %{with gda}
-BuildRequires:	libgda-devel >= 1:1.2.3
+BuildRequires:	libgda-devel >= 1:1.2.4-16
 BuildRequires:	libgnomedb-devel >= 1:1.2.0
 %else
 Obsoletes:	abiword-plugin-gda
@@ -322,6 +323,7 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 # use generic icon name
 %{__sed} -i -e 's|abiword_48.png|abiword.png|' Makefile.am
