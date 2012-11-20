@@ -251,3 +251,14 @@
  
  	g_object_unref(G_OBJECT(builder));
  	
+--- abiword-2.8.6/goffice-bits/goffice/gtk/goffice-gtk.c~	2008-08-14 20:15:33.000000000 +0200
++++ abiword-2.8.6/goffice-bits/goffice/gtk/goffice-gtk.c	2012-11-20 20:37:47.832386344 +0100
+@@ -853,7 +853,7 @@
+ 			 GTK_DIALOG_DESTROY_WITH_PARENT,
+ 			 GTK_MESSAGE_WARNING,
+ 			 GTK_BUTTONS_OK_CANCEL,
+-			 msg);
++			 "%s", msg);
+ 		gtk_dialog_set_default_response (GTK_DIALOG (dialog),
+ 			overwrite_by_default ? GTK_RESPONSE_OK : GTK_RESPONSE_CANCEL);
+ 		result = GTK_RESPONSE_OK ==
