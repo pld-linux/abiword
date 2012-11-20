@@ -4,7 +4,7 @@
 #	   /usr/share/mime-info/abiword.keys
 #
 %bcond_without	gda		# libgda support
-%bcond_without	goffice		# without plugin-goffice
+%bcond_with	goffice		# without plugin-goffice
 %bcond_without	gnome		# without GNOME libs
 %bcond_with	gnomevfs	# gnome-vfs support
 %bcond_with	ots		# try build plugin-ots (requires ots >= 0.5.0)
