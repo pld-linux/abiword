@@ -111,6 +111,7 @@ Obsoletes:	abiword-plugin-sdw
 Obsoletes:	abiword-plugin-t602
 Obsoletes:	abiword-plugin-urldict
 Obsoletes:	abiword-plugin-wikipedia
+Obsoletes:	abiword-plugin-wordperfect
 Obsoletes:	abiword-plugin-wml
 Obsoletes:	abiword-plugin-xhtml
 Obsoletes:	abiword-plugin-xslfo
