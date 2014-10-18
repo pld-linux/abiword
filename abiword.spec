@@ -1,7 +1,8 @@
 #
 # TODO:
 # - installed, but unpackaged files
-#	   /usr/share/mime-info/abiword.keys
+#	%{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.AbiCollab.service
+#	%{_datadir}/telepathy/clients/AbiCollab.client
 #
 %bcond_with	gda		# libgda support
 %bcond_with	goffice		# without plugin-goffice
@@ -9,25 +10,20 @@
 %bcond_with	gnomevfs	# gnome-vfs support
 %bcond_with	ots		# try build plugin-ots (requires ots >= 0.5.0)
 #
-%define		mver	2.8
+%define		mver	3.0
 #
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	2.8.6
-Release:	18
+Version:	3.0.0
+Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications/Editors
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
-# Source0-md5:	f883b0a7f26229a9c66fd6a1a94381aa
+# Source0-md5:	8d9c41cff3a8fbef8d0c835c65600e65
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-mht.patch
-Patch2:		%{name}-libwpd.patch
-Patch3:		%{name}-link.patch
-Patch4:		%{name}-libpng15.patch
-Patch5:		glib.patch
-Patch6:		%{name}-format-security.patch
 URL:		http://www.abisource.com/
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
 BuildRequires:	autoconf
@@ -321,16 +317,6 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-
-# use generic icon name
-%{__sed} -i -e 's|abiword_48.png|abiword.png|' Makefile.am
-%{__sed} -i -e 's|abiword_48|abiword|' src/wp/ap/gtk/ap_UnixFrameImpl.cpp
-mv abiword_48.png abiword.png
 
 %build
 %{__aclocal} -I .
@@ -386,9 +372,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/abiword-%{mver}/templates
 %{_datadir}/abiword-%{mver}/ui
 %{_datadir}/abiword-%{mver}/xsltml
+%{_datadir}/abiword-%{mver}/mime-info
+%{_datadir}/abiword-%{mver}/omml_xslt
 %{_desktopdir}/*.desktop
 %{_pixmapsdir}/*.png
 %{_mandir}/man1/abiword.1*
+#%{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.AbiCollab.service
+#%{_datadir}/telepathy/clients/AbiCollab.client
 
 # These don't add any additional dependencies so there's no reason to split
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/applix.so
@@ -397,6 +387,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/clarisworks.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/docbook.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/eml.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/epub.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/freetranslation.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/garble.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/gdict.so
@@ -425,7 +416,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/urldict.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wikipedia.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wml.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wpg.so
+#%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wpg.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/xslfo.so
 
 %files devel
@@ -484,9 +475,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wmf.so
 
-%files plugin-wordperfect
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wordperfect.so
+#%files plugin-wordperfect
+#%defattr(644,root,root,755)
+#%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wordperfect.so
 
 %files clipart
 %defattr(644,root,root,755)
