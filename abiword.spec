@@ -24,6 +24,7 @@ Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{
 # Source0-md5:	8d9c41cff3a8fbef8d0c835c65600e65
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-mht.patch
+Patch2:		eds-libebook.patch
 URL:		http://www.abisource.com/
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
 BuildRequires:	autoconf
@@ -33,6 +34,7 @@ BuildRequires:	bzip2-devel
 BuildRequires:	cairo-devel
 BuildRequires:	enchant-devel >= 1.2.6
 BuildRequires:	eps-devel
+BuildRequires:	evolution-data-server-devel
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	glib2-devel >= 1:2.12.1
@@ -318,6 +320,7 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__aclocal} -I .
@@ -329,13 +332,7 @@ Jest to teczka clipartów używanych przez AbiWorda.
 	--disable-static \
 	--enable-clipart \
 	--enable-plugins=auto \
-	--enable-printing \
-	--enable-scripting \
-	--enable-templates \
-	--enable-threads \
-	--with-libxml2 \
-	--with-pspell \
-	--with-sys-wv
+	--enable-templates
 
 %{__make}
 
