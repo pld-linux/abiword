@@ -1,11 +1,6 @@
 #
-# TODO:
-# - installed, but unpackaged files
-#	%{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.AbiCollab.service
-#	%{_datadir}/telepathy/clients/AbiCollab.client
-#
 %bcond_with	gda		# libgda support
-%bcond_with	goffice		# without plugin-goffice
+%bcond_without	goffice		# without plugin-goffice
 %bcond_without	gnome		# without GNOME libs
 %bcond_with	gnomevfs	# gnome-vfs support
 %bcond_with	ots		# try build plugin-ots (requires ots >= 0.5.0)
@@ -24,6 +19,9 @@ Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{
 # Source0-md5:	f3f8052e7b4979a43b75775a381e6cb8
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-mht.patch
+Patch2:		%{name}-librevenge.patch
+Patch3:		%{name}-link-grammar-5.patch
+Patch4:		%{name}-link-grammar-5-second.patch
 URL:		http://www.abisource.com/
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
 BuildRequires:	autoconf
@@ -53,9 +51,9 @@ BuildRequires:	libgoffice-devel >= 0.8.0
 Obsoletes:	abiword-plugin-goffice
 %endif
 BuildRequires:	libgsf-devel >= 1.14.9
-#%{?with_gnomevfs:BuildRequires:	libgsf-gnome-devel >= 1.14.1}
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
+BuildRequires:	librevenge-devel
 BuildRequires:	librsvg-devel >= 1:2.16.0
 BuildRequires:	libtool
 BuildRequires:	libwmf-devel >= 2:0.2.8.4
@@ -319,6 +317,9 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p0
+%patch3 -p1
+%patch4 -p1
 
 %build
 %{__aclocal} -I .
@@ -338,8 +339,7 @@ Jest to teczka clipartów używanych przez AbiWorda.
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	icondir=%{_pixmapsdir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 # Remove useless files
 %{__rm} -f $RPM_BUILD_ROOT%{_libdir}/abiword-%{mver}/plugins/*.la
@@ -371,10 +371,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/abiword-%{mver}/mime-info
 %{_datadir}/abiword-%{mver}/omml_xslt
 %{_desktopdir}/*.desktop
-%{_pixmapsdir}/*.png
+%{_iconsdir}/hicolor/*/apps/abiword.*
 %{_mandir}/man1/abiword.1*
-#%{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.AbiCollab.service
-#%{_datadir}/telepathy/clients/AbiCollab.client
+%{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.AbiCollab.service
+%{_datadir}/telepathy/clients/AbiCollab.client
 
 # These don't add any additional dependencies so there's no reason to split
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/applix.so
@@ -424,6 +424,8 @@ rm -rf $RPM_BUILD_ROOT
 %files plugin-aiksaurus
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/aiksaurus.so
+%attr(755,root,root) %{_libdir}/libAiksaurusGtk3--export-dynamic.so
+%attr(755,root,root) %{_libdir}/libAiksaurusGtk3.so
 
 %files plugin-collab
 %defattr(644,root,root,755)
