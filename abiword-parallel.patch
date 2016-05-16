@@ -1,0 +1,11 @@
+--- abiword-3.0.1/src/Makefile.am.orig	2016-05-15 17:46:25.779731460 +0200
++++ abiword-3.0.1/src/Makefile.am	2016-05-15 18:26:28.726615664 +0200
+@@ -168,7 +168,7 @@
+ 
+ INTROSPECTION_GIRS += Abi-@ABIWORD_SERIES@.gir
+ 
+-Abi_@ABIWORD_SERIES@.gir: $(INTROSPECTION_SCANNER) libabiword-@ABIWORD_SERIES@.la Makefile
++Abi-@ABIWORD_SERIES@.gir: $(INTROSPECTION_SCANNER) libabiword-@ABIWORD_SERIES@.la Makefile
+ Abi_@ABI_SUB_SERIES@_gir_INCLUDES = GObject-2.0 Gtk-3.0 Gsf-1
+ Abi_@ABI_SUB_SERIES@_gir_CFLAGS = $(libabiword_@ABIWORD_SERIES@_la_CPPFLAGS)
+ Abi_@ABI_SUB_SERIES@_gir_LIBS = libabiword-@ABIWORD_SERIES@.la

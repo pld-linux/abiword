@@ -1,0 +1,1090 @@
+--- abiword-3.0.1/plugins/collab/backends/service/xp/AsioRealmProtocol.h.orig	2012-05-25 18:12:56.000000000 +0200
++++ abiword-3.0.1/plugins/collab/backends/service/xp/AsioRealmProtocol.h	2016-05-15 18:45:59.357036926 +0200
+@@ -8,48 +8,48 @@ namespace realm {
+ namespace protocolv1 {
+ 
+ 	template <typename WriteHandler>
+-	static void send(const RoutingPacket& p, asio::ip::tcp::socket& socket, WriteHandler handler) {
+-		std::vector<asio::const_buffer> bufs(4);
+-		bufs.push_back(asio::buffer(&p.type(), 1));
+-		bufs.push_back(asio::buffer(&p.getPayloadSize(), 4)); // FIXME: not Big Endian safe!
+-		bufs.push_back(asio::buffer(&p.getAddressCount(), 1));
+-		bufs.push_back(asio::buffer(&(p.getConnectionIds()[0]), p.getConnectionIds().size()));
+-		bufs.push_back(asio::buffer(*p.getMessage()));
+-		asio::async_write(socket, bufs, handler);
++	static void send(const RoutingPacket& p, boost::asio::ip::tcp::socket& socket, WriteHandler handler) {
++		std::vector<boost::asio::const_buffer> bufs(4);
++		bufs.push_back(boost::asio::buffer(&p.type(), 1));
++		bufs.push_back(boost::asio::buffer(&p.getPayloadSize(), 4)); // FIXME: not Big Endian safe!
++		bufs.push_back(boost::asio::buffer(&p.getAddressCount(), 1));
++		bufs.push_back(boost::asio::buffer(&(p.getConnectionIds()[0]), p.getConnectionIds().size()));
++		bufs.push_back(boost::asio::buffer(*p.getMessage()));
++		boost::asio::async_write(socket, bufs, handler);
+ 	}
+ 
+ 	template <typename WriteHandler>
+-	static void send(const DeliverPacket& p, asio::ip::tcp::socket& socket, WriteHandler handler) {
+-		std::vector<asio::const_buffer> bufs(4);
+-		bufs.push_back(asio::buffer(&p.type(), 1));
+-		bufs.push_back(asio::buffer(&p.getPayloadSize(), 4)); // FIXME: not Big Endian safe!
+-		bufs.push_back(asio::buffer(&p.getConnectionId(), 1));
+-		bufs.push_back(asio::buffer(*p.getMessage()));
+-		asio::async_write(socket, bufs, handler);
++	static void send(const DeliverPacket& p, boost::asio::ip::tcp::socket& socket, WriteHandler handler) {
++		std::vector<boost::asio::const_buffer> bufs(4);
++		bufs.push_back(boost::asio::buffer(&p.type(), 1));
++		bufs.push_back(boost::asio::buffer(&p.getPayloadSize(), 4)); // FIXME: not Big Endian safe!
++		bufs.push_back(boost::asio::buffer(&p.getConnectionId(), 1));
++		bufs.push_back(boost::asio::buffer(*p.getMessage()));
++		boost::asio::async_write(socket, bufs, handler);
+ 	}
+ 
+ 	template <typename WriteHandler>
+-	static void send(const UserJoinedPacket& p, asio::ip::tcp::socket& socket, WriteHandler handler) {
+-		std::vector<asio::const_buffer> bufs(4);
+-		bufs.push_back(asio::buffer(&p.type(), 1));
+-		bufs.push_back(asio::buffer(&p.getPayloadSize(), 4)); // FIXME: not Big Endian safe!
+-		bufs.push_back(asio::buffer(&p.getConnectionId(), 1));
+-		bufs.push_back(asio::buffer(&p.isMaster(), 1));
+-		bufs.push_back(asio::buffer(*p.getUserInfo()));
+-		asio::async_write(socket, bufs, handler);
++	static void send(const UserJoinedPacket& p, boost::asio::ip::tcp::socket& socket, WriteHandler handler) {
++		std::vector<boost::asio::const_buffer> bufs(4);
++		bufs.push_back(boost::asio::buffer(&p.type(), 1));
++		bufs.push_back(boost::asio::buffer(&p.getPayloadSize(), 4)); // FIXME: not Big Endian safe!
++		bufs.push_back(boost::asio::buffer(&p.getConnectionId(), 1));
++		bufs.push_back(boost::asio::buffer(&p.isMaster(), 1));
++		bufs.push_back(boost::asio::buffer(*p.getUserInfo()));
++		boost::asio::async_write(socket, bufs, handler);
+ 	}
+ 
+ 	template <typename WriteHandler>
+-	static void send(const UserLeftPacket& p, asio::ip::tcp::socket& socket, WriteHandler handler) {
+-		std::vector<asio::const_buffer> bufs(2);
+-		bufs.push_back(asio::buffer(&p.type(), 1));
+-		bufs.push_back(asio::buffer(&p.getConnectionId(), 1));
+-		asio::async_write(socket, bufs, handler);
++	static void send(const UserLeftPacket& p, boost::asio::ip::tcp::socket& socket, WriteHandler handler) {
++		std::vector<boost::asio::const_buffer> bufs(2);
++		bufs.push_back(boost::asio::buffer(&p.type(), 1));
++		bufs.push_back(boost::asio::buffer(&p.getConnectionId(), 1));
++		boost::asio::async_write(socket, bufs, handler);
+ 	}
+ 
+ 	template <typename WriteHandler>
+-	static void send(const SessionTakeOverPacket& p, asio::ip::tcp::socket& socket, WriteHandler handler) {
+-		asio::async_write(socket, asio::buffer(&p.type(), 1), handler);
++	static void send(const SessionTakeOverPacket& p, boost::asio::ip::tcp::socket& socket, WriteHandler handler) {
++		boost::asio::async_write(socket, boost::asio::buffer(&p.type(), 1), handler);
+ 	}
+ 
+ }
+--- abiword-3.0.1/plugins/collab/backends/service/xp/AsyncWorker.h.orig	2013-04-07 15:53:03.000000000 +0200
++++ abiword-3.0.1/plugins/collab/backends/service/xp/AsyncWorker.h	2016-05-15 18:57:50.997154789 +0200
+@@ -19,7 +19,7 @@
+ #ifndef __ASYNC_WORKER__
+ #define __ASYNC_WORKER__
+ 
+-#include <asio.hpp>
++#include <boost/thread.hpp>
+ #include <boost/bind.hpp>
+ #include <boost/function.hpp>
+ #include <boost/noncopyable.hpp>
+@@ -50,7 +50,7 @@ public:
+ 		m_synchronizer.reset(new Synchronizer(boost::bind(&AsyncWorker<T>::_signal,
+ 												boost::enable_shared_from_this<AsyncWorker<T> >::shared_from_this())));
+ 		m_thread_ptr.reset(
+-				new asio::thread(
++				new boost::thread(
+ 					boost::bind(&AsyncWorker::_thread_func,
+ 								AsyncWorker<T>::shared_from_this())
+ 				)
+@@ -75,7 +75,7 @@ private:
+ 	boost::function<T ()>					m_async_func;
+ 	boost::function<void (T)>				m_async_callback;
+ 	boost::shared_ptr<Synchronizer>			m_synchronizer;
+-	boost::shared_ptr<asio::thread>			m_thread_ptr;
++	boost::shared_ptr<boost::thread>			m_thread_ptr;
+ 	T										m_func_result;
+ };
+ 
+--- abiword-3.0.1/plugins/collab/backends/service/xp/RealmConnection.cpp.orig	2013-07-05 03:51:21.000000000 +0200
++++ abiword-3.0.1/plugins/collab/backends/service/xp/RealmConnection.cpp	2016-05-15 19:03:12.877133249 +0200
+@@ -19,6 +19,7 @@
+ #include <boost/function.hpp>
+ #include <boost/bind.hpp>
+ #include <boost/lexical_cast.hpp>
++#include <boost/thread.hpp>
+ #include "ut_assert.h"
+ #include "ut_debugmsg.h"
+ #include "ServiceAccountHandler.h"
+@@ -68,7 +69,7 @@ bool RealmConnection::connect()
+ 			// setup our local TLS tunnel to the realm
+ 			m_tls_tunnel_ptr.reset(new tls_tunnel::ClientProxy(m_address, m_port, m_ca_file, false));
+ 			m_tls_tunnel_ptr->setup();
+-			asio::thread thread(boost::bind(&tls_tunnel::ClientProxy::run, m_tls_tunnel_ptr));
++			boost::thread thread(boost::bind(&tls_tunnel::ClientProxy::run, m_tls_tunnel_ptr));
+ 
+ 			// make sure we connect to the tunnel, and not directly to the realm
+ 			address = m_tls_tunnel_ptr->local_address();
+@@ -76,13 +77,13 @@ bool RealmConnection::connect()
+ 		}
+ 
+ 		// connect!
+-		asio::ip::tcp::resolver::query query(address, boost::lexical_cast<std::string>(port));
+-		asio::ip::tcp::resolver resolver(m_io_service);
+-		asio::ip::tcp::resolver::iterator iterator(resolver.resolve(query));
++		boost::asio::ip::tcp::resolver::query query(address, boost::lexical_cast<std::string>(port));
++		boost::asio::ip::tcp::resolver resolver(m_io_service);
++		boost::asio::ip::tcp::resolver::iterator iterator(resolver.resolve(query));
+ 
+ 		bool connected = false;
+-		asio::error_code error_code;
+-		while (iterator != asio::ip::tcp::resolver::iterator())
++		boost::system::error_code error_code;
++		while (iterator != boost::asio::ip::tcp::resolver::iterator())
+ 		{
+ 			try
+ 			{
+@@ -90,7 +91,7 @@ bool RealmConnection::connect()
+ 				connected = true;
+ 				break;
+ 			}
+-			catch (asio::system_error se)
++			catch (boost::system::system_error se)
+ 			{
+ 				error_code = se.code();
+ 				try { m_socket.close(); } catch(...) {}
+@@ -99,7 +100,7 @@ bool RealmConnection::connect()
+ 		}
+ 		if (!connected)
+ 		{
+-			UT_DEBUGMSG(("Error connecting to realm: %s", asio::system_error(error_code).what()));
++			UT_DEBUGMSG(("Error connecting to realm: %s", boost::system::system_error(error_code).what()));
+ 			return false;
+ 		}
+ 	}
+@@ -108,7 +109,7 @@ bool RealmConnection::connect()
+ 		UT_DEBUGMSG(("tls_tunnel exception connecting to realm: %s\n", e.message().c_str()));
+ 		return false;
+ 	}
+-	catch (asio::system_error& se)
++	catch (boost::system::system_error& se)
+ 	{
+ 		UT_DEBUGMSG(("Error connecting to realm: %s\n", se.what()));
+ 		return false;
+@@ -131,7 +132,7 @@ bool RealmConnection::connect()
+ 	// start reading realm messages
+ 	_receive();	
+ 	
+-	m_thread_ptr.reset(new asio::thread(boost::bind(&asio::io_service::run, &m_io_service)));
++	m_thread_ptr.reset(new boost::thread(boost::bind(&boost::asio::io_service::run, &m_io_service)));
+ 	return true;
+ }
+ 
+@@ -145,8 +146,8 @@ void RealmConnection::disconnect()
+ 	// the complete disconnect
+ 	if (m_socket.is_open())
+ 	{
+-		asio::error_code ac;
+-		m_socket.shutdown(asio::ip::tcp::socket::shutdown_both, ac);
++		boost::system::error_code ac;
++		m_socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both, ac);
+ 		m_socket.close(ac);
+ 	}
+ }
+@@ -217,8 +218,8 @@ void RealmConnection::_disconnect()
+ 	
+ 	if (m_socket.is_open())
+ 	{
+-		asio::error_code ac;
+-		m_socket.shutdown(asio::ip::tcp::socket::shutdown_both, ac);
++		boost::system::error_code ac;
++		m_socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both, ac);
+ 		m_socket.close(ac);
+ 	}
+ 	
+@@ -266,13 +267,13 @@ bool RealmConnection::_login()
+ 	{
+ 		// send the login credententials
+ 		// TODO: we should check the number of bytes written
+-		asio::write(m_socket, asio::buffer(header));
++		boost::asio::write(m_socket, boost::asio::buffer(header));
+ 		
+ 		// read the login response
+ 		// TODO: we should check the number of bytes read
+-		asio::read(m_socket, asio::buffer(&response[0], response.size()));
++		boost::asio::read(m_socket, boost::asio::buffer(&response[0], response.size()));
+ 	}
+-	catch (asio::system_error e)
++	catch (boost::system::system_error e)
+ 	{
+ 		UT_DEBUGMSG(("Error while writing/writing protocol header: %s\n", e.what()));
+ 		return false;
+@@ -315,7 +316,7 @@ UserJoinedPacketPtr RealmConnection::_re
+ {
+ 	// receive the packet type
+ 	std::string msg(1, '\0');
+-	asio::read(m_socket, asio::buffer(&msg[0], msg.size()));
++	boost::asio::read(m_socket, boost::asio::buffer(&msg[0], msg.size()));
+ 	rpv1::packet_type packet_type = static_cast<rpv1::packet_type>(msg[0]);
+ 	if (packet_type != rpv1::PACKET_USERJOINED)
+ 		return UserJoinedPacketPtr();
+@@ -326,17 +327,17 @@ UserJoinedPacketPtr RealmConnection::_re
+ 		uint8_t conn_id = 0;
+ 		uint8_t m = 0;
+ 
+-		boost::array<asio::mutable_buffer, 3> buf = {{
+-			asio::buffer(&payload_size, sizeof(payload_size)),
+-			asio::buffer(&conn_id, sizeof(conn_id)),
+-			asio::buffer(&m, sizeof(m)) }};
+-		asio::read(m_socket, buf);
++		boost::array<boost::asio::mutable_buffer, 3> buf = {{
++			boost::asio::buffer(&payload_size, sizeof(payload_size)),
++			boost::asio::buffer(&conn_id, sizeof(conn_id)),
++			boost::asio::buffer(&m, sizeof(m)) }};
++		boost::asio::read(m_socket, buf);
+ 
+ 		boost::shared_ptr<std::string> userinfo_ptr(new std::string(payload_size - 2, '\0'));
+-		asio::read(m_socket, asio::buffer(&(*userinfo_ptr)[0], userinfo_ptr->size()));
++		boost::asio::read(m_socket, boost::asio::buffer(&(*userinfo_ptr)[0], userinfo_ptr->size()));
+ 
+ 		return UserJoinedPacketPtr(new rpv1::UserJoinedPacket(conn_id, static_cast<bool>(m), userinfo_ptr));
+-	} catch (asio::system_error se) {
++	} catch (boost::system::system_error se) {
+ 		return UserJoinedPacketPtr(); 
+ 	}
+ }
+@@ -346,12 +347,12 @@ void RealmConnection::_receive()
+ 	UT_DEBUGMSG(("RealmConnection::_receive()\n"));
+ 	m_buf.clear();
+ 	boost::shared_ptr<std::string> msg_ptr(new std::string(1, '\0'));
+-	asio::async_read(m_socket, asio::buffer(&(*msg_ptr)[0], msg_ptr->size()),
++	boost::asio::async_read(m_socket, boost::asio::buffer(&(*msg_ptr)[0], msg_ptr->size()),
+ 		boost::bind(&RealmConnection::_message, shared_from_this(),
+-			asio::placeholders::error, asio::placeholders::bytes_transferred, msg_ptr));
++			boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, msg_ptr));
+ }
+ 
+-void RealmConnection::_message(const asio::error_code& e, std::size_t /*bytes_transferred*/, boost::shared_ptr<std::string> msg_ptr)
++void RealmConnection::_message(const boost::system::error_code& e, std::size_t /*bytes_transferred*/, boost::shared_ptr<std::string> msg_ptr)
+ {
+ 	UT_DEBUGMSG(("RealmConnection::_message()\n"));
+ 	if (e)
+@@ -390,15 +391,15 @@ void RealmConnection::_complete_packet(r
+ 			UT_DEBUGMSG(("Need more data (%d bytes) for this packet...\n", bytes_needed));
+ 			// read the needed number of bytes
+ 			char* ptr = m_buf.prepare(bytes_needed);
+-			asio::async_read(m_socket, asio::buffer(ptr, bytes_needed),
++			boost::asio::async_read(m_socket, boost::asio::buffer(ptr, bytes_needed),
+ 							boost::bind(&RealmConnection::_complete, shared_from_this(),
+-								asio::placeholders::error, asio::placeholders::bytes_transferred, packet_ptr)
++								boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, packet_ptr)
+ 							);
+ 			break;
+ 	}
+ }
+ 
+-void RealmConnection::_complete(const asio::error_code& e, std::size_t bytes_transferred, realm::protocolv1::PacketPtr packet_ptr)
++void RealmConnection::_complete(const boost::system::error_code& e, std::size_t bytes_transferred, realm::protocolv1::PacketPtr packet_ptr)
+ {
+ 	UT_DEBUGMSG(("RealmConnection::_complete()\n"));
+ 	if (e)
+--- abiword-3.0.1/plugins/collab/backends/service/xp/RealmConnection.h.orig	2013-07-05 03:51:21.000000000 +0200
++++ abiword-3.0.1/plugins/collab/backends/service/xp/RealmConnection.h	2016-05-15 18:58:28.419089961 +0200
+@@ -21,7 +21,8 @@
+ 
+ #include <boost/shared_ptr.hpp>
+ #include <boost/enable_shared_from_this.hpp>
+-#include <asio.hpp>
++#include <boost/asio.hpp>
++#include <boost/thread.hpp>
+ #include <vector>
+ #include <string>
+ #include "ut_types.h"
+@@ -90,7 +91,7 @@ public:
+ 		{ m_pDoc = pDoc; }
+ 	SynchronizedQueue<realm::protocolv1::PacketPtr>&		queue()
+ 		{ return m_packet_queue; }
+-	asio::ip::tcp::socket&				socket()
++	boost::asio::ip::tcp::socket&				socket()
+ 		{ return m_socket; }
+ 
+ 	void								loadDocumentStart(AP_Dialog_GenericProgress* pDlg,
+@@ -113,21 +114,21 @@ private:
+ 	bool								_login();
+ 	UserJoinedPacketPtr					_receiveUserJoinedPacket();
+ 	void								_receive();
+-	void								_message(const asio::error_code& e,
++	void								_message(const boost::system::error_code& e,
+ 												std::size_t bytes_transferred,
+ 												boost::shared_ptr<std::string> msg_ptr);
+ 
+ 	void								_complete_packet(realm::protocolv1::PacketPtr packet_ptr);
+-	void								_complete(const asio::error_code& e, std::size_t bytes_transferred,
++	void								_complete(const boost::system::error_code& e, std::size_t bytes_transferred,
+ 												realm::protocolv1::PacketPtr packet_ptr);
+ 
+-	asio::io_service					m_io_service;
++	boost::asio::io_service					m_io_service;
+ 	std::string							m_ca_file;
+ 	std::string							m_address;
+ 	int									m_port;
+ 	int									m_tls;
+-	asio::ip::tcp::socket				m_socket;
+-	boost::shared_ptr<asio::thread>		m_thread_ptr;
++	boost::asio::ip::tcp::socket				m_socket;
++	boost::shared_ptr<boost::thread>		m_thread_ptr;
+ 	std::string							m_cookie;
+ 	UT_uint64							m_user_id; // only valid after login
+ 	UT_uint8							m_connection_id; // only valid after login
+--- abiword-3.0.1/plugins/collab/backends/service/xp/RealmProtocol.h.orig	2012-05-25 18:12:56.000000000 +0200
++++ abiword-3.0.1/plugins/collab/backends/service/xp/RealmProtocol.h	2016-05-15 18:43:04.911353671 +0200
+@@ -9,7 +9,7 @@
+ #include <stdint.h>
+ #endif
+ #include <boost/shared_ptr.hpp>
+-#include <asio.hpp>
++#include <boost/asio.hpp>
+ 
+ namespace realm {
+ 
+@@ -29,7 +29,7 @@ namespace protocolv1 {
+ 
+ class Packet;
+ typedef boost::shared_ptr<Packet> PacketPtr;
+-typedef boost::shared_ptr<asio::streambuf> StreamPtr;
++typedef boost::shared_ptr<boost::asio::streambuf> StreamPtr;
+ 
+ // the packet type values must match up the corresponding body_size in
+ // RealmProtocol.cpp (ugly, but it's fast)!
+--- abiword-3.0.1/plugins/collab/backends/service/xp/ServiceAccountHandler.cpp.orig	2013-07-05 03:51:21.000000000 +0200
++++ abiword-3.0.1/plugins/collab/backends/service/xp/ServiceAccountHandler.cpp	2016-05-15 19:03:33.601538287 +0200
+@@ -437,7 +437,7 @@ bool ServiceAccountHandler::send(const P
+ 	return true;
+ }
+ 
+-void ServiceAccountHandler::_write_handler(const asio::error_code& e, std::size_t /*bytes_transferred*/,
++void ServiceAccountHandler::_write_handler(const boost::system::error_code& e, std::size_t /*bytes_transferred*/,
+ 											boost::shared_ptr<const RealmBuddy> /*recipient*/, boost::shared_ptr<realm::protocolv1::Packet> packet)
+ {
+ 	if (e)
+@@ -453,7 +453,7 @@ void ServiceAccountHandler::_write_handl
+ 	}
+ }										   
+ 
+-void ServiceAccountHandler::_write_result(const asio::error_code& e, std::size_t /*bytes_transferred*/,
++void ServiceAccountHandler::_write_result(const boost::system::error_code& e, std::size_t /*bytes_transferred*/,
+ 													ConnectionPtr /*connection*/, boost::shared_ptr<realm::protocolv1::Packet> packet)
+ {
+ 	if (e)
+@@ -1709,7 +1709,7 @@ void ServiceAccountHandler::_handleMessa
+ 							boost::shared_ptr<rpv1::SessionTakeOverPacket> stop(new rpv1::SessionTakeOverPacket());
+ 							rpv1::send(*stop, connection->socket(), 
+ 									boost::bind(&ServiceAccountHandler::_write_result, this,
+-										asio::placeholders::error, asio::placeholders::bytes_transferred, connection,
++										boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, connection,
+ 											boost::static_pointer_cast<rpv1::Packet>(stop))	
+ 								);
+ 
+--- abiword-3.0.1/plugins/collab/backends/service/xp/ServiceAccountHandler.h.orig	2013-04-07 15:53:03.000000000 +0200
++++ abiword-3.0.1/plugins/collab/backends/service/xp/ServiceAccountHandler.h	2016-05-15 18:58:43.736548728 +0200
+@@ -149,14 +149,14 @@ private:
+ 	{
+ 		realm::protocolv1::send(*packet, recipient->connection()->socket(),
+ 			boost::bind(&ServiceAccountHandler::_write_handler, this,
+-							asio::placeholders::error, asio::placeholders::bytes_transferred, recipient,
++							boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, recipient,
+ 							boost::static_pointer_cast<rpv1::Packet>(packet)));
+ 	}
+ 
+-	void									_write_handler(const asio::error_code& e, std::size_t bytes_transferred,
++	void									_write_handler(const boost::system::error_code& e, std::size_t bytes_transferred,
+ 													boost::shared_ptr<const RealmBuddy> recipient, boost::shared_ptr<rpv1::Packet> packet);
+ 
+-	void									_write_result(const asio::error_code& e, std::size_t bytes_transferred,
++	void									_write_result(const boost::system::error_code& e, std::size_t bytes_transferred,
+ 													ConnectionPtr connection, boost::shared_ptr<rpv1::Packet> packet);
+ 
+ 	bool									_listDocuments(soa::function_call_ptr fc_ptr,
+--- abiword-3.0.1/plugins/collab/backends/service/xp/tls_tunnel.cpp.orig	2014-11-04 02:12:14.000000000 +0100
++++ abiword-3.0.1/plugins/collab/backends/service/xp/tls_tunnel.cpp	2016-05-15 19:12:18.015323548 +0200
+@@ -45,7 +45,7 @@ namespace tls_tunnel {
+ #define TLS_VERIFY_HOSTNAME_ERROR "Error verifying hostname"
+ #define TLS_CANT_GET_PEER_CERT_ERROR "Failed to get peer certificate"
+ 
+-typedef boost::shared_ptr<asio::ip::tcp::socket> socket_ptr_t;
++typedef boost::shared_ptr<boost::asio::ip::tcp::socket> socket_ptr_t;
+ typedef boost::shared_ptr<gnutls_session_t> session_ptr_t;
+ typedef boost::shared_ptr< std::vector<char> > buffer_ptr_t;
+ 
+@@ -79,12 +79,12 @@ public:
+ 	}
+ };
+ 
+-asio::io_service& Transport::io_service() {
++boost::asio::io_service& Transport::io_service() {
+ 	return io_service_;
+ }
+ 
+ void Transport::run() {
+-	asio::error_code ec;
++	boost::system::error_code ec;
+ 	io_service_.run(ec);
+ }
+ 
+@@ -112,17 +112,17 @@ ClientTransport::ClientTransport(const s
+ }
+ 
+ void ClientTransport::connect() {
+-	asio::ip::tcp::resolver resolver(io_service());
+-	asio::ip::tcp::resolver::query query(host_, boost::lexical_cast<std::string>(port_));
+-	asio::ip::tcp::resolver::iterator iterator(resolver.resolve(query));
+-	socket_ptr_t socket_ptr(new asio::ip::tcp::socket(io_service()));
++	boost::asio::ip::tcp::resolver resolver(io_service());
++	boost::asio::ip::tcp::resolver::query query(host_, boost::lexical_cast<std::string>(port_));
++	boost::asio::ip::tcp::resolver::iterator iterator(resolver.resolve(query));
++	socket_ptr_t socket_ptr(new boost::asio::ip::tcp::socket(io_service()));
+ 
+-	if (iterator == asio::ip::tcp::resolver::iterator())
+-		throw asio::system_error(asio::error::host_not_found);
++	if (iterator == boost::asio::ip::tcp::resolver::iterator())
++		throw boost::system::system_error(boost::asio::error::host_not_found);
+ 
+ 	bool connected = false;
+-	asio::error_code error_code;
+-	while (iterator != asio::ip::tcp::resolver::iterator())
++	boost::system::error_code error_code;
++	while (iterator != boost::asio::ip::tcp::resolver::iterator())
+ 	{
+ 		try
+ 		{
+@@ -130,7 +130,7 @@ void ClientTransport::connect() {
+ 			connected = true;
+ 			break;
+ 		}
+-		catch (asio::system_error se)
++		catch (boost::system::system_error se)
+ 		{
+ 			error_code = se.code();
+ 			try { socket_ptr->close(); } catch(...) {}
+@@ -138,24 +138,24 @@ void ClientTransport::connect() {
+ 		iterator++;
+ 	}
+ 	if (!connected)
+-		throw asio::system_error(error_code); // throw the last error on failure
++		throw boost::system::system_error(error_code); // throw the last error on failure
+ 	on_connect_(shared_from_this(), socket_ptr);
+ }
+ 
+ ServerTransport::ServerTransport(const std::string& ip, unsigned short port, 
+ 		boost::function<void (transport_ptr_t, socket_ptr_t)> on_connect) 
+ 	: Transport(),
+-	acceptor_(io_service(), asio::ip::tcp::endpoint(asio::ip::address_v4::from_string(ip), port)),
++	acceptor_(io_service(), boost::asio::ip::tcp::endpoint(boost::asio::ip::address_v4::from_string(ip), port)),
+ 	on_connect_(on_connect)
+ {
+ }
+ 
+ void ServerTransport::accept() {
+-	socket_ptr_t socket_ptr(new asio::ip::tcp::socket(io_service()));
+-	acceptor_.async_accept(*socket_ptr, boost::bind(&ServerTransport::on_accept, this, asio::placeholders::error, socket_ptr));
++	socket_ptr_t socket_ptr(new boost::asio::ip::tcp::socket(io_service()));
++	acceptor_.async_accept(*socket_ptr, boost::bind(&ServerTransport::on_accept, this, boost::asio::placeholders::error, socket_ptr));
+ }
+ 
+-void ServerTransport::on_accept(const asio::error_code& error, socket_ptr_t socket_ptr) {
++void ServerTransport::on_accept(const boost::system::error_code& error, socket_ptr_t socket_ptr) {
+ 	if (error) {
+ 		return;
+ 	}
+@@ -164,19 +164,19 @@ void ServerTransport::on_accept(const as
+ }
+ 
+ static ssize_t read(gnutls_transport_ptr_t ptr, void* buffer, size_t size) {
+-	asio::ip::tcp::socket* socket = reinterpret_cast<asio::ip::tcp::socket*>(ptr);
++	boost::asio::ip::tcp::socket* socket = reinterpret_cast<boost::asio::ip::tcp::socket*>(ptr);
+ 	try {
+-		return asio::read(*socket, asio::buffer(buffer, size));
+-	} catch (asio::system_error& /*se*/) {
++		return boost::asio::read(*socket, boost::asio::buffer(buffer, size));
++	} catch (boost::system::system_error& /*se*/) {
+ 		return -1;
+ 	}
+ }
+ 
+ static ssize_t write(gnutls_transport_ptr_t ptr, const void* buffer, size_t size) {
+-	asio::ip::tcp::socket* socket = reinterpret_cast<asio::ip::tcp::socket*>(ptr);
++	boost::asio::ip::tcp::socket* socket = reinterpret_cast<boost::asio::ip::tcp::socket*>(ptr);
+ 	try {
+-		return asio::write(*socket, asio::buffer(buffer, size));
+-	} catch (asio::system_error& /*se*/) {
++		return boost::asio::write(*socket, boost::asio::buffer(buffer, size));
++	} catch (boost::system::system_error& /*se*/) {
+ 		return -1;
+ 	}
+ }
+@@ -223,7 +223,7 @@ Proxy::Proxy(const std::string& ca_file)
+ 		throw Exception(TLS_SETUP_ERROR);
+ }
+ 
+-void Proxy::on_local_read(const asio::error_code& error, std::size_t bytes_transferred,
++void Proxy::on_local_read(const boost::system::error_code& error, std::size_t bytes_transferred,
+ 		transport_ptr_t transport_ptr, session_ptr_t session_ptr, socket_ptr_t local_socket_ptr, 
+ 		buffer_ptr_t local_buffer_ptr, socket_ptr_t remote_socket_ptr)
+ {
+@@ -240,8 +240,8 @@ void Proxy::on_local_read(const asio::er
+ 	}
+ 
+ 	local_socket_ptr->async_receive(
+-			asio::buffer(&(*local_buffer_ptr)[0], local_buffer_ptr->size()),
+-			boost::bind(&Proxy::on_local_read, this, asio::placeholders::error, asio::placeholders::bytes_transferred,
++			boost::asio::buffer(&(*local_buffer_ptr)[0], local_buffer_ptr->size()),
++			boost::bind(&Proxy::on_local_read, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred,
+ 					transport_ptr, session_ptr, local_socket_ptr, local_buffer_ptr, remote_socket_ptr)
+ 		);
+ }
+@@ -250,7 +250,7 @@ void Proxy::tunnel(transport_ptr_t trans
+ 		socket_ptr_t local_socket_ptr, socket_ptr_t remote_socket_ptr)
+ {
+ 	buffer_ptr_t local_buffer_ptr(new std::vector<char>(LOCAL_BUFFER_SIZE));
+-	t = new asio::thread(boost::bind(&Proxy::tunnel_, this, transport_ptr,
++	t = new boost::thread(boost::bind(&Proxy::tunnel_, this, transport_ptr,
+ 							session_ptr, local_socket_ptr, local_buffer_ptr, remote_socket_ptr));
+ }
+ 
+@@ -262,14 +262,14 @@ void Proxy::disconnect_(transport_ptr_t
+ 		gnutls_bye(*session_ptr, GNUTLS_SHUT_RDWR);
+ 
+ 	// shutdown the sockets belonging to this tunnel
+-	asio::error_code ec;
++	boost::system::error_code ec;
+ 	if (local_socket_ptr && local_socket_ptr->is_open()) {
+-		local_socket_ptr->shutdown(asio::ip::tcp::socket::shutdown_both, ec);
++		local_socket_ptr->shutdown(boost::asio::ip::tcp::socket::shutdown_both, ec);
+ 		local_socket_ptr->close(ec);
+ 	}
+ 
+ 	if (remote_socket_ptr && remote_socket_ptr->is_open()) {	
+-		remote_socket_ptr->shutdown(asio::ip::tcp::socket::shutdown_both, ec);
++		remote_socket_ptr->shutdown(boost::asio::ip::tcp::socket::shutdown_both, ec);
+ 		remote_socket_ptr->close(ec);
+ 	}
+ }
+@@ -278,8 +278,8 @@ void Proxy::tunnel_(transport_ptr_t tran
+ 		buffer_ptr_t local_buffer_ptr, socket_ptr_t remote_socket_ptr)
+ {
+ 	local_socket_ptr->async_receive(
+-			asio::buffer(&(*local_buffer_ptr)[0], local_buffer_ptr->size()),
+-			boost::bind(&Proxy::on_local_read, this, asio::placeholders::error, asio::placeholders::bytes_transferred, 
++			boost::asio::buffer(&(*local_buffer_ptr)[0], local_buffer_ptr->size()),
++			boost::bind(&Proxy::on_local_read, this, boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred, 
+ 					transport_ptr, session_ptr, local_socket_ptr, local_buffer_ptr, remote_socket_ptr)
+ 		);
+ 	
+@@ -297,8 +297,8 @@ void Proxy::tunnel_(transport_ptr_t tran
+ 		
+ 		// forward the data over the local connection
+ 		try {
+-			asio::write(*local_socket_ptr, asio::buffer(&tunnel_buffer[0], bytes_transferred));
+-		} catch (asio::system_error& /*se*/) {
++			boost::asio::write(*local_socket_ptr, boost::asio::buffer(&tunnel_buffer[0], bytes_transferred));
++		} catch (boost::system::system_error& /*se*/) {
+ 			break;
+ 		}
+ 	}
+@@ -333,15 +333,15 @@ void ClientProxy::setup()
+ 		for (unsigned short port = MIN_CLIENT_PORT; port <= MAX_CLIENT_PORT; port++) {
+ 			try {
+ 				acceptor_ptr.reset(
+-						new asio::ip::tcp::acceptor(transport_ptr_->io_service(),
+-														asio::ip::tcp::endpoint(asio::ip::address_v4::from_string(local_address_),
++						new boost::asio::ip::tcp::acceptor(transport_ptr_->io_service(),
++														boost::asio::ip::tcp::endpoint(boost::asio::ip::address_v4::from_string(local_address_),
+ 														port), false));
+ 				local_port_ = port;
+ 				break;
+-			} catch (asio::system_error& se) {
++			} catch (boost::system::system_error& se) {
+ 				if (port == MAX_CLIENT_PORT)
+ 					throw se;
+-				if (se.code() != asio::error::address_in_use)
++				if (se.code() != boost::asio::error::address_in_use)
+ 					throw se;
+ 				// this port is already in use, try another one
+ 				continue;
+@@ -350,7 +350,7 @@ void ClientProxy::setup()
+ 
+ 		// connect the transport
+ 		boost::static_pointer_cast<ClientTransport>(transport_ptr_)->connect();
+-	} catch (asio::system_error& se) {
++	} catch (boost::system::system_error& se) {
+ 		throw Exception(std::string(TRANSPORT_ERROR) + se.what());
+ 	}	
+ }
+@@ -378,12 +378,12 @@ void ClientProxy::on_transport_connect(t
+ 	}
+ 	
+ 	// start accepting connections on the local socket
+-	socket_ptr_t local_socket_ptr(new asio::ip::tcp::socket(transport_ptr->io_service()));
++	socket_ptr_t local_socket_ptr(new boost::asio::ip::tcp::socket(transport_ptr->io_service()));
+ 	acceptor_ptr->async_accept(*local_socket_ptr, boost::bind(&ClientProxy::on_client_connect, this, 
+-			asio::placeholders::error, transport_ptr, session_ptr, local_socket_ptr, remote_socket_ptr));
++			boost::asio::placeholders::error, transport_ptr, session_ptr, local_socket_ptr, remote_socket_ptr));
+ }
+ 
+-void ClientProxy::on_client_connect(const asio::error_code& error, 
++void ClientProxy::on_client_connect(const boost::system::error_code& error, 
+ 		transport_ptr_t transport_ptr, session_ptr_t session_ptr,
+ 		socket_ptr_t local_socket_ptr, socket_ptr_t remote_socket_ptr) {
+ 	if (error) {
+@@ -456,7 +456,7 @@ try
+ 		throw Exception(TLS_SETUP_ERROR);
+ 
+ 	gnutls_certificate_set_dh_params(x509cred, dh_params);
+-} catch (asio::system_error& se) {
++} catch (boost::system::system_error& se) {
+ 	throw Exception(std::string(TRANSPORT_ERROR) + se.what());
+ }
+ 
+@@ -477,14 +477,14 @@ void ServerProxy::on_transport_connect(t
+ 		return;
+ 	}
+ 	
+-	socket_ptr_t local_socket_ptr(new asio::ip::tcp::socket(transport_ptr->io_service()));
++	socket_ptr_t local_socket_ptr(new boost::asio::ip::tcp::socket(transport_ptr->io_service()));
+ 	try {
+-		asio::ip::tcp::resolver resolver(transport_ptr->io_service());
+-		asio::ip::tcp::resolver::query query("127.0.0.1", boost::lexical_cast<std::string>(local_port_));
+-		asio::ip::tcp::resolver::iterator iterator(resolver.resolve(query));
++		boost::asio::ip::tcp::resolver resolver(transport_ptr->io_service());
++		boost::asio::ip::tcp::resolver::query query("127.0.0.1", boost::lexical_cast<std::string>(local_port_));
++		boost::asio::ip::tcp::resolver::iterator iterator(resolver.resolve(query));
+ 
+ 		bool connected = false;
+-		while (iterator != asio::ip::tcp::resolver::iterator())
++		while (iterator != boost::asio::ip::tcp::resolver::iterator())
+ 		{
+ 			try
+ 			{
+@@ -492,7 +492,7 @@ void ServerProxy::on_transport_connect(t
+ 				connected = true;
+ 				break;
+ 			}
+-			catch (asio::system_error /*se*/)
++			catch (boost::system::system_error /*se*/)
+ 			{
+ 				// make sure we close the socket after a failed attempt, as it
+ 				// may have been opened by the connect() call.
+@@ -505,7 +505,7 @@ void ServerProxy::on_transport_connect(t
+ 			disconnect_(transport_ptr, session_ptr, local_socket_ptr, remote_socket_ptr);
+ 			return;
+ 		}
+-	} catch (asio::system_error& /*se*/) {
++	} catch (boost::system::system_error& /*se*/) {
+ 		disconnect_(transport_ptr, session_ptr, local_socket_ptr, remote_socket_ptr);
+ 		return;
+ 	}
+--- abiword-3.0.1/plugins/collab/backends/service/xp/tls_tunnel.h.orig	2014-11-04 02:12:14.000000000 +0100
++++ abiword-3.0.1/plugins/collab/backends/service/xp/tls_tunnel.h	2016-05-15 18:59:24.148638527 +0200
+@@ -33,7 +33,8 @@
+ #include <boost/function.hpp>
+ #include <boost/lexical_cast.hpp>
+ #include <boost/enable_shared_from_this.hpp>
+-#include <asio.hpp>
++#include <boost/asio.hpp>
++#include <boost/thread.hpp>
+ #include <string>
+ #include <vector>
+ #ifdef _MSC_VER
+@@ -45,7 +46,7 @@ typedef int pid_t;
+ 
+ namespace tls_tunnel {
+ 
+-typedef boost::shared_ptr<asio::ip::tcp::socket> socket_ptr_t;
++typedef boost::shared_ptr<boost::asio::ip::tcp::socket> socket_ptr_t;
+ typedef boost::shared_ptr<gnutls_session_t> session_ptr_t;
+ typedef boost::shared_ptr< std::vector<char> > buffer_ptr_t;
+ 
+@@ -59,7 +60,7 @@ private:
+ 
+ class Transport : public boost::enable_shared_from_this<Transport> {
+ public:
+-	asio::io_service& io_service();
++	boost::asio::io_service& io_service();
+ 	void run();
+ 	void stop();
+ 
+@@ -68,8 +69,8 @@ protected:
+ 	virtual ~Transport();
+ 
+ private:
+-	asio::io_service io_service_;
+-	asio::io_service::work work_;
++	boost::asio::io_service io_service_;
++	boost::asio::io_service::work work_;
+ };
+ 
+ typedef boost::shared_ptr<Transport> transport_ptr_t;
+@@ -92,9 +93,9 @@ public:
+ 			boost::function<void (transport_ptr_t, socket_ptr_t)> on_connect);
+ 	void accept();
+ private:
+-	void on_accept(const asio::error_code& error, socket_ptr_t socket_ptr);
++	void on_accept(const boost::system::error_code& error, socket_ptr_t socket_ptr);
+ 
+-	asio::ip::tcp::acceptor acceptor_;
++	boost::asio::ip::tcp::acceptor acceptor_;
+ 	boost::function<void (transport_ptr_t, socket_ptr_t)> on_connect_;
+ };
+ 
+@@ -110,7 +111,7 @@ public:
+ protected:
+ 	Proxy(const std::string& ca_file);
+ 
+-	void on_local_read(const asio::error_code& error, std::size_t bytes_transferred,
++	void on_local_read(const boost::system::error_code& error, std::size_t bytes_transferred,
+ 			transport_ptr_t transport_ptr, session_ptr_t session_ptr, socket_ptr_t local_socket_ptr,
+ 			buffer_ptr_t local_buffer_ptr, socket_ptr_t remote_socket_ptr);
+ 	void tunnel(transport_ptr_t transport_ptr, session_ptr_t session_ptr,
+@@ -127,7 +128,7 @@ private:
+ 			socket_ptr_t local_socket_ptr, buffer_ptr_t local_buffer_ptr,
+ 			socket_ptr_t remote_socket);
+ 
+-	asio::thread* t;
++	boost::thread* t;
+ };
+ 
+ // FIXME: this clientproxy can only handle 1 SSL connection at the same time
+@@ -144,7 +145,7 @@ public:
+ 
+ private:
+ 	void on_transport_connect(transport_ptr_t transport_ptr, socket_ptr_t remote_socket_ptr);
+-	void on_client_connect(const asio::error_code& error, transport_ptr_t transport_ptr,
++	void on_client_connect(const boost::system::error_code& error, transport_ptr_t transport_ptr,
+ 			session_ptr_t session_ptr, socket_ptr_t local_socket_ptr, socket_ptr_t remote_socket_ptr);
+ 	session_ptr_t setup_tls_session(socket_ptr_t remote_socket_ptr);
+ 
+@@ -152,7 +153,7 @@ private:
+ 	unsigned short local_port_;
+ 	std::string connect_address_;
+ 	unsigned short connect_port_;
+-	boost::shared_ptr<asio::ip::tcp::acceptor> acceptor_ptr;
++	boost::shared_ptr<boost::asio::ip::tcp::acceptor> acceptor_ptr;
+ 	bool check_hostname_;
+ };
+ 
+--- abiword-3.0.1/plugin-configure.m4.orig	2014-12-23 06:13:14.000000000 +0100
++++ abiword-3.0.1/plugin-configure.m4	2016-05-15 19:15:04.470598705 +0200
+@@ -565,7 +565,7 @@
+ 	enable_collab_backend_tcp=$enableval
+ 	if test "$enable_collab_backend_tcp" != "no"; then
+ 		AC_LANG_PUSH(C++)
+-		AC_CHECK_HEADERS([asio.hpp], [], 
++		AC_CHECK_HEADERS([boost/asio.hpp], [], 
+ 		[
+ 			AC_MSG_ERROR([collab plugin: asio is required for the collab plugin TCP backend, see http://think-async.com/])
+ 		])
+@@ -573,7 +573,7 @@
+ 	fi
+ ], [
+ 	AC_LANG_PUSH(C++)
+-	AC_CHECK_HEADERS([asio.hpp], 
++	AC_CHECK_HEADERS([boost/asio.hpp], 
+ 	[
+ 		enable_collab_backend_tcp="yes"
+ 	])
+@@ -604,7 +604,7 @@
+ 	enable_collab_backend_service=$enableval
+ 	if test "$enable_collab_backend_service" != "no"; then
+ 		AC_LANG_PUSH(C++)
+-		AC_CHECK_HEADERS([asio.hpp], [], 
++		AC_CHECK_HEADERS([boost/asio.hpp], [], 
+ 		[
+ 			AC_MSG_ERROR([collab plugin: asio is required for the the abicollab.net backend, see http://think-async.com/])
+ 		])
+@@ -612,7 +612,7 @@
+ 	fi
+ ], [
+ 	AC_LANG_PUSH(C++)
+-	AC_CHECK_HEADERS([asio.hpp],
++	AC_CHECK_HEADERS([boost/asio.hpp],
+ 	[
+ 		enable_collab_backend_service="yes"
+ 	])
+--- abiword-3.0.1/plugins/collab/backends/tcp/xp/IOServerHandler.h.orig	2013-07-05 03:51:21.000000000 +0200
++++ abiword-3.0.1/plugins/collab/backends/tcp/xp/IOServerHandler.h	2016-05-16 18:14:49.934309134 +0200
+@@ -23,7 +23,7 @@
+ 
+ #include <boost/bind.hpp>
+ #include <boost/function.hpp>
+-#include <asio.hpp>
++#include <boost/asio.hpp>
+ 
+ #include <sync/xp/Synchronizer.h>
+ #include "Session.h"
+@@ -34,7 +34,7 @@ class IOServerHandler
+ {
+ public:
+ 	IOServerHandler(int port, boost::function<void (IOServerHandler*, boost::shared_ptr<Session>)> af,
+-					boost::function<void (boost::shared_ptr<Session>)> ef, asio::io_service& io_service_)
++					boost::function<void (boost::shared_ptr<Session>)> ef, boost::asio::io_service& io_service_)
+ 	:	accept_synchronizer(boost::bind(&IOServerHandler::_signal, this)),
+ 		io_service(io_service_),
+ 		m_pAcceptor(NULL),
+@@ -43,7 +43,7 @@ public:
+ 		m_ef(ef)
+ 	{
+  		UT_DEBUGMSG(("IOServerHandler()\n"));
+- 		m_pAcceptor = new asio::ip::tcp::acceptor(io_service, asio::ip::tcp::endpoint(asio::ip::tcp::v4(), port));
++ 		m_pAcceptor = new boost::asio::ip::tcp::acceptor(io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port));
+ 	}
+ 
+ 	virtual ~IOServerHandler()
+@@ -76,7 +76,7 @@ public:
+  		session_ptr.reset(new Session(io_service, m_ef));
+ 		m_pAcceptor->async_accept(session_ptr->getSocket(),
+ 			boost::bind(&IOServerHandler::handleAsyncAccept,
+-				this, asio::placeholders::error));
++				this, boost::asio::placeholders::error));
+ 	}
+ 
+ private:
+@@ -88,7 +88,7 @@ private:
+ 		m_af(this, session_ptr);
+ 	}
+ 
+-	void handleAsyncAccept(const asio::error_code& ec)
++	void handleAsyncAccept(const boost::system::error_code& ec)
+ 	{
+ 		UT_DEBUGMSG(("IOServerHandler::handleAsyncAccept()\n"));
+ 		if (ec)
+@@ -100,8 +100,8 @@ private:
+ 	}
+ 
+ 	Synchronizer				accept_synchronizer;
+-	asio::io_service&			io_service;
+-	asio::ip::tcp::acceptor*	m_pAcceptor;
++	boost::asio::io_service&			io_service;
++	boost::asio::ip::tcp::acceptor*	m_pAcceptor;
+ 	boost::shared_ptr<Session>	session_ptr;
+ 
+ 	boost::function<void (IOServerHandler*, boost::shared_ptr<Session>)> m_af;
+--- abiword-3.0.1/plugins/collab/backends/tcp/xp/Session.h.orig	2014-02-06 02:12:15.000000000 +0100
++++ abiword-3.0.1/plugins/collab/backends/tcp/xp/Session.h	2016-05-16 18:30:27.198273019 +0200
+@@ -35,7 +35,7 @@ class TCPAccountHandler;
+ class Session : public Synchronizer, public boost::noncopyable, public boost::enable_shared_from_this<Session>
+ {
+ public:
+-	Session(asio::io_service& io_service, boost::function<void (boost::shared_ptr<Session>)> ef)
++	Session(boost::asio::io_service& io_service, boost::function<void (boost::shared_ptr<Session>)> ef)
+ 		: Synchronizer(boost::bind(&Session::_signal, this)),
+ 		socket(io_service),
+ 		queue_protector(),
+@@ -43,13 +43,13 @@ public:
+ 	{
+ 	}
+ 
+-	void connect(asio::ip::tcp::resolver::iterator& iterator)
++	void connect(boost::asio::ip::tcp::resolver::iterator& iterator)
+ 	{
+ 		socket.connect(*iterator);
+ 	}
+ 
+ 	// TODO: don't expose this
+-	asio::ip::tcp::socket& getSocket()
++	boost::asio::ip::tcp::socket& getSocket()
+ 	{
+ 		return socket;
+ 	}
+@@ -94,9 +94,9 @@ public:
+ 	{
+ 		UT_DEBUGMSG(("Session::asyncReadHeader()\n"));
+ 		packet_data = 0; // just to be sure we'll never touch a datablock we might have read before
+-		asio::async_read(socket,
+-			asio::buffer(&packet_size, 4),
+-			boost::bind(&Session::asyncReadHeaderHandler, shared_from_this(), asio::placeholders::error, asio::placeholders::bytes_transferred));
++		boost::asio::async_read(socket,
++			boost::asio::buffer(&packet_size, 4),
++			boost::bind(&Session::asyncReadHeaderHandler, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+ 	}
+ 
+ 	void asyncWrite(int size, const char* data)
+@@ -115,9 +115,9 @@ public:
+ 			packet_data_write = store_data;
+ 
+ 			UT_DEBUGMSG(("sending datablock of length: %d\n", packet_size_write));
+-			asio::async_write(socket,
+-				asio::buffer(&packet_size_write, 4),
+-				boost::bind(&Session::asyncWriteHeaderHandler, shared_from_this(), asio::placeholders::error));
++			boost::asio::async_write(socket,
++				boost::asio::buffer(&packet_size_write, 4),
++				boost::bind(&Session::asyncWriteHeaderHandler, shared_from_this(), boost::asio::placeholders::error));
+ 		}
+ 	}
+ 
+@@ -134,12 +134,12 @@ public:
+ 		UT_DEBUGMSG(("Session::disconnect()\n"));
+ 		if (socket.is_open())
+ 		{
+-			asio::error_code ecs;
+-			socket.shutdown(asio::ip::tcp::socket::shutdown_both, ecs);
++			boost::system::error_code ecs;
++			socket.shutdown(boost::asio::ip::tcp::socket::shutdown_both, ecs);
+ 			if (ecs) {
+ 				UT_DEBUGMSG(("Error shutting down socket: %s\n", ecs.message().c_str()));
+ 			}
+-			asio::error_code ecc;
++			boost::system::error_code ecc;
+ 			socket.close(ecc);
+ 			if (ecc) {
+ 				UT_DEBUGMSG(("Error closing socket: %s\n", ecc.message().c_str()));
+@@ -156,7 +156,7 @@ private:
+ 		m_ef(shared_from_this());
+ 	}
+ 
+-	void asyncReadHeaderHandler(const asio::error_code& error,
++	void asyncReadHeaderHandler(const boost::system::error_code& error,
+ 		std::size_t bytes_transferred)
+ 	{
+ 		if (error)
+@@ -183,12 +183,12 @@ private:
+ 		UT_DEBUGMSG(("going to read datablock of length: %d\n", packet_size));
+ 		// now continue reading the packet data
+ 		packet_data = reinterpret_cast<char*>(g_malloc(packet_size));
+-		asio::async_read(socket,
+-			asio::buffer(packet_data, packet_size),
+-			boost::bind(&Session::asyncReadHandler, shared_from_this(), asio::placeholders::error, asio::placeholders::bytes_transferred));
++		boost::asio::async_read(socket,
++			boost::asio::buffer(packet_data, packet_size),
++			boost::bind(&Session::asyncReadHandler, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
+ 	}
+ 
+-	void asyncReadHandler(const asio::error_code& error,
++	void asyncReadHandler(const boost::system::error_code& error,
+ 		std::size_t bytes_transferred)
+ 	{
+ 		if (error)
+@@ -210,7 +210,7 @@ private:
+ 		asyncReadHeader();
+ 	}
+ 
+-	void asyncWriteHeaderHandler(const asio::error_code& ec)
++	void asyncWriteHeaderHandler(const boost::system::error_code& ec)
+ 	{
+ 		UT_DEBUGMSG(("Session::asyncWriteHeaderHandler()\n"));
+ 		if (ec)
+@@ -221,12 +221,12 @@ private:
+ 		}
+ 
+ 		// write the packet body
+-		asio::async_write(socket,
+-			asio::buffer(packet_data_write, packet_size_write),
+-			boost::bind(&Session::asyncWriteHandler, shared_from_this(), asio::placeholders::error));
++		boost::asio::async_write(socket,
++			boost::asio::buffer(packet_data_write, packet_size_write),
++			boost::bind(&Session::asyncWriteHandler, shared_from_this(), boost::asio::placeholders::error));
+ 	}
+ 
+-	void asyncWriteHandler(const asio::error_code& ec)
++	void asyncWriteHandler(const boost::system::error_code& ec)
+ 	{
+ 		UT_DEBUGMSG(("Session::asyncWriteHandler()\n"));
+ 		FREEP(packet_data_write);
+@@ -247,13 +247,13 @@ private:
+ 
+ 			UT_DEBUGMSG(("sending datablock of length: %d\n", packet_size_write));
+ 
+-			asio::async_write(socket,
+-				asio::buffer(&packet_size_write, 4),
+-				boost::bind(&Session::asyncWriteHeaderHandler, shared_from_this(), asio::placeholders::error));
++			boost::asio::async_write(socket,
++				boost::asio::buffer(&packet_size_write, 4),
++				boost::bind(&Session::asyncWriteHeaderHandler, shared_from_this(), boost::asio::placeholders::error));
+ 		}
+ 	}
+ 
+-	asio::ip::tcp::socket					socket;
++	boost::asio::ip::tcp::socket					socket;
+ 	abicollab::mutex 						queue_protector;
+ 	std::deque< std::pair<int, char*> >		incoming;
+ 	std::deque< std::pair<int, char*> >		outgoing;
+--- abiword-3.0.1/plugins/collab/backends/tcp/xp/TCPAccountHandler.cpp.orig	2013-07-05 03:51:21.000000000 +0200
++++ abiword-3.0.1/plugins/collab/backends/tcp/xp/TCPAccountHandler.cpp	2016-05-16 18:39:44.224203554 +0200
+@@ -80,7 +80,7 @@ ConnectResult TCPAccountHandler::connect
+ 	UT_return_val_if_fail(!m_bConnected, CONNECT_ALREADY_CONNECTED);
+ 	UT_return_val_if_fail(!m_thread, CONNECT_INTERNAL_ERROR);
+ 	m_io_service.reset();
+-	m_thread = new asio::thread(boost::bind(&asio::io_service::run, &m_io_service));
++	m_thread = new boost::thread(boost::bind(&boost::asio::io_service::run, &m_io_service));
+ 
+ 	// set up the connection
+ 	if (getProperty("server") == "")
+@@ -97,7 +97,7 @@ ConnectResult TCPAccountHandler::connect
+ 			m_bConnected = true; // todo: ask it to the acceptor
+ 			pDelegator->run();
+ 		}
+-		catch (asio::system_error se)
++		catch (boost::system::system_error se)
+ 		{
+ 			UT_DEBUGMSG(("Failed to start accepting connections: %s\n", se.what()));
+ 			_teardownAndDestroyHandler();
+@@ -116,13 +116,13 @@ ConnectResult TCPAccountHandler::connect
+ 
+ 		try
+ 		{
+-			asio::ip::tcp::resolver resolver(m_io_service);
+-			asio::ip::tcp::resolver::query query(getProperty("server"), getProperty("port"));
+-			asio::ip::tcp::resolver::iterator iterator(resolver.resolve(query));
++			boost::asio::ip::tcp::resolver resolver(m_io_service);
++			boost::asio::ip::tcp::resolver::query query(getProperty("server"), getProperty("port"));
++			boost::asio::ip::tcp::resolver::iterator iterator(resolver.resolve(query));
+ 
+ 			bool connected = false;
+ 			boost::shared_ptr<Session> session_ptr(new Session(m_io_service, boost::bind(&TCPAccountHandler::handleEvent, this, _1)));
+-			while (iterator != asio::ip::tcp::resolver::iterator())
++			while (iterator != boost::asio::ip::tcp::resolver::iterator())
+ 			{
+ 				try
+ 				{
+@@ -132,7 +132,7 @@ ConnectResult TCPAccountHandler::connect
+ 					connected = true;
+ 					break;
+ 				}
+-				catch (asio::system_error se)
++				catch (boost::system::system_error se)
+ 				{
+ 					UT_DEBUGMSG(("Connection attempt failed: %s\n", se.what()));
+ 					// make sure we close the socket after a failed attempt, as it
+@@ -158,7 +158,7 @@ ConnectResult TCPAccountHandler::connect
+ 			addBuddy(pBuddy);
+ 			m_clients.insert(std::pair<TCPBuddyPtr, boost::shared_ptr<Session> >(pBuddy, session_ptr));
+ 		}
+-		catch (asio::system_error se)
++		catch (boost::system::system_error se)
+ 		{
+ 			UT_DEBUGMSG(("Failed to resolve %s:%d: %s\n", getProperty("server").c_str(), _getPort(getProperties()), se.what()));
+ 			_teardownAndDestroyHandler();
+--- abiword-3.0.1/plugins/collab/backends/tcp/xp/TCPAccountHandler.h.orig	2013-04-07 15:53:03.000000000 +0200
++++ abiword-3.0.1/plugins/collab/backends/tcp/xp/TCPAccountHandler.h	2016-05-16 18:37:26.453612079 +0200
+@@ -20,6 +20,7 @@
+ #define __TCPACCOUNTHANDLER__
+ 
+ #include <boost/shared_ptr.hpp>
++#include <boost/thread.hpp>
+ #include <core/account/xp/AccountHandler.h>
+ 
+ #include "IOServerHandler.h"
+@@ -84,9 +85,9 @@ private:
+ 	virtual UT_sint32						_getPort(const PropertyMap& props);
+ 	void									_handleAccept(IOServerHandler* pHandler, boost::shared_ptr<Session> session);
+ 
+-	asio::io_service						m_io_service;
+-	asio::io_service::work					m_work;
+-	asio::thread*							m_thread;
++	boost::asio::io_service						m_io_service;
++	boost::asio::io_service::work					m_work;
++	boost::thread*							m_thread;
+ 	bool									m_bConnected; // TODO: drop this, ask the IO handler
+ 	IOServerHandler*						m_pDelegator;
+ 

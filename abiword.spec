@@ -1,17 +1,26 @@
+# TODO: wordperfect support with libwpd 0.10, libwp[gs] 0.3
 #
-%bcond_with	gda		# libgda support
+%bcond_without	evolution	# Evolution Data Server for contacts and calendar
+%bcond_without	champlain	# champlain maps display support
+%bcond_with	gda		# libgda (1.x) support
 %bcond_without	goffice		# without plugin-goffice
 %bcond_without	gnome		# without GNOME libs
-%bcond_with	gnomevfs	# gnome-vfs support
-%bcond_with	ots		# try build plugin-ots (requires ots >= 0.5.0)
+%bcond_with	gnomevfs	# gnome-vfs support (GTK+ 2.x only)
+%bcond_with	gtk2		# GTK+ 2.x instead of 3.x
+%bcond_without	introspection	# GObject introspection
+%bcond_without	ots		# Open Text Summarizer plugin
+%bcond_without	redland		# redland/raptor libraries
 #
 %define		mver	3.0
 #
+%if %{without gtk2}
+%undefine	with_gnomevfs
+%endif
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	3.0.1
-Release:	7
+Release:	8
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications/Editors
@@ -22,71 +31,110 @@ Patch1:		%{name}-mht.patch
 Patch2:		%{name}-librevenge.patch
 Patch3:		%{name}-link-grammar-5.patch
 Patch4:		%{name}-link-grammar-5-second.patch
+Patch5:		%{name}-parallel.patch
+Patch6:		%{name}-tidy.patch
+Patch7:		%{name}-asio.patch
 URL:		http://www.abisource.com/
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	boost-devel >= 1.33.1
+BuildRequires:	autoconf >= 2.50
+BuildRequires:	automake >= 1:1.9
+BuildRequires:	boost-devel >= 1.40.0
 BuildRequires:	bzip2-devel
-BuildRequires:	cairo-devel
+BuildRequires:	cairo-devel >= 1.10
+BuildRequires:	dbus-glib-devel >= 0.70
 BuildRequires:	enchant-devel >= 1.2.6
 BuildRequires:	eps-devel
-BuildRequires:	evolution-data-server-devel
+%{?with_evolution:BuildRequires:	evolution-data-server-devel >= 3.6}
 BuildRequires:	fontconfig-devel >= 1:2.3.95
 BuildRequires:	fribidi-devel >= 0.10.4
 BuildRequires:	glib2-devel >= 1:2.12.1
+BuildRequires:	gnutls-devel
+%{?with_introspection:BuildRequires:	gobject-introspection-devel >= 1.0.0}
+%if %{with gtk2}
 BuildRequires:	gtk+2-devel >= 2:2.12.0
+%else
+BuildRequires:	gtk+3-devel >= 3.0.8
+%endif
 BuildRequires:	gtkmathview-devel >= 0.7.6
-BuildRequires:	gucharmap-devel >= 1.7.0
+# libchamplain-gtk compiler with matching GTK+ version
+%{?with_champlain:BuildRequires:	libchamplain-devel >= 0.12}
 %if %{with gda}
 BuildRequires:	libgda-devel >= 1:1.2.4-16
 BuildRequires:	libgnomedb-devel >= 1:1.2.0
-%else
-Obsoletes:	abiword-plugin-gda
 %endif
-BuildRequires:	libgnomeui-devel >= 2.15.91
-%if %{with goffice}
-BuildRequires:	libgoffice-devel >= 0.8.0
-%else
-Obsoletes:	abiword-plugin-goffice
-%endif
-BuildRequires:	libgsf-devel >= 1.14.9
+%{?with_goffice:BuildRequires:	libgoffice-devel >= 0.10.2}
+BuildRequires:	libgcrypt-devel >= 1.4.5
+BuildRequires:	libgsf-devel >= 1.14.18
+BuildRequires:	libical-devel >= 0.46
 BuildRequires:	libjpeg-devel
 BuildRequires:	libpng-devel
 BuildRequires:	librevenge-devel
 BuildRequires:	librsvg-devel >= 1:2.16.0
-BuildRequires:	libtool
+BuildRequires:	libsoup-devel >= 2.4
+BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libwmf-devel >= 2:0.2.8.4
 BuildRequires:	libwpd-devel >= 0.9.0
 BuildRequires:	libwpg-devel >= 0.2.0
 BuildRequires:	libwps-devel >= 0.2.0
 BuildRequires:	libxml2-devel >= 1:2.6.26
+BuildRequires:	libxslt-devel
 BuildRequires:	link-grammar-devel >= 4.2.1
-BuildRequires:	loudmouth-devel >= 1.0.1
+BuildRequires:	loudmouth-devel >= 1.3.2
 %{?with_ots:BuildRequires:	ots-devel >= 0.5.0}
 BuildRequires:	pango-devel
 BuildRequires:	perl-devel
-BuildRequires:	pkgconfig >= 0.9.0
+BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	popt-devel
 BuildRequires:	psiconv-devel >= 0.9.6
+%{?with_introspection:BuildRequires:	python >= 2}
+%{?with_introspection:BuildRequires:	python-pygobject3 >= 3}
+%{?with_redland:BuildRequires:	rasqal-devel >= 0.9.17}
 BuildRequires:	readline-devel
+%{?with_redland:BuildRequires:	redland-devel >= 1.0.10}
+BuildRequires:	rpmbuild(macros) >= 1.219
 BuildRequires:	sed >= 4.0
-BuildRequires:	t1lib-devel
+BuildRequires:	tidy-devel
+BuildRequires:	telepathy-glib-devel >= 0.14.5
 BuildRequires:	wv-devel >= 1.2.1
+BuildRequires:	zlib-devel
 Requires(post,postun):	desktop-file-utils
+Requires:	cairo >= 1.10
+Requires:	enchant >= 1.2.6
+%{?with_evolution:Requires:	evolution-data-server-libs >= 3.6}
+Requires:	fontconfig >= 1:2.3.95
+Requires:	fribidi >= 0.10.4
+Requires:	glib2 >= 1:2.12.1
+%if %{with gtk2}
+Requires:	gtk+2 >= 2:2.12.0
+%else
+Requires:	gtk+3 >= 3.0.8
+%endif
+%{?with_champlain:Requires:	libchamplain >= 0.12}
+Requires:	libgcrypt >= 1.4.5
+%{?with_goffice:Requires:	libgoffice >= 0.10.2}
+Requires:	libgsf >= 1.14.18
+Requires:	libical >= 0.46
+Requires:	librsvg >= 1:2.16.0
+Requires:	libxml2 >= 1:2.6.26
+%{?with_redland:Requires:	rasqal >= 0.9.17}
+%{?with_redland:Requires:	redland >= 1.0.10}
+Requires:	wv >= 1.2.1
 Obsoletes:	abiword-plugin-applix
 Obsoletes:	abiword-plugin-babelfish
 Obsoletes:	abiword-plugin-bmp
 Obsoletes:	abiword-plugin-bz2
 Obsoletes:	abiword-plugin-capi
 Obsoletes:	abiword-plugin-clarisworks
+Obsoletes:	abiword-plugin-coquille
 Obsoletes:	abiword-plugin-dash
 Obsoletes:	abiword-plugin-docbook
 Obsoletes:	abiword-plugin-eml
 Obsoletes:	abiword-plugin-freetranslation
+%{!?with_gda:Obsoletes:	abiword-plugin-gda}
 Obsoletes:	abiword-plugin-gdict
 Obsoletes:	abiword-plugin-gdkpixbuf
 Obsoletes:	abiword-plugin-gimp
+%{!?with_goffice:Obsoletes:	abiword-plugin-goffice}
 Obsoletes:	abiword-plugin-google
 Obsoletes:	abiword-plugin-gypsython
 Obsoletes:	abiword-plugin-hancom
@@ -138,12 +186,26 @@ Files for AbiWord plugins development.
 %description devel -l pl.UTF-8
 Pliki do tworzenia wtyczek dla AbiWorda.
 
+%package -n python-abiword
+Summary:	Python GObject binding for AbiWord library
+Summary(pl.UTF-8):	Wiązanie Pythona i GObject do biblioteki AbiWorda
+Group:		Libraries/Python
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	python-pygobject3 >= 3
+
+%description -n python-abiword
+Python GObject binding for AbiWord library.
+
+%description -n python-abiword -l pl.UTF-8
+Wiązanie Pythona i GObject do biblioteki AbiWorda.
+
 # plugins - tools
 %package plugin-aiksaurus
 Summary:	AbiWord Aiksaurus plugin
 Summary(pl.UTF-8):	Wtyczka AbiWorda Aiksaurus
 Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	aiksaurus-gtk >= 1.2.1
 
 %description plugin-aiksaurus
 Allows to use Aiksaurus thesaurus.
@@ -157,6 +219,9 @@ Summary:	Remote collaborate for AbiWord
 Summary(pl.UTF-8):	Zdalna współpraca dla AbiWorda
 Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	dbus-glib >= 0.70
+Requires:	loudmouth >= 1.3.2
+Requires:	telepathy-glib >= 0.14.5
 
 %description plugin-collab
 Allows to collaborate with a remote user.
@@ -182,6 +247,8 @@ Summary(pl.UTF-8):	Wtyczka AbiWorda dla GDA
 Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gnome-database-access-properties >= 1:1.2.1
+Requires:	libgda >= 1:1.2.4-16
+Requires:	libgnomedb >= 1:1.2.0
 
 %description plugin-gda
 Allows access to any database provided by libgda.
@@ -195,6 +262,7 @@ Summary:	GNOME Office plugin
 Summary(pl.UTF-8):	Wtyczka GNOME Office
 Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	libgoffice >= 0.10.2
 
 %description plugin-goffice
 Allows to share GNOME Office objects between GOffice appplications.
@@ -208,6 +276,7 @@ Summary:	AbiWord MathView plugin
 Summary(pl.UTF-8):	Wtyczka MAthView dla AbiWorda
 Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	gtkmathview-devel >= 0.7.6
 
 %description plugin-mathview
 MathML or LaTeX style equation inserting and editing.
@@ -220,6 +289,7 @@ Summary:	AbiWord OTS plugin
 Summary(pl.UTF-8):	Wtyczka OTS dla Abiworda
 Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	ots >= 0.5.0
 
 %description plugin-ots
 Create document summaries.
@@ -228,18 +298,6 @@ Create document summaries.
 Wtyczka ta służy do tworzenia podsumowania dokumentu.
 
 # plugins import - export
-%package plugin-coquille
-Summary:	AbiWord Coquille plugin
-Summary(pl.UTF-8):	Wtyczka Coquille dla Abiworda
-Group:		X11/Applications/Editors
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-
-%description plugin-coquille
-Docbook extensions.
-
-%description plugin-coquille -l pl.UTF-8
-Rozszerzenia Docbooka.
-
 %package plugin-latex
 Summary:	AbiWord LaTeX plugin
 Summary(pl.UTF-8):	Wtyczka LaTeX dla Abiworda
@@ -257,6 +315,7 @@ Summary:	AbiWord Link Grammar plugin
 Summary(pl.UTF-8):	Wtyczka Gramatyki dla Abiworda
 Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	link-grammar >= 4.2.1
 
 %description plugin-link-grammar
 AbiWord Link Grammar plugin.
@@ -269,6 +328,7 @@ Summary:	AbiWord Psion plugin
 Summary(pl.UTF-8):	Wtyczka Psion dla Abiworda
 Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	psiconv >= 0.9.6
 
 %description plugin-psion
 Import/export Psion files.
@@ -281,6 +341,7 @@ Summary:	AbiWord WMF plugin
 Summary(pl.UTF-8):	Wtyczka WMF dla Abiworda
 Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	libwmf >= 2:0.2.8.4
 
 %description plugin-wmf
 View Windows Metafiles.
@@ -320,18 +381,29 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %patch2 -p0
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
 
 %build
+%{__libtoolize}
 %{__aclocal} -I .
-%{__automake}
 %{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
-	--with-gnomevfs=%{?with_gnomevfs:yes}%{!?with_gnomevfs:no} \
-	--with-goffice=%{?with_goffice:yes}%{!?with_goffice:no} \
+	--disable-silent-rules \
 	--disable-static \
 	--enable-clipart \
+	%{?with_introspection:--enable-introspection} \
 	--enable-plugins=auto \
-	--enable-templates
+	--enable-templates \
+	--with-champlain%{!?with_champlain:=no} \
+	--with-evolution-data-server%{!?with_evolution:=no} \
+	--with-gnomevfs%{!?with_gnomevfs:=no} \
+	--with-goffice%{!?with_goffice:=no} \
+	%{?with_gtk2:--with-gtk2} \
+	--with-redland%{!?with_redland:=no}
 
 %{__make}
 
@@ -342,7 +414,13 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 # Remove useless files
-%{__rm} -f $RPM_BUILD_ROOT%{_libdir}/abiword-%{mver}/plugins/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/abiword-%{mver}/plugins/*.la
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/lib*.la
+
+%if %{with introspection}
+%py_postclean
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -357,22 +435,26 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/abiword
 %attr(755,root,root) %{_libdir}/libabiword-%{mver}.so
+%if %{with introspection}
+%{_libdir}/girepository-1.0/Abi-%{mver}.typelib
+%endif
 %dir %{_libdir}/abiword-%{mver}
 %dir %{_libdir}/abiword-%{mver}/plugins
 %dir %{_datadir}/abiword-%{mver}
 %{_datadir}/abiword-%{mver}/Presentation.xml
 %{_datadir}/abiword-%{mver}/readme.abw
 %{_datadir}/abiword-%{mver}/readme.txt
-%{_datadir}/abiword-%{mver}/strings
 %{_datadir}/abiword-%{mver}/system.profile*
+%{_datadir}/abiword-%{mver}/certs
+%{_datadir}/abiword-%{mver}/mime-info
+%{_datadir}/abiword-%{mver}/omml_xslt
+%{_datadir}/abiword-%{mver}/strings
 %{_datadir}/abiword-%{mver}/templates
 %{_datadir}/abiword-%{mver}/ui
 %{_datadir}/abiword-%{mver}/xsltml
-%{_datadir}/abiword-%{mver}/mime-info
-%{_datadir}/abiword-%{mver}/omml_xslt
-%{_desktopdir}/*.desktop
+%{_desktopdir}/abiword.desktop
 %{_iconsdir}/hicolor/*/apps/abiword.*
 %{_mandir}/man1/abiword.1*
 %{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.AbiCollab.service
@@ -419,9 +501,17 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/libabiword-%{mver}.la
 %{_includedir}/abiword-%{mver}
+%if %{with introspection}
+%{_datadir}/gir-1.0/Abi-3.0.gir
+%endif
 %{_pkgconfigdir}/abiword-%{mver}.pc
+
+%if %{with introspection}
+%files -n python-abiword
+%defattr(644,root,root,755)
+%{py_sitedir}/gi/overrides/Abi.py[co]
+%endif
 
 %files plugin-aiksaurus
 %defattr(644,root,root,755)

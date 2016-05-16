@@ -1,0 +1,24 @@
+--- abiword-3.0.1/plugin-configure.m4.orig	2014-12-23 06:13:14.000000000 +0100
++++ abiword-3.0.1/plugin-configure.m4	2016-05-15 17:23:24.841565627 +0200
+@@ -1612,7 +1612,7 @@
+ 	inter7eps_found="no"
+ ])
+ 
+-AC_CHECK_HEADERS([tidy/tidy.h],
++AC_CHECK_HEADERS([tidy.h],
+ [
+ 	libtidy_found="yes"
+ ], [
+--- abiword-3.0.1/plugins/mht/xp/tidyReader.h.orig	2013-04-07 15:53:03.000000000 +0200
++++ abiword-3.0.1/plugins/mht/xp/tidyReader.h	2016-05-15 20:06:39.366549827 +0200
+@@ -24,8 +24,8 @@
+ #ifndef TIDYREADER_H
+ #define TIDYREADER_H
+ 
+-#include <tidy/tidy.h>
+-#include <tidy/buffio.h>
++#include <tidy.h>
++#include <buffio.h>
+ 
+ #include "ut_xml.h"
+ 
