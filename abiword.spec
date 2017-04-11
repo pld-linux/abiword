@@ -19,19 +19,16 @@
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	3.0.1
-Release:	9
+Version:	3.0.2
+Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications/Editors
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
-# Source0-md5:	f3f8052e7b4979a43b75775a381e6cb8
+# Source0-md5:	cda6dd58c747c133b421cc7eb18f5796
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-mht.patch
 Patch2:		%{name}-librevenge.patch
-Patch3:		%{name}-link-grammar-5.patch
-Patch4:		%{name}-link-grammar-5-second.patch
-Patch5:		%{name}-parallel.patch
 Patch6:		%{name}-tidy.patch
 Patch7:		%{name}-asio.patch
 URL:		http://www.abisource.com/
@@ -379,9 +376,6 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
 %patch6 -p1
 %patch7 -p1
 
