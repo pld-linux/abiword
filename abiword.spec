@@ -20,7 +20,7 @@ Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	3.0.2
-Release:	6
+Release:	7
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications/Editors
