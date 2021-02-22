@@ -10,6 +10,7 @@
 %bcond_without	introspection	# GObject introspection
 %bcond_without	ots		# Open Text Summarizer plugin
 %bcond_without	redland		# redland/raptor libraries
+%bcond_with	psiconv		# psiconv / psion plugin
 #
 %define		mver	3.0
 #
@@ -20,7 +21,7 @@ Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	3.0.2
-Release:	7
+Release:	8
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications/Editors
@@ -84,7 +85,7 @@ BuildRequires:	pango-devel
 BuildRequires:	perl-devel
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	popt-devel
-BuildRequires:	psiconv-devel >= 0.9.6
+%{?with_psiconv:BuildRequires:	psiconv-devel >= 0.9.6}
 %{?with_introspection:BuildRequires:	python >= 2}
 %{?with_introspection:BuildRequires:	python-pygobject3 >= 3}
 %{?with_redland:BuildRequires:	rasqal-devel >= 0.9.17}
@@ -555,9 +556,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/grammar.so
 
+%if %{with psiconv}
 %files plugin-psion
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/psion.so
+%endif
 
 %files plugin-wmf
 %defattr(644,root,root,755)
