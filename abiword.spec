@@ -20,18 +20,16 @@
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	3.0.2
-Release:	8
+Version:	3.0.5
+Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications/Editors
 Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
-# Source0-md5:	cda6dd58c747c133b421cc7eb18f5796
+# Source0-md5:	a8f218b711450e4ccae43a0522e0e806
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-mht.patch
 Patch2:		%{name}-librevenge.patch
-Patch3:		ecal.patch
-Patch4:		icu.patch
 Patch6:		%{name}-tidy.patch
 Patch7:		%{name}-asio.patch
 URL:		http://www.abisource.com/
@@ -379,8 +377,6 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0
-%patch3 -p1
-%patch4 -p1
 %patch6 -p1
 %patch7 -p1
 
@@ -453,10 +449,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/abiword-%{mver}/templates
 %{_datadir}/abiword-%{mver}/ui
 %{_datadir}/abiword-%{mver}/xsltml
+%{_datadir}/appdata/abiword.appdata.xml
+%{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.AbiCollab.service
 %{_desktopdir}/abiword.desktop
 %{_iconsdir}/hicolor/*/apps/abiword.*
 %{_mandir}/man1/abiword.1*
-%{_datadir}/dbus-1/services/org.freedesktop.Telepathy.Client.AbiCollab.service
 %{_datadir}/telepathy/clients/AbiCollab.client
 
 # These don't add any additional dependencies so there's no reason to split
