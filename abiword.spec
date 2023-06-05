@@ -3,14 +3,14 @@
 %bcond_without	evolution	# Evolution Data Server for contacts and calendar
 %bcond_without	champlain	# champlain maps display support
 %bcond_with	gda		# libgda (1.x) support
-%bcond_without	goffice		# without plugin-goffice
-%bcond_without	gnome		# without GNOME libs
+%bcond_without	goffice		# goffice plugin
 %bcond_with	gnomevfs	# gnome-vfs support (GTK+ 2.x only)
 %bcond_with	gtk2		# GTK+ 2.x instead of 3.x
 %bcond_without	introspection	# GObject introspection
 %bcond_without	ots		# Open Text Summarizer plugin
 %bcond_without	redland		# redland/raptor libraries
 %bcond_with	psiconv		# psiconv / psion plugin
+%bcond_with	wordperfect	# wordperfect plugin
 #
 %define		mver	3.0
 #
@@ -69,14 +69,15 @@ BuildRequires:	libpng-devel
 BuildRequires:	librevenge-devel
 BuildRequires:	librsvg-devel >= 1:2.16.0
 BuildRequires:	libsoup-devel >= 2.4
+BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libtool >= 2:1.5
 BuildRequires:	libwmf-devel >= 2:0.2.8.4
-BuildRequires:	libwpd-devel >= 0.9.0
-BuildRequires:	libwpg-devel >= 0.2.0
-BuildRequires:	libwps-devel >= 0.2.0
+%{?with_wordperfect:BuildRequires:	libwpd-devel >= 0.9.0}
+%{?with_wordperfect:BuildRequires:	libwpg-devel >= 0.2.0}
+%{?with_wordperfect:BuildRequires:	libwps-devel >= 0.2.0}
 BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	libxslt-devel
-BuildRequires:	link-grammar-devel >= 4.2.1
+BuildRequires:	link-grammar-devel >= 5.1.0
 BuildRequires:	loudmouth-devel >= 1.3.2
 %{?with_ots:BuildRequires:	ots-devel >= 0.5.0}
 BuildRequires:	pango-devel
@@ -156,7 +157,7 @@ Obsoletes:	abiword-plugin-sdw
 Obsoletes:	abiword-plugin-t602
 Obsoletes:	abiword-plugin-urldict
 Obsoletes:	abiword-plugin-wikipedia
-Obsoletes:	abiword-plugin-wordperfect
+%{!?with_wordperfect:Obsoletes:	abiword-plugin-wordperfect}
 Obsoletes:	abiword-plugin-wml
 Obsoletes:	abiword-plugin-xhtml
 Obsoletes:	abiword-plugin-xslfo
@@ -313,7 +314,7 @@ Summary:	AbiWord Link Grammar plugin
 Summary(pl.UTF-8):	Wtyczka Gramatyki dla Abiworda
 Group:		X11/Applications/Editors
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	link-grammar >= 4.2.1
+Requires:	link-grammar >= 5.1.0
 
 %description plugin-link-grammar
 AbiWord Link Grammar plugin.
@@ -492,7 +493,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/urldict.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wikipedia.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wml.so
-#%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wpg.so
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/xslfo.so
 
 %files devel
@@ -563,9 +563,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wmf.so
 
-#%files plugin-wordperfect
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wordperfect.so
+%if %{with wordperfect}
+%files plugin-wordperfect
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wordperfect.so
+%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wpg.so
+%endif
 
 %files clipart
 %defattr(644,root,root,755)
