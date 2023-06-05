@@ -118,51 +118,52 @@ Requires:	libxml2 >= 1:2.6.26
 %{?with_redland:Requires:	rasqal >= 0.9.17}
 %{?with_redland:Requires:	redland >= 1.0.10}
 Requires:	wv >= 1.2.1
-Obsoletes:	abiword-plugin-applix
-Obsoletes:	abiword-plugin-babelfish
-Obsoletes:	abiword-plugin-bmp
-Obsoletes:	abiword-plugin-bz2
-Obsoletes:	abiword-plugin-capi
-Obsoletes:	abiword-plugin-clarisworks
-Obsoletes:	abiword-plugin-coquille
-Obsoletes:	abiword-plugin-dash
-Obsoletes:	abiword-plugin-docbook
-Obsoletes:	abiword-plugin-eml
-Obsoletes:	abiword-plugin-freetranslation
-%{!?with_gda:Obsoletes:	abiword-plugin-gda}
-Obsoletes:	abiword-plugin-gdict
-Obsoletes:	abiword-plugin-gdkpixbuf
-Obsoletes:	abiword-plugin-gimp
-%{!?with_goffice:Obsoletes:	abiword-plugin-goffice}
-Obsoletes:	abiword-plugin-google
-Obsoletes:	abiword-plugin-gypsython
-Obsoletes:	abiword-plugin-hancom
-Obsoletes:	abiword-plugin-hrtext
-Obsoletes:	abiword-plugin-iscii
-Obsoletes:	abiword-plugin-jpeg
-Obsoletes:	abiword-plugin-kword
-Obsoletes:	abiword-plugin-magick
-Obsoletes:	abiword-plugin-mif
-Obsoletes:	abiword-plugin-mswrite
-Obsoletes:	abiword-plugin-nroff
-Obsoletes:	abiword-plugin-opendocument
-Obsoletes:	abiword-plugin-openwritter
-Obsoletes:	abiword-plugin-palmdoc
-Obsoletes:	abiword-plugin-passepartout
-Obsoletes:	abiword-plugin-pdf
-Obsoletes:	abiword-plugin-referee
-Obsoletes:	abiword-plugin-rsvg
-Obsoletes:	abiword-plugin-scripthappy
-Obsoletes:	abiword-plugin-sdw
-Obsoletes:	abiword-plugin-t602
-Obsoletes:	abiword-plugin-urldict
-Obsoletes:	abiword-plugin-wikipedia
-%{!?with_wordperfect:Obsoletes:	abiword-plugin-wordperfect}
-Obsoletes:	abiword-plugin-wml
-Obsoletes:	abiword-plugin-xhtml
-Obsoletes:	abiword-plugin-xslfo
-Obsoletes:	abiword-plugins-impexp
-Obsoletes:	abiword-plugins-tools
+Obsoletes:	abiword-plugin-applix < 1:2.8
+Obsoletes:	abiword-plugin-babelfish < 1:2.8
+Obsoletes:	abiword-plugin-bmp < 1:2.8
+Obsoletes:	abiword-plugin-bz2 < 1:2.8
+Obsoletes:	abiword-plugin-capi < 1:2.8
+Obsoletes:	abiword-plugin-clarisworks < 1:2.8
+Obsoletes:	abiword-plugin-coquille < 1:2.4
+Obsoletes:	abiword-plugin-dash < 1:2.8
+Obsoletes:	abiword-plugin-docbook < 1:2.8
+Obsoletes:	abiword-plugin-eml < 1:2.8
+Obsoletes:	abiword-plugin-freetranslation < 1:2.8
+%{!?with_gda:Obsoletes:	abiword-plugin-gda < %{epoch}:%{version}-%{release}}
+Obsoletes:	abiword-plugin-gdict < 1:2.8
+Obsoletes:	abiword-plugin-gdkpixbuf < 1:2.2
+Obsoletes:	abiword-plugin-gimp < 1:2.8
+%{!?with_goffice:Obsoletes:	abiword-plugin-goffice < %{epoch}:%{version}-%{release}}
+Obsoletes:	abiword-plugin-google < 1:2.8
+Obsoletes:	abiword-plugin-gypsython < 1:2.4
+Obsoletes:	abiword-plugin-hancom < 1:2.8
+Obsoletes:	abiword-plugin-hrtext < 1:2.8
+Obsoletes:	abiword-plugin-iscii < 1:2.8
+Obsoletes:	abiword-plugin-jpeg < 1:2.8
+Obsoletes:	abiword-plugin-kword < 1:2.8
+Obsoletes:	abiword-plugin-magick < 1:2.2
+Obsoletes:	abiword-plugin-mif < 1:2.8
+Obsoletes:	abiword-plugin-mswrite < 1:2.8
+Obsoletes:	abiword-plugin-nroff < 1:2.8
+Obsoletes:	abiword-plugin-opendocument < 1:2.8
+Obsoletes:	abiword-plugin-openwritter < 1:2.8
+Obsoletes:	abiword-plugin-palmdoc < 1:2.8
+Obsoletes:	abiword-plugin-passepartout < 1:2.8
+Obsoletes:	abiword-plugin-pdf < 1:2.8
+%{!?with_psiconv:Obsoletes:	abiword-plugin-psion < %{epoch}:%{version}-%{release}}
+Obsoletes:	abiword-plugin-referee < 1:2.4
+Obsoletes:	abiword-plugin-rsvg < 1:2.8
+Obsoletes:	abiword-plugin-scripthappy < 1:2.8
+Obsoletes:	abiword-plugin-sdw < 1:2.8
+Obsoletes:	abiword-plugin-t602 < 1:2.8
+Obsoletes:	abiword-plugin-urldict < 1:2.8
+Obsoletes:	abiword-plugin-wikipedia < 1:2.8
+%{!?with_wordperfect:Obsoletes:	abiword-plugin-wordperfect < %{epoch}:%{version}-%{release}}
+Obsoletes:	abiword-plugin-wml < 1:2.8
+Obsoletes:	abiword-plugin-xhtml < 1:2.8
+Obsoletes:	abiword-plugin-xslfo < 1:2.8
+Obsoletes:	abiword-plugins-impexp < 1:2.2
+Obsoletes:	abiword-plugins-tools < 1:2.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
