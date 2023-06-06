@@ -21,7 +21,7 @@ Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
 Version:	3.0.5
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications/Editors
@@ -222,6 +222,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	dbus-glib >= 0.70
 Requires:	loudmouth >= 1.3.2
 Requires:	telepathy-glib >= 0.14.5
+Requires:	telepathy-mission-control
 
 %description plugin-collab
 Allows to collaborate with a remote user.
@@ -456,7 +457,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/abiword.desktop
 %{_iconsdir}/hicolor/*/apps/abiword.*
 %{_mandir}/man1/abiword.1*
-%{_datadir}/telepathy/clients/AbiCollab.client
 
 # These don't add any additional dependencies so there's no reason to split
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/applix.so
@@ -519,6 +519,7 @@ rm -rf $RPM_BUILD_ROOT
 %files plugin-collab
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/collab.so
+%{_datadir}/telepathy/clients/AbiCollab.client
 
 %files plugin-command
 %defattr(644,root,root,755)
