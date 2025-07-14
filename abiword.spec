@@ -377,11 +377,11 @@ Jest to teczka clipartów używanych przez AbiWorda.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p0
-%patch6 -p1
-%patch7 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p0
+%patch -P6 -p1
+%patch -P7 -p1
 
 %build
 %{__libtoolize}
