@@ -110,15 +110,16 @@
  
 --- abiword-3.0.1/plugins/collab/backends/service/xp/RealmConnection.cpp.orig	2013-07-05 03:51:21.000000000 +0200
 +++ abiword-3.0.1/plugins/collab/backends/service/xp/RealmConnection.cpp	2016-05-15 19:03:12.877133249 +0200
-@@ -19,6 +19,7 @@
+@@ -19,6 +19,8 @@
  #include <boost/function.hpp>
  #include <boost/bind.hpp>
  #include <boost/lexical_cast.hpp>
 +#include <boost/thread.hpp>
++#include <boost/array.hpp>
  #include "ut_assert.h"
  #include "ut_debugmsg.h"
  #include "ServiceAccountHandler.h"
-@@ -68,7 +69,7 @@ bool RealmConnection::connect()
+@@ -68,7 +70,7 @@ bool RealmConnection::connect()
  			// setup our local TLS tunnel to the realm
  			m_tls_tunnel_ptr.reset(new tls_tunnel::ClientProxy(m_address, m_port, m_ca_file, false));
  			m_tls_tunnel_ptr->setup();
@@ -127,7 +128,7 @@
  
  			// make sure we connect to the tunnel, and not directly to the realm
  			address = m_tls_tunnel_ptr->local_address();
-@@ -76,13 +77,13 @@ bool RealmConnection::connect()
+@@ -76,13 +78,13 @@ bool RealmConnection::connect()
  		}
  
  		// connect!
@@ -146,7 +147,7 @@
  		{
  			try
  			{
-@@ -90,7 +91,7 @@ bool RealmConnection::connect()
+@@ -90,7 +92,7 @@ bool RealmConnection::connect()
  				connected = true;
  				break;
  			}
@@ -155,7 +156,7 @@
  			{
  				error_code = se.code();
  				try { m_socket.close(); } catch(...) {}
-@@ -99,7 +100,7 @@ bool RealmConnection::connect()
+@@ -99,7 +101,7 @@ bool RealmConnection::connect()
  		}
  		if (!connected)
  		{
@@ -164,7 +165,7 @@
  			return false;
  		}
  	}
-@@ -108,7 +109,7 @@ bool RealmConnection::connect()
+@@ -108,7 +110,7 @@ bool RealmConnection::connect()
  		UT_DEBUGMSG(("tls_tunnel exception connecting to realm: %s\n", e.message().c_str()));
  		return false;
  	}
@@ -173,7 +174,7 @@
  	{
  		UT_DEBUGMSG(("Error connecting to realm: %s\n", se.what()));
  		return false;
-@@ -131,7 +132,7 @@ bool RealmConnection::connect()
+@@ -131,7 +133,7 @@ bool RealmConnection::connect()
  	// start reading realm messages
  	_receive();	
  	
@@ -182,7 +183,7 @@
  	return true;
  }
  
-@@ -145,8 +146,8 @@ void RealmConnection::disconnect()
+@@ -145,8 +147,8 @@ void RealmConnection::disconnect()
  	// the complete disconnect
  	if (m_socket.is_open())
  	{
@@ -193,7 +194,7 @@
  		m_socket.close(ac);
  	}
  }
-@@ -217,8 +218,8 @@ void RealmConnection::_disconnect()
+@@ -217,8 +219,8 @@ void RealmConnection::_disconnect()
  	
  	if (m_socket.is_open())
  	{
@@ -204,7 +205,7 @@
  		m_socket.close(ac);
  	}
  	
-@@ -266,13 +267,13 @@ bool RealmConnection::_login()
+@@ -266,13 +268,13 @@ bool RealmConnection::_login()
  	{
  		// send the login credententials
  		// TODO: we should check the number of bytes written
@@ -221,7 +222,7 @@
  	{
  		UT_DEBUGMSG(("Error while writing/writing protocol header: %s\n", e.what()));
  		return false;
-@@ -315,7 +316,7 @@ UserJoinedPacketPtr RealmConnection::_re
+@@ -315,7 +317,7 @@ UserJoinedPacketPtr RealmConnection::_re
  {
  	// receive the packet type
  	std::string msg(1, '\0');
@@ -230,7 +231,7 @@
  	rpv1::packet_type packet_type = static_cast<rpv1::packet_type>(msg[0]);
  	if (packet_type != rpv1::PACKET_USERJOINED)
  		return UserJoinedPacketPtr();
-@@ -326,17 +327,17 @@ UserJoinedPacketPtr RealmConnection::_re
+@@ -326,17 +328,17 @@ UserJoinedPacketPtr RealmConnection::_re
  		uint8_t conn_id = 0;
  		uint8_t m = 0;
  
@@ -255,7 +256,7 @@
  		return UserJoinedPacketPtr(); 
  	}
  }
-@@ -346,12 +347,12 @@ void RealmConnection::_receive()
+@@ -346,12 +348,12 @@ void RealmConnection::_receive()
  	UT_DEBUGMSG(("RealmConnection::_receive()\n"));
  	m_buf.clear();
  	boost::shared_ptr<std::string> msg_ptr(new std::string(1, '\0'));
@@ -271,7 +272,7 @@
  {
  	UT_DEBUGMSG(("RealmConnection::_message()\n"));
  	if (e)
-@@ -390,15 +391,15 @@ void RealmConnection::_complete_packet(r
+@@ -390,15 +392,15 @@ void RealmConnection::_complete_packet(r
  			UT_DEBUGMSG(("Need more data (%d bytes) for this packet...\n", bytes_needed));
  			// read the needed number of bytes
  			char* ptr = m_buf.prepare(bytes_needed);

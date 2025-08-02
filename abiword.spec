@@ -30,6 +30,7 @@ Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-mht.patch
 Patch2:		%{name}-librevenge.patch
+Patch3:		build.patch
 Patch6:		%{name}-tidy.patch
 Patch7:		%{name}-asio.patch
 URL:		http://www.abisource.com/
@@ -380,6 +381,7 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %patch -P0 -p1
 %patch -P1 -p1
 %patch -P2 -p0
+%patch -P3 -p1
 %patch -P6 -p1
 %patch -P7 -p1
 
