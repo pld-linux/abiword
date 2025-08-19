@@ -7,7 +7,7 @@
 %bcond_without	introspection	# GObject introspection
 %bcond_without	ots		# Open Text Summarizer plugin
 %bcond_without	redland		# redland/raptor libraries
-%bcond_with	psiconv		# psiconv / psion plugin
+%bcond_without	psiconv		# psiconv / psion plugin
 %bcond_without	wordperfect	# wordperfect plugin
 #
 %define		mver	3.0
