@@ -1,5 +1,3 @@
-# TODO: wordperfect support with libwpd 0.10, libwp[gs] 0.3
-#
 %bcond_without	evolution	# Evolution Data Server for contacts and calendar
 %bcond_without	champlain	# champlain maps display support
 %bcond_with	gda		# libgda (1.x) support
@@ -10,7 +8,7 @@
 %bcond_without	ots		# Open Text Summarizer plugin
 %bcond_without	redland		# redland/raptor libraries
 %bcond_with	psiconv		# psiconv / psion plugin
-%bcond_with	wordperfect	# wordperfect plugin
+%bcond_without	wordperfect	# wordperfect plugin
 #
 %define		mver	3.0
 #
@@ -20,20 +18,20 @@
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	3.0.5
-Release:	3
+Version:	3.0.7
+Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications/Editors
-Source0:	http://www.abisource.com/downloads/abiword/%{version}/source/%{name}-%{version}.tar.gz
-# Source0-md5:	a8f218b711450e4ccae43a0522e0e806
+Source0:	https://gitlab.gnome.org/World/AbiWord/-/archive/release-%{version}/AbiWord-release-%{version}.tar.bz2
+# Source0-md5:	519c6ba2aa5259f5e0464f77751d8685
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-mht.patch
 Patch2:		%{name}-librevenge.patch
 Patch3:		build.patch
 Patch6:		%{name}-tidy.patch
 Patch7:		%{name}-asio.patch
-URL:		http://www.abisource.com/
+URL:		https://gitlab.gnome.org/World/AbiWord
 BuildRequires:	aiksaurus-gtk-devel >= 1.2.1
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake >= 1:1.9
@@ -86,8 +84,8 @@ BuildRequires:	perl-devel
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	popt-devel
 %{?with_psiconv:BuildRequires:	psiconv-devel >= 0.9.6}
-%{?with_introspection:BuildRequires:	python >= 2}
-%{?with_introspection:BuildRequires:	python-pygobject3 >= 3}
+%{?with_introspection:BuildRequires:	python3 >= 3}
+%{?with_introspection:BuildRequires:	python3-pygobject3 >= 3}
 %{?with_redland:BuildRequires:	rasqal-devel >= 0.9.17}
 BuildRequires:	readline-devel
 %{?with_redland:BuildRequires:	redland-devel >= 1.0.10}
@@ -187,17 +185,17 @@ Files for AbiWord plugins development.
 %description devel -l pl.UTF-8
 Pliki do tworzenia wtyczek dla AbiWorda.
 
-%package -n python-abiword
+%package -n python3-abiword
 Summary:	Python GObject binding for AbiWord library
 Summary(pl.UTF-8):	Wiązanie Pythona i GObject do biblioteki AbiWorda
 Group:		Libraries/Python
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	python-pygobject3 >= 3
+Requires:	python3-pygobject3 >= 3
 
-%description -n python-abiword
+%description -n python3-abiword
 Python GObject binding for AbiWord library.
 
-%description -n python-abiword -l pl.UTF-8
+%description -n python3-abiword -l pl.UTF-8
 Wiązanie Pythona i GObject do biblioteki AbiWorda.
 
 # plugins - tools
@@ -377,7 +375,7 @@ This is the clipart portfolio used by AbiWord.
 Jest to teczka clipartów używanych przez AbiWorda.
 
 %prep
-%setup -q
+%setup -q -n AbiWord-release-%{version}
 %patch -P0 -p1
 %patch -P1 -p1
 %patch -P2 -p0
@@ -386,12 +384,14 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %patch -P7 -p1
 
 %build
+./autogen-common.sh
 %{__libtoolize}
 %{__aclocal} -I .
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
+	PYTHON="%{__python3}" \
 	--disable-silent-rules \
 	--disable-static \
 	--enable-clipart \
@@ -507,9 +507,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/abiword-%{mver}.pc
 
 %if %{with introspection}
-%files -n python-abiword
+%files -n python3-abiword
 %defattr(644,root,root,755)
-%{py_sitedir}/gi/overrides/Abi.py[co]
+%{py3_sitedir}/gi/overrides/__pycache__/Abi*.py*
+%{py3_sitedir}/gi/overrides/Abi.py*
 %endif
 
 %files plugin-aiksaurus

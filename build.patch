@@ -1,13 +1,3 @@
---- abiword-3.0.5/src/af/util/xp/ut_stringbuf.cpp~	2021-07-03 17:46:07.000000000 +0200
-+++ abiword-3.0.5/src/af/util/xp/ut_stringbuf.cpp	2025-08-02 23:07:29.069269862 +0200
-@@ -26,6 +26,7 @@
- #include <algorithm>
- 
- #include <libxml/uri.h>
-+#include <libxml/xmlmemory.h>
- 
- #include <glib.h>
- 
 Index: abiword-3.0.2/src/gi-overrides/Makefile.am
 ===================================================================
 --- abiword-3.0.2.orig/src/gi-overrides/Makefile.am

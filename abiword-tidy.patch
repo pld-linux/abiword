@@ -1,5 +1,5 @@
---- abiword-3.0.1/plugin-configure.m4.orig	2014-12-23 06:13:14.000000000 +0100
-+++ abiword-3.0.1/plugin-configure.m4	2016-05-15 17:23:24.841565627 +0200
+--- abiword-3.0.1/plugins/mht/plugin.m4.orig	2014-12-23 06:13:14.000000000 +0100
++++ abiword-3.0.1/plugins/mht/plugin.m4	2016-05-15 17:23:24.841565627 +0200
 @@ -1612,7 +1612,7 @@
  	inter7eps_found="no"
  ])

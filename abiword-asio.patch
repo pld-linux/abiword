@@ -775,8 +775,8 @@
  	bool check_hostname_;
  };
  
---- abiword-3.0.1/plugin-configure.m4.orig	2014-12-23 06:13:14.000000000 +0100
-+++ abiword-3.0.1/plugin-configure.m4	2016-05-15 19:15:04.470598705 +0200
+--- abiword-3.0.1/plugins/collab/plugin.m4.orig	2014-12-23 06:13:14.000000000 +0100
++++ abiword-3.0.1/plugins/collab/plugin.m4	2016-05-15 19:15:04.470598705 +0200
 @@ -565,7 +565,7 @@
  	enable_collab_backend_tcp=$enableval
  	if test "$enable_collab_backend_tcp" != "no"; then
