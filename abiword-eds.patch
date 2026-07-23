@@ -1,0 +1,11 @@
+--- AbiWord-release-3.0.8/src/text/ptbl/xp/pd_DocumentRDF.cpp.orig	2026-02-18 04:16:18.000000000 +0100
++++ AbiWord-release-3.0.8/src/text/ptbl/xp/pd_DocumentRDF.cpp	2026-07-23 12:01:26.200103832 +0200
+@@ -2034,7 +2034,7 @@ PD_RDFContact::exportToFile( const std::
+         set( c, EVC_TEL,      m_phone );
+         set( c, EVC_X_JABBER, m_jabberID );
+ 
+-        gchar* data =  e_vcard_to_string( c, EVC_FORMAT_VCARD_30 );
++        gchar* data =  e_vcard_convert_to_string( c, E_VCARD_VERSION_30 );
+         UT_DEBUGMSG(( "saving vcard to file:%s vcard.len:%ld\n", filename.c_str(), strlen(data) ));
+         std::ofstream oss( filename.c_str() );
+         oss.write( data, strlen(data) );

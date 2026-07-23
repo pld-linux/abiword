@@ -18,16 +18,16 @@
 Summary:	Multi-platform word processor
 Summary(pl.UTF-8):	Wieloplatformowy procesor tekstu
 Name:		abiword
-Version:	3.0.7
+Version:	3.0.8
 Release:	1
 Epoch:		1
 License:	GPL v2+
 Group:		X11/Applications/Editors
 Source0:	https://gitlab.gnome.org/World/AbiWord/-/archive/release-%{version}/AbiWord-release-%{version}.tar.bz2
-# Source0-md5:	519c6ba2aa5259f5e0464f77751d8685
+# Source0-md5:	e5d170a2dd2055720a48a8921858c2e6
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-mht.patch
-Patch2:		%{name}-librevenge.patch
+Patch2:		%{name}-eds.patch
 Patch3:		build.patch
 Patch6:		%{name}-tidy.patch
 Patch7:		%{name}-asio.patch
@@ -191,6 +191,7 @@ Summary(pl.UTF-8):	Wiązanie Pythona i GObject do biblioteki AbiWorda
 Group:		Libraries/Python
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	python3-pygobject3 >= 3
+Obsoletes:	python-abiword < 1:3.0.7
 
 %description -n python3-abiword
 Python GObject binding for AbiWord library.
@@ -378,7 +379,7 @@ Jest to teczka clipartów używanych przez AbiWorda.
 %setup -q -n AbiWord-release-%{version}
 %patch -P0 -p1
 %patch -P1 -p1
-%patch -P2 -p0
+%patch -P2 -p1
 %patch -P3 -p1
 %patch -P6 -p1
 %patch -P7 -p1
@@ -436,7 +437,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/abiword
-%attr(755,root,root) %{_libdir}/libabiword-%{mver}.so
+%{_libdir}/libabiword-%{mver}.so
 %if %{with introspection}
 %{_libdir}/girepository-1.0/Abi-%{mver}.typelib
 %endif
@@ -461,42 +462,42 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/abiword.1*
 
 # These don't add any additional dependencies so there's no reason to split
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/applix.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/babelfish.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/bmp.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/clarisworks.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/docbook.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/eml.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/epub.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/freetranslation.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/garble.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/gdict.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/gimp.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/google.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/hancom.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/hrtext.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/iscii.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/kword.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/loadbindings.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/mht.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/mif.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/mswrite.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/opml.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/opendocument.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/openwriter.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/openxml.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/paint.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/passepartout.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/pdb.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/pdf.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/presentation.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/s5.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/sdw.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/t602.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/urldict.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wikipedia.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wml.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/xslfo.so
+%{_libdir}/abiword-%{mver}/plugins/applix.so
+%{_libdir}/abiword-%{mver}/plugins/babelfish.so
+%{_libdir}/abiword-%{mver}/plugins/bmp.so
+%{_libdir}/abiword-%{mver}/plugins/clarisworks.so
+%{_libdir}/abiword-%{mver}/plugins/docbook.so
+%{_libdir}/abiword-%{mver}/plugins/eml.so
+%{_libdir}/abiword-%{mver}/plugins/epub.so
+%{_libdir}/abiword-%{mver}/plugins/freetranslation.so
+%{_libdir}/abiword-%{mver}/plugins/garble.so
+%{_libdir}/abiword-%{mver}/plugins/gdict.so
+%{_libdir}/abiword-%{mver}/plugins/gimp.so
+%{_libdir}/abiword-%{mver}/plugins/google.so
+%{_libdir}/abiword-%{mver}/plugins/hancom.so
+%{_libdir}/abiword-%{mver}/plugins/hrtext.so
+%{_libdir}/abiword-%{mver}/plugins/iscii.so
+%{_libdir}/abiword-%{mver}/plugins/kword.so
+%{_libdir}/abiword-%{mver}/plugins/loadbindings.so
+%{_libdir}/abiword-%{mver}/plugins/mht.so
+%{_libdir}/abiword-%{mver}/plugins/mif.so
+%{_libdir}/abiword-%{mver}/plugins/mswrite.so
+%{_libdir}/abiword-%{mver}/plugins/opml.so
+%{_libdir}/abiword-%{mver}/plugins/opendocument.so
+%{_libdir}/abiword-%{mver}/plugins/openwriter.so
+%{_libdir}/abiword-%{mver}/plugins/openxml.so
+%{_libdir}/abiword-%{mver}/plugins/paint.so
+%{_libdir}/abiword-%{mver}/plugins/passepartout.so
+%{_libdir}/abiword-%{mver}/plugins/pdb.so
+%{_libdir}/abiword-%{mver}/plugins/pdf.so
+%{_libdir}/abiword-%{mver}/plugins/presentation.so
+%{_libdir}/abiword-%{mver}/plugins/s5.so
+%{_libdir}/abiword-%{mver}/plugins/sdw.so
+%{_libdir}/abiword-%{mver}/plugins/t602.so
+%{_libdir}/abiword-%{mver}/plugins/urldict.so
+%{_libdir}/abiword-%{mver}/plugins/wikipedia.so
+%{_libdir}/abiword-%{mver}/plugins/wml.so
+%{_libdir}/abiword-%{mver}/plugins/xslfo.so
 
 %files devel
 %defattr(644,root,root,755)
@@ -515,64 +516,64 @@ rm -rf $RPM_BUILD_ROOT
 
 %files plugin-aiksaurus
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/aiksaurus.so
-%attr(755,root,root) %{_libdir}/libAiksaurusGtk3--export-dynamic.so
-%attr(755,root,root) %{_libdir}/libAiksaurusGtk3.so
+%{_libdir}/abiword-%{mver}/plugins/aiksaurus.so
+%{_libdir}/libAiksaurusGtk3--export-dynamic.so
+%{_libdir}/libAiksaurusGtk3.so
 
 %files plugin-collab
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/collab.so
+%{_libdir}/abiword-%{mver}/plugins/collab.so
 %{_datadir}/telepathy/clients/AbiCollab.client
 
 %files plugin-command
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/command.so
+%{_libdir}/abiword-%{mver}/plugins/command.so
 
 %if %{with gda}
 %files plugin-gda
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/gda.so
+%{_libdir}/abiword-%{mver}/plugins/gda.so
 %endif
 
 %if %{with goffice}
 %files plugin-goffice
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/goffice.so
+%{_libdir}/abiword-%{mver}/plugins/goffice.so
 %endif
 
 %files plugin-mathview
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/mathview.so
+%{_libdir}/abiword-%{mver}/plugins/mathview.so
 
 %if %{with ots}
 %files plugin-ots
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/ots.so
+%{_libdir}/abiword-%{mver}/plugins/ots.so
 %endif
 
 %files plugin-latex
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/latex.so
+%{_libdir}/abiword-%{mver}/plugins/latex.so
 
 %files plugin-link-grammar
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/grammar.so
+%{_libdir}/abiword-%{mver}/plugins/grammar.so
 
 %if %{with psiconv}
 %files plugin-psion
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/psion.so
+%{_libdir}/abiword-%{mver}/plugins/psion.so
 %endif
 
 %files plugin-wmf
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wmf.so
+%{_libdir}/abiword-%{mver}/plugins/wmf.so
 
 %if %{with wordperfect}
 %files plugin-wordperfect
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wordperfect.so
-%attr(755,root,root) %{_libdir}/abiword-%{mver}/plugins/wpg.so
+%{_libdir}/abiword-%{mver}/plugins/wordperfect.so
+%{_libdir}/abiword-%{mver}/plugins/wpg.so
 %endif
 
 %files clipart
