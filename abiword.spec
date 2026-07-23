@@ -463,13 +463,11 @@ rm -rf $RPM_BUILD_ROOT
 
 # These don't add any additional dependencies so there's no reason to split
 %{_libdir}/abiword-%{mver}/plugins/applix.so
-%{_libdir}/abiword-%{mver}/plugins/babelfish.so
 %{_libdir}/abiword-%{mver}/plugins/bmp.so
 %{_libdir}/abiword-%{mver}/plugins/clarisworks.so
 %{_libdir}/abiword-%{mver}/plugins/docbook.so
 %{_libdir}/abiword-%{mver}/plugins/eml.so
 %{_libdir}/abiword-%{mver}/plugins/epub.so
-%{_libdir}/abiword-%{mver}/plugins/freetranslation.so
 %{_libdir}/abiword-%{mver}/plugins/garble.so
 %{_libdir}/abiword-%{mver}/plugins/gdict.so
 %{_libdir}/abiword-%{mver}/plugins/gimp.so
